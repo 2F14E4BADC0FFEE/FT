@@ -1,0 +1,1082 @@
+[
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "What is the range (span) of a sample?",
+    "answer": "The range or span of a sample is the difference between the largest and smallest values: x_range = x_MAX - x_MIN (equation 3.30). It is the simplest measure of dispersion. However, it reacts extremely to outliers and has little significance regarding the overall dispersion of all sample values, since it only depends on two extreme observations."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "medium",
+    "question": "In a regression with N = 25 data points, SS_tot = 200 and SS_res = 50. Calculate R^2 and SS_reg.",
+    "answer": "Step 1: SS_reg = SS_tot - SS_res = 200 - 50 = 150.\nStep 2: R^2 = SS_reg / SS_tot = 150 / 200 = 0.75.\nStep 3: Interpretation: 75% of the variability of y is explained by the regression; the remaining 25% is residual.\nFinal answer: R^2 = 0.75 and SS_reg = 150."
+  },
+  {
+    "type": "application",
+    "difficulty": "easy",
+    "question": "In a reliability test, 200 components run for 1000 hours and 8 fail. Estimate the failure rate lambda per hour, assuming an exponential lifetime distribution with constant failure rate.",
+    "answer": "Step 1: Approximate the rate as lambda_hat ≈ (number of failures) / (total component-hours) = 8 / (200 * 1000) = 8 / 200 000 = 4 * 10^-5 per hour.\nStep 2: Equivalently MTBF_hat = 1 / lambda_hat = 25 000 hours.\nFinal answer: lambda_hat ≈ 4 * 10^-5 per hour, MTBF_hat ≈ 25 000 hours. This estimator is the maximum-likelihood estimate under the exponential model and assumes failures are independent and identically distributed."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "easy",
+    "question": "A continuous random variable has density f(x) = 0.5 for 0 <= x <= 2 and 0 otherwise. Calculate E[X] and Var(X).",
+    "answer": "Step 1: This is U(0, 2). Apply E[X] = (a + b)/2 = (0 + 2)/2 = 1.\nStep 2: Apply Var(X) = (b - a)^2 / 12 = 4/12 = 1/3 ≈ 0.333.\nStep 3: Verify via integration: E[X^2] = integral_0^2 x^2 * 0.5 dx = 0.5 * (8/3) = 4/3. Var(X) = 4/3 - 1^2 = 1/3.\nFinal answer: E[X] = 1, Var(X) = 1/3."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "hard",
+    "question": "Explain the concept of degrees of freedom and why they matter in statistical tests.",
+    "answer": "Degrees of freedom (df) represent the number of independent pieces of information available for estimating a parameter. When N observations are used to estimate the mean, one constraint is imposed (values must average to x_bar), leaving N-1 degrees of freedom for variance estimation. In regression with 2 parameters, df = N-2. In ANOVA with K groups, between-group df = K-1 and within-group df = N-K. Degrees of freedom matter because they determine the shape of chi-squared, t, and F distributions used for critical values. Too few degrees of freedom lead to wider confidence intervals and less powerful tests."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "hard",
+    "question": "Explain the total probability theorem and give an example of its use.",
+    "answer": "The total probability theorem states: P(B) = sum over k of P(B|Ak) × P(Ak), where A1, A2, ..., An form a complete partition of the event space (mutually exclusive and exhaustive). Example: A factory has 3 production lines producing 40%, 35%, and 25% of output, with defect rates of 2%, 3%, and 5% respectively. The total defect probability is: P(defect) = 0.02×0.40 + 0.03×0.35 + 0.05×0.25 = 0.008 + 0.0105 + 0.0125 = 0.031 or 3.1%."
+  },
+  {
+    "type": "definition",
+    "difficulty": "hard",
+    "question": "Define the simple effect of factor A at a level of B, and explain when it should be reported instead of the main effect of A.",
+    "answer": "The simple effect of A at level j of B is the difference between cell means within level j of B: SimpleEffect_A(j) = x_bar_{i'.j} - x_bar_{i.j}. The main effect of A is the average of simple effects across all levels of B: alpha_hat_i = (1/b) * sum_j (x_bar_{ij} - x_bar..). When the interaction A x B is significant, the simple effects at different levels of B differ, and the main effect of A averages over heterogeneous patterns. In such cases the simple effects should be reported separately for each level of B; the main effect alone can be misleading or even zero despite strong effects within levels."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "hard",
+    "question": "Compare a treatment effect in an experimental study (with random assignment) and an observational study (with self-selection): what is the inferential difference?",
+    "answer": "Experimental study with random assignment: the treatment is assigned by chance, statistically independent of subject characteristics. Confounders are balanced in expectation between groups. The difference in group outcomes is an unbiased estimate of the average causal effect of the treatment. Observational study with self-selection: subjects choose their treatment based on their own characteristics, which correlate with the outcome. Confounders are unbalanced; the observed group difference reflects both the treatment effect AND the confounding influence. Without adjustment, observational comparisons yield biased causal estimates. Inference techniques that attempt causal inference from observational data include propensity scoring, instrumental variables, regression discontinuity, and DAG-based covariate adjustment — but no statistical method substitutes for random assignment as a guarantor of unbiasedness."
+  },
+  {
+    "type": "derivation",
+    "difficulty": "easy",
+    "question": "Derive P(A ∪ B) = P(A) + P(B) - P(A ∩ B) from Kolmogorov's axioms, without assuming mutual exclusivity.",
+    "answer": "Step 1: Decompose A ∪ B into disjoint parts: A ∪ B = A ∪ (B ∩ A'), where A and (B ∩ A') are disjoint.\nStep 2: By Kolmogorov's additivity: P(A ∪ B) = P(A) + P(B ∩ A').\nStep 3: Decompose B as B = (B ∩ A) ∪ (B ∩ A'), disjoint. By additivity: P(B) = P(B ∩ A) + P(B ∩ A').\nStep 4: Solve: P(B ∩ A') = P(B) - P(A ∩ B).\nStep 5: Substitute into Step 2: P(A ∪ B) = P(A) + P(B) - P(A ∩ B).\nFinal result: The addition theorem holds for any two events, reducing to P(A) + P(B) only when A ∩ B is empty."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "easy",
+    "question": "An engineer reports only 'The resistance is 986 Ohm' for a sample of N = 5 measurements. What critical information is missing and what should be reported instead?",
+    "answer": "The critical missing information is the uncertainty of the estimate. Reporting only x_bar = 986 Ohm gives no indication of: (1) the scatter of individual measurements (standard deviation s), (2) how precisely the population mean mu is estimated (confidence interval), or (3) the sample size N. With only N = 5, the variance of the sample mean is sigma^2/5 — the estimate is relatively imprecise. Correct reporting should include: x_bar, s, N, and a confidence interval. Example: 'Estimated mean resistance: 986 Ohm; 95% CI: [982, 990] Ohm; N = 5; s = 2.5 Ohm.'"
+  },
+  {
+    "type": "application",
+    "difficulty": "hard",
+    "question": "Tablet weights are claimed to be N(mu = 250 mg, sigma = 5 mg). A regulator samples N = 16 tablets with x_bar = 247 mg. (a) Test H0: mu = 250 against H1: mu != 250 at alpha = 5% with sigma known (z_{0.025} = 1.96). (b) Calculate the type II error if the true mean is mu = 246 mg. Use Phi(1.24) = 0.8925 and Phi(5.16) ≈ 1.",
+    "answer": "Step 1: SE = sigma / sqrt(N) = 5 / 4 = 1.25.\nStep 2: Test statistic: z = (247 - 250) / 1.25 = -2.4. Since |-2.4| > 1.96, reject H0.\nStep 3 (acceptance region for power calc): x_bar in [250 - 1.96*1.25, 250 + 1.96*1.25] = [247.55, 252.45].\nStep 4: Under mu = 246, x_bar ~ N(246, 1.25^2). beta = P(247.55 <= x_bar <= 252.45 | mu = 246) = Phi((252.45-246)/1.25) - Phi((247.55-246)/1.25) = Phi(5.16) - Phi(1.24) ≈ 1 - 0.8925 = 0.1075.\nFinal answer: (a) Reject H0; the sample mean significantly differs from 250 mg. (b) Type II error beta ≈ 10.75%, power 1 - beta ≈ 89.25%."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "What is the class width and the class midpoint c_m in a classified frequency distribution?",
+    "answer": "When sample data are grouped into classes (bins), the class width is the difference between the upper and lower class boundary of a class. The class midpoint c_m is the centre of a class, calculated as the arithmetic mean of its lower and upper boundary. The midpoint represents all values within the class for subsequent calculations such as the mean or variance of classified data."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "hard",
+    "question": "State the Central Limit Theorem and explain why it is important in statistics.",
+    "answer": "The Central Limit Theorem states that if x1, x2, ..., xN are independent random variables from any distribution with mean mu and variance sigma^2, then the sample mean x_bar = (1/N)×sum(xi) is approximately normally distributed with mean mu and variance sigma^2/N as N becomes large. This holds regardless of the original distribution. Its importance: (1) it justifies using normal-distribution-based methods even for non-normal data, (2) it explains why many natural phenomena are approximately normal, and (3) it is the foundation of confidence intervals and hypothesis tests based on the sample mean."
+  },
+  {
+    "type": "definition",
+    "difficulty": "hard",
+    "question": "What is the covariance matrix Sigma of a multivariate random vector x=(x1,...,xM)^T? Define each element, state the symmetry property, and explain what diagonal and off-diagonal elements represent.",
+    "answer": "Sigma=E[(x-mu)(x-mu)^T]. Element (j,k): Sigma_{jk}=Cov(x_j,x_k)=E[(x_j-mu_j)(x_k-mu_k)]. Diagonal (j=k): Sigma_{jj}=Var(x_j)=sigma_j^2 — marginal variance of x_j. Off-diagonal (j!=k): Sigma_{jk}=Cov(x_j,x_k) — positive if they co-vary positively, negative if oppositely. Symmetry: Sigma_{jk}=Sigma_{kj}. Sigma is positive definite, ensuring the multivariate normal density is well-defined. Correlation matrix R obtained by normalising: R_{jk}=Sigma_{jk}/(sigma_j*sigma_k)."
+  },
+  {
+    "type": "factual",
+    "difficulty": "medium",
+    "question": "What are the three most common graphical methods for assessing normality, and what does each reveal?",
+    "answer": "1. Histogram with fitted normal curve: shows overall shape, skewness, multimodality. Limitation: depends on class width; no quantitative assessment. 2. Normal probability plot (Q-Q plot): sample quantiles vs theoretical normal quantiles. Normally distributed data lie on a straight line; curvature indicates skewness, S-shapes indicate heavy/light tails, isolated points are outliers. Better resolution than histogram. 3. Box plot: shows min, Q1, median, Q3, max, outliers. Symmetric box and equal whiskers suggest approximate normality; asymmetry indicates skewness. Analytical tests (Shapiro-Wilk, Anderson-Darling, KS) are required for a quantified normality decision."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "easy",
+    "question": "An analyst computes a sample mean from 5 individual values plus a sixth 'mean of three duplicates', treating all 6 entries equally. What error is introduced?",
+    "answer": "The duplicate-derived mean represents three observations averaged into one entry. Treating it as a single observation underweights it by a factor of 3 in the overall computation. The correct sample mean should weight by the number of underlying measurements: x_bar = (sum of 5 individual values + 3 * duplicate-mean) / 8. The same issue inflates the variance estimate, because the duplicate-derived mean has variance sigma^2/3 rather than sigma^2 and so contributes a smaller spread than 'fresh' observations. Always work with raw measurements when possible, or apply appropriate weighting."
+  },
+  {
+    "type": "application",
+    "difficulty": "easy",
+    "question": "An engineer studying speed on a multi-segment trip needs to compute the average speed. State which mean to use and why.",
+    "answer": "Step 1: For equal-distance segments traversed at different speeds, the harmonic mean gives the correct average: x_H = N / sum(1/v_n).\nStep 2: For equal-time segments at different speeds, the arithmetic mean is appropriate: x_bar = (1/N) * sum v_n, because total distance / total time = mean of speeds.\nStep 3: For general unequal-distance and unequal-time segments, compute the weighted mean of speeds with weights proportional to the time spent at each speed: (sum d_n) / (sum d_n / v_n) — equivalent to total distance divided by total time.\nFinal answer: Use harmonic mean for equal distances, arithmetic for equal times, weighted-by-time mean for unequal segments. The choice reflects which quantity is genuinely shared across segments."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "medium",
+    "question": "A team reports P(A | B) = 0.8 and concludes P(B | A) = 0.8. What is the error?",
+    "answer": "P(A | B) and P(B | A) are different quantities; equality holds only under specific conditions (P(A) = P(B), or both = 1). By Bayes' theorem: P(B | A) = P(A | B) * P(B) / P(A). Without knowing P(A) and P(B), P(B | A) cannot be determined from P(A | B). Common example: P(positive test | disease) = 99% (sensitivity), but P(disease | positive test) can be 50% in low-prevalence populations. Confusing P(A | B) with P(B | A) is the 'prosecutor's fallacy' or 'inverse fallacy'. The two are related by Bayes' theorem, which incorporates the marginal probabilities. Always check whether the conditioning direction matches the inferential question."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "easy",
+    "question": "A team uses the arithmetic mean to average two speeds: 60 km/h and 90 km/h over equal distances. What is the error?",
+    "answer": "For equal distances at different speeds, the arithmetic mean overestimates the average speed. The correct mean is the harmonic mean: x_H = 2 / (1/60 + 1/90) = 2 / (1/60 + 1/90) = 2 / 0.02778 ≈ 72 km/h. The arithmetic mean (60+90)/2 = 75 km/h overstates by 3 km/h. The error arises because time spent at each speed is unequal (60 km/h takes more time per km than 90 km/h), so the slower speed has greater weight in the true total time. The harmonic mean correctly weights by time. Remedy: when computing average rates over equal distances, always use the harmonic mean."
+  },
+  {
+    "type": "derivation",
+    "difficulty": "medium",
+    "question": "Derive that the contrast estimator C_hat = sum c_j * x_bar_j has Var(C_hat) = sigma^2 * sum (c_j^2 / n_j) under homoscedasticity.",
+    "answer": "Step 1: For i.i.d. observations within group j, x_bar_j ~ (mu_j, sigma^2 / n_j) and the x_bar_j are independent across j.\nStep 2: C_hat = sum_j c_j * x_bar_j. By independence: Var(C_hat) = sum_j c_j^2 * Var(x_bar_j) = sum_j c_j^2 * sigma^2 / n_j.\nStep 3: Factor sigma^2: Var(C_hat) = sigma^2 * sum_j (c_j^2 / n_j).\nStep 4: For equal sample sizes n_j = n: Var(C_hat) = (sigma^2 / n) * sum_j c_j^2.\nFinal result: Var(C_hat) = sigma^2 * sum (c_j^2 / n_j). Estimating sigma^2 by MS_within yields SE(C_hat) = sqrt(MS_within * sum (c_j^2 / n_j)), the standard error used for t-tests of contrasts in ANOVA."
+  },
+  {
+    "type": "factual",
+    "difficulty": "medium",
+    "question": "State the formula for the harmonic mean of N positive observations and its relationship with the arithmetic mean.",
+    "answer": "Harmonic mean: x_H = N / sum_{n=1}^{N} (1 / x_n), defined when all x_n > 0. The harmonic mean satisfies x_H <= x_G <= x_bar, where x_G is the geometric mean (sqrt[N]{product x_n}) and x_bar the arithmetic mean. Equality holds only when all x_n are equal. The harmonic mean is appropriate for averaging rates and ratios (e.g., average speed when equal distances are travelled at different speeds), where it gives the correct combined rate."
+  },
+  {
+    "type": "application",
+    "difficulty": "easy",
+    "question": "An engineer wants to identify outliers in a normal process. State the conventional thresholds and the implied false-detection rates.",
+    "answer": "Step 1: Conventional thresholds for outliers in normal data: |z| > 2 (moderate), |z| > 3 (strong).\nStep 2: Under N(0, 1), P(|Z| > 2) = 2 * (1 - Phi(2)) ≈ 4.55% — moderate outlier threshold.\nStep 3: P(|Z| > 3) = 2 * (1 - Phi(3)) ≈ 0.27% — strong outlier threshold.\nStep 4: P(|Z| > 4) ≈ 0.006% — extreme outlier.\nStep 5: Important caveats: (a) these are per-observation rates; with N = 100, expecting ~4.55 observations beyond 2*sigma is normal; (b) outliers may be legitimate measurements rather than errors; (c) the thresholds assume normality — non-normal distributions have different tail probabilities.\nFinal answer: |z| > 2 (4.55%) for moderate, |z| > 3 (0.27%) for strong. Outlier investigation should consider sample size, distributional shape, and physical context."
+  },
+  {
+    "type": "derivation",
+    "difficulty": "hard",
+    "question": "Derive the standard error of b_1 in simple linear regression: SE(b_1) = sigma / sqrt(S_xx).",
+    "answer": "Step 1: b_1 = S_xy / S_xx = sum (x_n - x_bar)*(y_n - y_bar) / S_xx. Since sum (x_n - x_bar)*y_bar = y_bar*sum(x_n - x_bar) = 0, this simplifies to b_1 = sum (x_n - x_bar)*y_n / S_xx.\nStep 2: Var(b_1) = Var(sum w_n * y_n) where w_n = (x_n - x_bar)/S_xx and treating x_n as fixed.\nStep 3: Under independence and Var(y_n) = sigma^2: Var(sum w_n*y_n) = sum w_n^2 * sigma^2 = (sigma^2 / S_xx^2) * sum (x_n - x_bar)^2 = sigma^2 / S_xx.\nStep 4: Therefore SE(b_1) = sqrt(Var(b_1)) = sigma / sqrt(S_xx).\nStep 5: In practice, replace sigma by s_e to get the estimated SE: SE_hat(b_1) = s_e / sqrt(S_xx), used for the t-statistic and CIs.\nFinal result: SE(b_1) = sigma / sqrt(S_xx). Larger S_xx (more spread in x) yields more precise slope estimates — the geometric intuition for designed experiments choosing extreme x values."
+  },
+  {
+    "type": "derivation",
+    "difficulty": "easy",
+    "question": "Derive P(A) + P(A') = 1 from Kolmogorov's axioms.",
+    "answer": "Step 1: A and its complement A' are disjoint by definition: A ∩ A' = {}.\nStep 2: Their union covers the event space: A ∪ A' = Omega.\nStep 3: Apply Kolmogorov's additivity for disjoint events: P(A) + P(A') = P(A ∪ A') = P(Omega).\nStep 4: Apply the normalisation axiom: P(Omega) = 1.\nFinal result: P(A) + P(A') = 1, equivalently P(A') = 1 - P(A). The relation reduces complement probabilities to a single subtraction and is fundamental for problems of the form 'at least one ...'."
+  },
+  {
+    "type": "definition",
+    "difficulty": "hard",
+    "question": "What is the Fisher z-transformation in correlation analysis, and why is it necessary for constructing a confidence interval for the population correlation rho?",
+    "answer": "Fisher z-transformation: z=arctanh(r)=0.5*ln((1+r)/(1-r)). Necessary because the sampling distribution of r is non-normal and bounded in [-1,1], with increasing skewness near r=+/-1. The transformed z is approximately normal with mean arctanh(rho) and standard deviation 1/sqrt(N-3). Procedure: (1) compute z=arctanh(r); (2) form z+/-c/sqrt(N-3); (3) back-transform with tanh to obtain CI for rho. Without this transformation, normal-theory CIs for r would be inaccurate."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "hard",
+    "question": "Why does multicollinearity in multiple regression make it difficult to interpret individual coefficients, even if overall model fit is high?",
+    "answer": "Multicollinearity exists when predictors are highly correlated. Consequences: (1) individual coefficient estimates become imprecise (large standard errors, wide CIs) even though R^2 and RMSE may be good; (2) coefficients may have unexpected signs or magnitudes; (3) significance tests for individual coefficients lose power — truly important predictors may appear insignificant; (4) the model predicts well within the observed range but extrapolates poorly. Solutions: remove redundant predictors, use principal component regression, or regularisation methods."
+  },
+  {
+    "type": "factual",
+    "difficulty": "medium",
+    "question": "State the relationship between the variance and the mean of a Poisson random variable, and the implication for the coefficient of variation.",
+    "answer": "For X ~ Poisson(lambda), E[X] = lambda and Var(X) = lambda; the variance equals the mean exactly. Standard deviation is sigma = sqrt(lambda). Coefficient of variation: CV = sigma / mu = 1 / sqrt(lambda); it decreases with lambda, so a Poisson process with high rate is relatively less variable than one with low rate. Empirical rule: if sample mean and sample variance differ markedly, the Poisson assumption is suspect."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "Why is the posterior distribution always proportional to likelihood times prior, with the proportionality constant being the marginal likelihood?",
+    "answer": "By Bayes' theorem: P(theta | data) = P(data | theta) * P(theta) / P(data). The denominator P(data) = integral P(data | theta) * P(theta) d theta does not depend on theta; it serves as a normalising constant ensuring the posterior integrates to 1. Therefore P(theta | data) is proportional to P(data | theta) * P(theta) = likelihood * prior. The 'proportional to' notation is convenient because the constant of proportionality (the marginal likelihood) is often difficult to compute but irrelevant for relative posterior values across theta. The marginal likelihood matters when comparing models (Bayes factors) but not within a single model."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "hard",
+    "question": "A two-factor ANOVA with factor A (a = 3 levels), factor B (b = 2 levels), and n = 4 replicates yields SS_A = 48, SS_B = 18, SS_AB = 24, SS_E = 60. Test the interaction at alpha = 5% with F_{0.05; 2, 18} = 3.55.",
+    "answer": "Step 1: Degrees of freedom: df_A = a - 1 = 2; df_B = b - 1 = 1; df_AB = (a - 1)(b - 1) = 2; df_E = a*b*(n - 1) = 18.\nStep 2: Mean squares: MS_A = 48/2 = 24; MS_B = 18/1 = 18; MS_AB = 24/2 = 12; MS_E = 60/18 ≈ 3.333.\nStep 3: F_AB = MS_AB / MS_E = 12 / 3.333 ≈ 3.60.\nStep 4: Compare with F_{0.05; 2, 18} = 3.55. Since 3.60 > 3.55, reject H0: no interaction.\nFinal answer: The interaction is significant (marginally) at alpha = 5%; the main effects of A and B should not be interpreted in isolation. Simple-effect analyses or careful interaction-plot inspection are needed."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "hard",
+    "question": "An engineer applies the Kolmogorov-Smirnov test to check normality but estimates both mu and sigma from the same sample, uses the standard K-S critical value, and fails to reject. Why is the conclusion likely too lenient, and what is the correct adjustment?",
+    "answer": "The K-S critical value tabulated for fully specified F_0 is overly conservative when parameters are estimated from the same sample: the empirical distribution is fitted to F_0_hat, reducing the supremum |F_N - F_0_hat| compared with a truly external F_0. Using the conventional table therefore makes rejection harder than it should be (lower power, higher type II error). The correct adjustment is the Lilliefors test, which uses different critical values calibrated for estimated mu and sigma. Alternatively, Anderson-Darling or Shapiro-Wilk tests provide stronger tests of normality with appropriate critical values for estimated parameters."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "easy",
+    "question": "Why does a paired sample give different inference from two pseudo-independent samples even when the marginal means and variances are identical?",
+    "answer": "The inference target differs: for paired data, the parameter is the mean difference E[Y - X], inferred from the differences d_n = y_n - x_n; their variance is Var(d_n) = Var(X) + Var(Y) - 2*Cov(X, Y). For independent samples treating X and Y as unrelated, the target is E[Y] - E[X], with standard error based on Var(X) + Var(Y) only. When Cov(X, Y) > 0, ignoring the covariance overstates the variance of the difference and reduces test power. The pairing structure encodes a different probability model and cannot be recovered after the data are 'unpaired'."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "hard",
+    "question": "Compare a univariate confidence interval and a multivariate confidence ellipsoid: how is joint coverage achieved, and why is the ellipsoid generally not aligned with the coordinate axes?",
+    "answer": "Univariate CI for mu_j: x_bar_j +/- t_{alpha/2; N - 1} * s_j / sqrt(N), one-dimensional. Provides marginal coverage at level (1 - alpha) for mu_j alone. Multivariate confidence ellipsoid for mu = (mu_1, ..., mu_M): {mu : N * (x_bar - mu)^T * S^(-1) * (x_bar - mu) <= ((M*(N - 1))/(N - M)) * F_{alpha; M, N - M)}. Provides joint coverage (1 - alpha) for the entire mean vector. The ellipsoid is generally rotated relative to the coordinate axes: its orientation reflects the off-diagonal entries of S (covariances). When components are correlated, the ellipsoid is elongated in the direction of strongest covariation and shrunk perpendicular to it. The Cartesian product of M individual CIs is conservative (joint coverage > 1 - M*alpha) and ignores correlation; the ellipsoid is tight and respects the correlation structure."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "Why does kurtosis alone not distinguish between heavy-tailed and pointy-peaked distributions?",
+    "answer": "Kurtosis g_2 = (1/N) * sum ((x_n - x_bar)/s)^4 increases with both heavy tails AND a sharp central peak. A heavy-tailed distribution has cubic-and-higher contributions from extreme values; a sharply peaked distribution concentrates mass near the mean, leaving less near +/-1*sigma but maintaining tail mass at moderate distances. Both increase g_2 above the normal's value of 3. Distinguishing the two requires inspecting the full shape: histograms, Q-Q plots, or examining the density at specific quantile values. Reporting only g_2 conflates the two; reporting the full distributional shape avoids this ambiguity."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "medium",
+    "question": "A random-effects ANOVA with J = 5 groups of n = 6 observations yields MS_treatment = 25 and MS_error = 4. Estimate the variance components sigma_e^2 and sigma_alpha^2.",
+    "answer": "Step 1: From the expected mean squares: E[MS_error] = sigma_e^2, so sigma_e_hat^2 = MS_error = 4.\nStep 2: E[MS_treatment] = sigma_e^2 + n * sigma_alpha^2; solve: sigma_alpha_hat^2 = (MS_treatment - MS_error) / n = (25 - 4) / 6 = 21 / 6 = 3.5.\nStep 3: Both components are positive — no truncation needed.\nStep 4: Intraclass correlation: rho = sigma_alpha^2 / (sigma_alpha^2 + sigma_e^2) = 3.5 / 7.5 ≈ 0.467.\nFinal answer: sigma_e_hat^2 = 4.0, sigma_alpha_hat^2 = 3.5; about 47% of the total response variability is attributable to the random factor levels."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "hard",
+    "question": "A Bayesian update has prior P(theta = 0.3) = 0.4, P(theta = 0.5) = 0.6. Observed: 7 successes in 10 Bernoulli trials. Compute the posterior P(theta = 0.5 | data) using the binomial likelihood and Bayes' theorem.",
+    "answer": "Step 1: Likelihood: P(7 successes in 10 trials | theta) = C(10, 7) * theta^7 * (1-theta)^3.\nStep 2: For theta = 0.3: L = C(10, 7) * 0.3^7 * 0.7^3 = 120 * 0.0002187 * 0.343 ≈ 0.00900.\nStep 3: For theta = 0.5: L = 120 * 0.5^7 * 0.5^3 = 120 * 0.0078125 * 0.125 = 0.1172.\nStep 4: Unnormalised posterior:\n  theta = 0.3: 0.00900 * 0.4 = 0.00360.\n  theta = 0.5: 0.1172 * 0.6 = 0.0703.\nStep 5: Normaliser: 0.00360 + 0.0703 = 0.0739.\nStep 6: Posterior probabilities:\n  P(theta = 0.3 | data) = 0.00360 / 0.0739 ≈ 0.0487.\n  P(theta = 0.5 | data) = 0.0703 / 0.0739 ≈ 0.951.\nFinal answer: P(theta = 0.5 | data) ≈ 0.951; the posterior strongly favours theta = 0.5 after observing 7/10 successes (which is more consistent with theta = 0.5 than theta = 0.3)."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "easy",
+    "question": "Why does the sample range typically grow with sample size N while the IQR and standard deviation converge to fixed values?",
+    "answer": "The range x_MAX - x_MIN depends on the two most extreme order statistics. As N grows, the sample probes deeper into the tails of the underlying distribution, so x_MAX increases (and x_MIN decreases) without bound for unbounded populations; even for bounded populations, the range approaches the population range. The IQR depends only on the central quartiles Q1 and Q3, which converge to fixed population quantiles. The standard deviation s, an average over the full sample, converges to the population sigma. Only extreme-quantile statistics grow with N; central-quantile and average-based statistics stabilise."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "medium",
+    "question": "If the correlation coefficient between x and y is r = 0.85, what is the coefficient of determination and how is it interpreted?",
+    "answer": "The coefficient of determination is R^2 = r^2 = 0.85^2 = 0.7225 or 72.25%. This means 72.25% of the variance in y is explained by the linear relationship with x. The remaining 27.75% is unexplained variance (due to other factors, measurement error, or nonlinear effects). While r = 0.85 indicates a strong positive linear relationship, R^2 provides a more intuitive interpretation in terms of explained variance."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "easy",
+    "question": "Why is the variance always non-negative, and under what condition does it equal zero?",
+    "answer": "The variance is the expected value of squared deviations: s^2 = (1/(N-1)) * sum((x_n - x_bar)^2). Since each squared term is >= 0, the sum and therefore s^2 cannot be negative. The variance equals zero only if every (x_n - x_bar) = 0, i.e. all sample values are identical. In that case the sample carries no dispersion at all."
+  },
+  {
+    "type": "application",
+    "difficulty": "hard",
+    "question": "Describe the complete statistical workflow for characterizing a manufacturing process using DFSS methods.",
+    "answer": "Step 1: Measurement system analysis (MSA) — verify measurement repeatability and reproducibility.\nStep 2: Collect representative samples from the process.\nStep 3: Descriptive statistics — compute mean, std dev, create histograms, box plots.\nStep 4: Distribution fitting — test for normality, fit appropriate distribution.\nStep 5: Process capability — compute Cp = (USL-LSL)/(6s) and Cpk = min((USL-x_bar)/(3s), (x_bar-LSL)/(3s)).\nStep 6: If Cpk < target, use DOE (design of experiments) and regression to identify significant factors.\nStep 7: Implement SPC — set up control charts with ±3 sigma limits.\nStep 8: Monitor and maintain statistical control."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "hard",
+    "question": "Why is the sum of independent chi-squared random variables again chi-squared, but the sum of independent t- or F-distributed variables generally is not?",
+    "answer": "Chi-squared variables are sums of squared independent standard normals: chi-squared(k_1) + chi-squared(k_2) is a sum of (k_1 + k_2) such squared normals, again chi-squared with k_1 + k_2 degrees of freedom. The t- and F-distributions are quotients, not sums of squares: t = Z / sqrt(chi-squared/k), F = (chi-squared_1 / k_1) / (chi-squared_2 / k_2). The sum of two quotients does not simplify to another quotient with the same structure. The closure property is exclusive to additive structures, which is one reason chi-squared is the foundational distribution in ANOVA and variance-based testing."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "What is a multimodal distribution, and how does it commonly arise in measured data?",
+    "answer": "A multimodal distribution has multiple distinct local maxima in its density (or histogram). A bimodal distribution has two modes; trimodal has three; and so on. Multimodality typically arises when the sample combines observations from two or more underlying subpopulations (e.g., parts from two different shifts, two production lines, or two material lots). A bimodal histogram is a strong diagnostic for an unrecognised mixing of populations and motivates stratifying the analysis."
+  },
+  {
+    "type": "definition",
+    "difficulty": "hard",
+    "question": "Define the Kolmogorov-Smirnov test statistic D for goodness-of-fit, and state its rejection rule against a fully specified continuous distribution F_0.",
+    "answer": "Given an i.i.d. sample with ECDF F_N(x) and a fully specified continuous distribution F_0(x), the test statistic is D_N = sup_x |F_N(x) - F_0(x)|, the largest vertical distance between the two cumulative functions. The maximum is attained at one of the sample points. H0: F = F_0 is rejected at level alpha if D_N > D_{N; alpha}, the tabulated critical value. The K-S test is distribution-free under H0 (D_N's distribution depends only on N when F_0 is continuous), and unlike chi-squared GoF, requires no binning."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "hard",
+    "question": "A regression model uses N = 50 observations with s_y = 10, s_x = 2, and r = -0.6. Calculate b_1, b_0 (using x_bar = 5, y_bar = 30), s_e^2, and R^2.",
+    "answer": "Step 1: b_1 = r * (s_y / s_x) = -0.6 * (10/2) = -3.0.\nStep 2: b_0 = y_bar - b_1 * x_bar = 30 - (-3.0)*5 = 30 + 15 = 45.\nStep 3: R^2 = r^2 = 0.36.\nStep 4: SS_tot = (N - 1) * s_y^2 = 49 * 100 = 4900. SS_res = (1 - R^2)*SS_tot = 0.64 * 4900 = 3136.\nStep 5: s_e^2 = SS_res / (N - 2) = 3136 / 48 ≈ 65.33; s_e ≈ 8.083.\nFinal answer: b_1 = -3.0, b_0 = 45, R^2 = 0.36, s_e^2 ≈ 65.33, s_e ≈ 8.08. The negative slope is consistent with r = -0.6, and the relatively low R^2 leaves substantial residual variability."
+  },
+  {
+    "type": "derivation",
+    "difficulty": "medium",
+    "question": "Derive the marginal density of the minimum X_(1) from N i.i.d. samples with common CDF F and density f.",
+    "answer": "Step 1: P(X_(1) > t) = P(all X_i > t) = product P(X_i > t) = (1 - F(t))^N.\nStep 2: The CDF of X_(1) is F_(1)(t) = 1 - P(X_(1) > t) = 1 - (1 - F(t))^N.\nStep 3: Differentiate with respect to t: f_(1)(t) = dF_(1)(t) / dt = -N*(1 - F(t))^(N - 1) * (-f(t)) = N * (1 - F(t))^(N - 1) * f(t).\nFinal result: f_(1)(t) = N * (1 - F(t))^(N - 1) * f(t). For exponential X ~ Exp(lambda), substitute F(t) = 1 - exp(-lambda*t), f(t) = lambda*exp(-lambda*t): f_(1)(t) = N*lambda*exp(-N*lambda*t), recovering the result X_(1) ~ Exp(N*lambda)."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "easy",
+    "question": "A regression model interpretation says 'because b_1 = 0 and b_2 = 0 individually, both predictors are useless'. What scenario can invalidate this reasoning?",
+    "answer": "Multicollinearity: if x_1 and x_2 are highly correlated, the partial effect of each (with the other held constant) is poorly identified; their SE inflates and individual t-tests can fail to reject. However, the joint test (overall F or partial F) may still detect a real combined effect. The correct interpretation: 'the data cannot separate the contributions of x_1 and x_2; together they may matter, but individually we cannot tell'. Diagnostic: examine VIF_j; if VIF_j > 5-10, treat individual t-tests with caution and rely on joint tests instead."
+  },
+  {
+    "type": "application",
+    "difficulty": "medium",
+    "question": "A team designs a quality improvement study and wants to detect a fraction-nonconforming reduction from p_0 = 0.05 to p_1 = 0.03 with alpha = 5% (one-sided) and power 90%. Determine the required sample size using z_{0.05} = 1.645, z_{0.10} = 1.282.",
+    "answer": "Step 1: For a one-sided z-test of two proportions with N each, the approximate formula is N = (z_{alpha} * sqrt(2*p_bar*(1-p_bar)) + z_{beta} * sqrt(p_0*(1-p_0) + p_1*(1-p_1)))^2 / (p_0 - p_1)^2.\nStep 2: Compute averages: p_bar = (0.05 + 0.03)/2 = 0.04; p_bar*(1-p_bar) = 0.04 * 0.96 = 0.0384.\nStep 3: p_0*(1-p_0) + p_1*(1-p_1) = 0.05*0.95 + 0.03*0.97 = 0.0475 + 0.0291 = 0.0766.\nStep 4: Numerator: (1.645 * sqrt(0.0768) + 1.282 * sqrt(0.0766))^2 = (1.645 * 0.277 + 1.282 * 0.277)^2 = (0.456 + 0.355)^2 = 0.811^2 ≈ 0.658.\nStep 5: Denominator: (0.05 - 0.03)^2 = 0.0004.\nStep 6: N ≈ 0.658 / 0.0004 ≈ 1644.\nFinal answer: N ≈ 1644 per group; about 3300 total observations. Detecting small proportion differences (delta_p = 0.02) requires very large samples — a fundamental statistical reality for low-probability events."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "easy",
+    "question": "Why does using a log transformation help when data are highly right-skewed?",
+    "answer": "A logarithmic transformation y -> ln(y) is concave: it compresses large values relative to small ones. Right-skewed data have a long right tail of large values that disproportionately inflate the mean and variance; ln(y) pulls these large values closer to the centre. After transformation, the distribution is often closer to symmetric (and sometimes approximately normal), enabling standard methods designed for symmetric or normal data. The transformation also tends to stabilise variance when sigma scales with mu — a common feature of right-skewed data."
+  },
+  {
+    "type": "factual",
+    "difficulty": "easy",
+    "question": "State the formula for the joint probability of independent events A_1, ..., A_n.",
+    "answer": "For mutually independent events, P(A_1 ∩ A_2 ∩ ... ∩ A_n) = product_{i=1}^{n} P(A_i). Mutual independence is stronger than pairwise independence: all subsets must factorise, not only pairs. For dependent events, the chain rule P(A_1 ∩ ... ∩ A_n) = P(A_1) * P(A_2 | A_1) * P(A_3 | A_1 ∩ A_2) * ... applies, and mutual independence collapses each conditional to the corresponding marginal."
+  },
+  {
+    "type": "derivation",
+    "difficulty": "medium",
+    "question": "Derive the system reliability of a k-out-of-n system with identical components having reliability R.",
+    "answer": "Step 1: Let X = number of components that succeed. X ~ Binomial(n, R) under independence.\nStep 2: System success = at least k components succeed = X >= k.\nStep 3: P(X >= k) = sum_{j=k}^{n} P(X = j) = sum_{j=k}^{n} C(n, j) * R^j * (1 - R)^(n - j).\nStep 4: This is the cumulative probability beyond k in the Binomial(n, R) distribution; the closed-form expression is in terms of regularised incomplete beta functions but the summation form is most practical for small n.\nStep 5: Special cases: k = n (series): R_sys = R^n; k = 1 (any-one-works): R_sys = 1 - (1 - R)^n.\nFinal result: R_sys = sum_{j=k}^{n} C(n, j) * R^j * (1 - R)^(n - j). For triple-modular redundancy (k = 2, n = 3): R_sys = 3*R^2*(1-R) + R^3 = R^2 * (3 - 2*R), which exceeds R for R > 0.5."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "hard",
+    "question": "Why does the standard error of b_1 in simple linear regression decrease when the x-values are spread further apart?",
+    "answer": "se(b_1) = sqrt(s_e^2 / sum (x_n - x_bar)^2). The denominator sum (x_n - x_bar)^2 = (N - 1) * s_x^2 increases with the spread of x. Geometrically, a wider 'lever arm' of x-values pins down the slope more precisely: a small change in slope causes large vertical mismatches in the y-direction for distant x-points, whereas closely spaced x-values fail to discriminate slopes. Practical implication for experimental design: when possible, choose x-values at the extremes of the operating range rather than clustering near the mean."
+  },
+  {
+    "type": "definition",
+    "difficulty": "hard",
+    "question": "Define a variance component in a random-effects ANOVA and state how it is estimated from the mean squares.",
+    "answer": "A variance component is the variance contribution of a random factor to total response variability. For a balanced one-way random-effects model y_ij = mu + alpha_i + epsilon_ij with alpha_i ~ N(0, sigma_alpha^2) and epsilon_ij ~ N(0, sigma_e^2), the total variance is sigma_y^2 = sigma_alpha^2 + sigma_e^2. Expected mean squares: E[MS_treatment] = sigma_e^2 + n * sigma_alpha^2; E[MS_error] = sigma_e^2. Equating to observed mean squares (method-of-moments): sigma_e_hat^2 = MS_error; sigma_alpha_hat^2 = (MS_treatment - MS_error) / n. Negative estimates are typically set to zero. The intraclass correlation rho = sigma_alpha^2 / sigma_y^2 quantifies the share of variance from the random factor."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "Explain the concept of a quantile function (inverse distribution function).",
+    "answer": "The quantile function is the inverse of the cumulative distribution function F(x). Given a probability p, the quantile x_p = F^(-1)(p) is the value below which a proportion p of the distribution falls. For example, the 95th percentile (p=0.95) of a standard normal distribution is z = 1.645. Quantiles are used to determine critical values for hypothesis tests, construct confidence intervals, and calculate percentiles. Common quantiles: median (p=0.5), quartiles (p=0.25, 0.75), and percentiles."
+  },
+  {
+    "type": "factual",
+    "difficulty": "easy",
+    "question": "State the formula for the half-width of a 95% prediction interval for a single new observation from N(mu, sigma^2).",
+    "answer": "Half-width of 95% PI = t_{0.025; N-1} * s * sqrt(1 + 1/N), where s is the sample standard deviation and N is the sample size. The 1 inside the square root accounts for the variance of the new observation; the 1/N accounts for the variance of x_bar. For large N, the half-width approaches z * s ≈ 1.96 * s, reflecting only the natural spread of individual observations. For known sigma, replace t with z. PI = x_bar +/- this half-width."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "Why does increasing the sample size N both narrow the confidence interval for the mean and increase the quality of a hypothesis test?",
+    "answer": "Both effects stem from the same fact: the variance of the sample mean is sigma^2/N and decreases as N grows. Confidence interval: its half-width is proportional to sigma/sqrt(N), so doubling N reduces the width by a factor of sqrt(2). Quality of hypothesis test: the test statistic is z = (x_bar - mu0) / (sigma/sqrt(N)). For a fixed true alternative mu1, a larger N makes the standardised distance |mu1 - mu0| / (sigma/sqrt(N)) larger, pushing the test statistic further into the rejection region and reducing the probability beta of a type II error. Both effects reflect that more data means less estimation uncertainty, enabling more precise interval estimates and more powerful discrimination between H0 and H1."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What is the chi-squared distribution and what is it used for?",
+    "answer": "The chi-squared distribution with nu degrees of freedom arises when nu independent standard normal random variables are squared and summed: chi^2 = z1^2 + z2^2 + ... + z_nu^2. Its mean is nu and variance is 2×nu. It is always non-negative and right-skewed (approaches normality as nu increases). Applications include: testing whether a sample variance matches a hypothesized value, goodness-of-fit tests, and testing independence in contingency tables."
+  },
+  {
+    "type": "factual",
+    "difficulty": "easy",
+    "question": "State the relationship between alpha, beta, and power in a hypothesis test.",
+    "answer": "alpha = P(reject H0 | H0 true) = type I error. beta = P(fail to reject H0 | H0 false) = type II error. Power = 1 - beta = P(reject H0 | H0 false), the probability of correctly detecting an effect. For a fixed N, alpha and beta trade off: reducing alpha widens the H0-conformant region, raising beta. Power increases with N (more data), with effect size (larger gap from H0), and with alpha (looser acceptance threshold)."
+  },
+  {
+    "type": "derivation",
+    "difficulty": "hard",
+    "question": "Derive the design-effect formula DEFF = 1 + (n - 1) * rho_ICC for cluster sampling with C clusters of size n.",
+    "answer": "Step 1: For cluster c, cluster mean y_bar_c = (1/n) * sum_j y_{cj}. Under the random-effects model: Var(y_bar_c) = (1/n^2) * Var(sum_j y_{cj}) = (1/n^2) * (n * Var(y_{cj}) + n*(n-1)*Cov(y_{cj}, y_{cj'})).\nStep 2: With Var(y_{cj}) = sigma_alpha^2 + sigma_e^2 = sigma^2 and Cov(y_{cj}, y_{cj'}) = sigma_alpha^2 = rho * sigma^2 (within-cluster correlation): Var(y_bar_c) = (1/n^2)*(n*sigma^2 + n*(n-1)*rho*sigma^2) = (sigma^2/n)*(1 + (n-1)*rho).\nStep 3: For C independent clusters, the overall mean x_bar = (1/C) * sum y_bar_c has Var(x_bar) = Var(y_bar_c) / C = (sigma^2/(n*C))*(1 + (n-1)*rho).\nStep 4: With total sample size N = n*C, compare with the SRS variance sigma^2 / N: Var_cluster / Var_SRS = 1 + (n - 1)*rho. This ratio is DEFF.\nStep 5: Effective sample size: N_eff = N / DEFF.\nFinal result: DEFF = 1 + (n - 1) * rho_ICC. The design effect quantifies the variance inflation due to clustering; positive rho_ICC (typical case) inflates SE relative to a simple random sample."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "easy",
+    "question": "A sample of N=8 has sum=96 and sum of squares=1168. Calculate x_bar, s^2, and s.",
+    "answer": "x_bar=96/8=12\ns^2=(1/7)*(1168-8*144)=(1/7)*(1168-1152)=16/7=2.286\ns=sqrt(2.286)=1.512\nResult: x_bar=12, s^2=2.286, s=1.512"
+  },
+  {
+    "type": "application",
+    "difficulty": "hard",
+    "question": "How do you test whether a regression relationship is statistically significant?",
+    "answer": "Two approaches: (1) Test individual coefficients: For the slope b1, compute t = b1/sb1 where sb1 is the standard error. If |t| exceeds the critical t-value with N-2 df, the slope is significantly different from zero. (2) Overall F-test for the model: F = (R^2/M) / ((1-R^2)/(N-M-1)), where M is the number of predictors. Compare to F-distribution with (M, N-M-1) df. A significant F means the model explains a significant portion of variance. For simple regression, both tests give equivalent results."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "easy",
+    "question": "Calculate the sample mean and median of {4, 8, 6, 5, 7, 12}.",
+    "answer": "Step 1: Mean: x_bar = (4 + 8 + 6 + 5 + 7 + 12) / 6 = 42 / 6 = 7.\nStep 2: Sort: {4, 5, 6, 7, 8, 12}. With even N = 6, median = (x_(3) + x_(4)) / 2 = (6 + 7) / 2 = 6.5.\nFinal answer: x_bar = 7, x_tilde = 6.5. The mean exceeds the median because of the larger right-tail value 12."
+  },
+  {
+    "type": "derivation",
+    "difficulty": "medium",
+    "question": "Derive the OLS intercept formula b_0 = y_bar - b_1 * x_bar from the first normal equation.",
+    "answer": "Step 1: Minimise S(b_0, b_1) = sum (y_n - b_0 - b_1 * x_n)^2.\nStep 2: Partial derivative with respect to b_0: dS/db_0 = -2 * sum (y_n - b_0 - b_1 * x_n) = 0.\nStep 3: This gives sum (y_n - b_0 - b_1 * x_n) = 0, i.e., sum y_n = N * b_0 + b_1 * sum x_n.\nStep 4: Divide by N: y_bar = b_0 + b_1 * x_bar.\nStep 5: Solve for b_0: b_0 = y_bar - b_1 * x_bar.\nFinal result: The OLS line always passes through the centroid (x_bar, y_bar). This identity is also why centring the predictors makes the intercept equal to y_bar."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "medium",
+    "question": "A process engineer fits regression to sensor data, gets R^2=0.98, and concludes: 'The model is excellent and can be safely extrapolated beyond the measurement range.' Identify all errors.",
+    "answer": "Error 1 — R^2 does not validate model form: R^2=0.98 means 98% of variance is explained within the measured range but does not confirm linearity. A non-linear relationship can yield high R^2 over a limited range. Inspect residual plots for systematic patterns. Error 2 — Extrapolation is invalid: regression is valid only within the measured predictor range. Assuming the relationship continues linearly beyond the data is unjustified; CIs and PIs also widen rapidly. Error 3 — R^2 increases with model complexity: adding terms always increases R^2 regardless of significance. Always test individual coefficient significance."
+  },
+  {
+    "type": "factual",
+    "difficulty": "easy",
+    "question": "State Bowley's skewness coefficient and its range.",
+    "answer": "Bowley's skewness coefficient: g_B = (Q3 + Q1 - 2*Q2) / (Q3 - Q1), where Q1, Q2, Q3 are the quartiles. The numerator is the asymmetry of the central 50% of data around the median; the denominator is the interquartile range (IQR). Range: g_B is in [-1, 1]. g_B = 0 indicates symmetry; g_B > 0 indicates right-skewness (longer upper half of central range); g_B < 0 indicates left-skewness. Robust because it depends only on three quartiles and is unaffected by outliers beyond the quartiles."
+  },
+  {
+    "type": "derivation",
+    "difficulty": "easy",
+    "question": "Derive Var(c) = 0 for a constant c, treated as a degenerate random variable.",
+    "answer": "Step 1: A constant c can be viewed as a random variable taking the value c with probability 1.\nStep 2: E[c] = c by definition.\nStep 3: Var(c) = E[(c - E[c])^2] = E[(c - c)^2] = E[0] = 0.\nFinal result: Var(c) = 0. Consequently, adding a constant to a random variable does not change its variance: Var(x + c) = Var(x), since the constant contributes zero variance and zero covariance."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "easy",
+    "question": "Why is the sample variance sensitive to the unit of measurement while the coefficient of variation is not?",
+    "answer": "If each observation is multiplied by a constant a (e.g., converting mm to inches), the new s_y^2 = a^2 * s_x^2 — the variance is rescaled by the square of the conversion factor. The coefficient of variation, CV = s / x_bar, divides s by x_bar; both scale by a, so the ratio is invariant. Hence CV expresses dispersion on a unit-free relative scale, suitable for comparing variability across measurements of different magnitudes or units."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "easy",
+    "question": "A user reports a sample correlation coefficient r = 1.05. Why is this immediately recognisable as an error?",
+    "answer": "By construction, r is a ratio of sample covariance to the product of sample standard deviations and is mathematically bounded -1 <= r <= 1. A reported value outside this range can only result from a calculation or input error: typical causes are a wrong divisor (using sigma_x * sigma_y in the population sense without using the same sums), a misnamed quantity (e.g., the slope b1 mistaken for r), or a corrupted dataset. The calculation must be redone."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "hard",
+    "question": "What is multicollinearity in multiple regression and what problems does it cause?",
+    "answer": "Multicollinearity occurs when two or more predictor variables are highly correlated with each other. Problems: (1) Regression coefficients become unstable — small data changes cause large coefficient changes. (2) Standard errors of coefficients are inflated, making them appear non-significant even when the overall model is significant. (3) Individual coefficient interpretation becomes unreliable. Detection: variance inflation factor (VIF) > 10, or high R^2 between predictors. Solutions: remove one of the correlated predictors, combine them (e.g., PCA), or use regularization (ridge regression)."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "Why does the MTBF for an exponential lifetime not mean half the units survive past it?",
+    "answer": "For an exponential lifetime with rate lambda, MTBF = 1/lambda and F(MTBF) = 1 - exp(-lambda * MTBF) = 1 - exp(-1) ≈ 0.632. So 63.2% of units fail before MTBF, not 50%. The asymmetry arises from the right-skewness of the exponential distribution: the mean is pulled rightward by long tails of late-failing units. The median lifetime is m = ln(2)/lambda ≈ 0.693/lambda, smaller than MTBF. Confusing MTBF with median is a common error; for reliability decisions, the survival function S(t) and quantiles are more directly informative."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "medium",
+    "question": "Compare type I and type II error from the perspective of decision consequences in quality engineering.",
+    "answer": "A type I error rejects a correct H0: in quality engineering, this is a false alarm — the process is declared out of specification when it is not, leading to unnecessary stopping, rework, or rejection of good batches. A type II error fails to reject a false H0: this is a missed defect — a real shift in mean or variance goes undetected, allowing non-conforming product to reach the customer. The two errors carry different costs: type I errors waste resources, type II errors damage reputation and safety. The choice of alpha and the design of N together set the balance."
+  },
+  {
+    "type": "factual",
+    "difficulty": "medium",
+    "question": "State the variance-addition theorem for the sum of two random variables, and how it simplifies for independent variables.",
+    "answer": "In general, Var(x + y) = Var(x) + Var(y) + 2 * Cov(x, y). For independent random variables, Cov(x, y) = 0, so the formula simplifies to Var(x + y) = Var(x) + Var(y). For N independent random variables, Var(sum_n x_n) = sum_n Var(x_n). When variables are correlated, all pairwise covariances must be added, and the variance can exceed (rho > 0) or fall below (rho < 0) the sum of individual variances."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "What is the relationship between confidence intervals and hypothesis testing?",
+    "answer": "They are mathematically equivalent. A 95% confidence interval contains all values of the parameter that would not be rejected by a two-sided hypothesis test at alpha=0.05. If the hypothesized value mu0 falls inside the CI, the test fails to reject H0. If mu0 falls outside, the test rejects H0. The CI provides more information: not just whether to reject, but the range of plausible parameter values and the direction/magnitude of the effect. Using CIs is generally preferred because they quantify uncertainty directly."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "easy",
+    "question": "Why is a histogram with very wide class widths potentially misleading even with a large sample?",
+    "answer": "Wide classes pool together many distinct values and obscure the distribution's shape: secondary modes vanish, asymmetry is hidden, and the apparent density becomes coarse. The histogram becomes essentially a bar chart of large bins with limited resolution. Even with N = 10 000, using K = 3 classes would erase most information about distributional shape. Class width should match the resolution of the underlying phenomenon — common rules give K ≈ sqrt(N) or K ≈ 1 + log_2(N)."
+  },
+  {
+    "type": "factual",
+    "difficulty": "medium",
+    "question": "State the formula for the survival function S(t) of a series system with N independent components having individual survival functions S_i(t).",
+    "answer": "For independent components in series, the system survives only if all components survive: S_sys(t) = product_{i=1}^{N} S_i(t). The system failure rate is the sum of component failure rates: lambda_sys(t) = sum_i lambda_i(t). When all components have identical exponential lifetimes with rate lambda, S_sys(t) = exp(-N*lambda*t), i.e., the system is again exponential with rate N*lambda and mean lifetime 1/(N*lambda) — N times shorter than each component."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "hard",
+    "question": "Compute the sample kurtosis g_2 for the data {-3, -1, 0, 0, 1, 3} (N = 6), given x_bar = 0 and s^2 = 4.",
+    "answer": "Step 1: s = 2. Standardise: z_n = (-1.5, -0.5, 0, 0, 0.5, 1.5).\nStep 2: Compute z_n^4: 5.0625, 0.0625, 0, 0, 0.0625, 5.0625. Sum = 10.25.\nStep 3: g_2 = (1/N) * sum z_n^4 = 10.25/6 ≈ 1.708.\nStep 4: Excess kurtosis: g_2 - 3 = 1.708 - 3 = -1.292.\nStep 5: Excess kurtosis is negative — the data are platykurtic (lighter tails than normal). This is consistent with the data being close to uniformly spread over [-3, 3].\nFinal answer: g_2 ≈ 1.71, excess kurtosis ≈ -1.29. The negative excess indicates platykurtosis, typical of nearly uniform data on a bounded range."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "hard",
+    "question": "Why does deleting an outlier always reduce s^2 in a finite sample, and why is this not by itself a justification for the deletion?",
+    "answer": "Each observation contributes (x_n - x_bar)^2 to the sum-of-squares numerator. An outlier far from x_bar contributes disproportionately because the deviation is squared, so removing it both decreases the numerator and slightly shifts x_bar, often reducing other deviations as well. Algebraically, removing an observation with a large |x_n - x_bar| almost always lowers s^2. However, a smaller s^2 is not, by itself, evidence that the outlier is erroneous: the observation may be a genuine extreme draw from a heavy-tailed distribution. Deletion is justified only by an identifiable cause (measurement error, transcription mistake, distinct population), not by the statistical benefit alone."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "Why does a pilot study often use a small sample to estimate sigma rather than treating the full study's results as both pilot and analysis?",
+    "answer": "A pilot study provides an early estimate of sigma to set the sample size for the main study, allowing the main study to be planned with appropriate power. If the same data were used both to set N and to test hypotheses, the estimate of sigma would be biased downward (data-driven sample-size choices tend to select samples with smaller s, producing optimistic results) and the actual test alpha would be inflated. A clean separation — pilot first, then independent main study — preserves the validity of the planned alpha and power. The pilot sample need not be large; even N = 20 to 30 provides a usable sigma estimate for planning."
+  },
+  {
+    "type": "application",
+    "difficulty": "easy",
+    "question": "A part has dimension X ~ N(mu = 20, sigma = 0.1) mm with specification 19.8 to 20.2 mm. Estimate the fraction of non-conforming parts. Use Phi(2) = 0.9772.",
+    "answer": "Step 1: Standardise the specification limits: z_LSL = (19.8 - 20)/0.1 = -2; z_USL = (20.2 - 20)/0.1 = 2.\nStep 2: P(LSL <= X <= USL) = Phi(2) - Phi(-2) = 2 * Phi(2) - 1 = 2 * 0.9772 - 1 = 0.9544.\nStep 3: Fraction non-conforming = 1 - 0.9544 = 0.0456 = 4.56%.\nFinal answer: About 4.56% of parts are non-conforming, corresponding to the well-known +/-2*sigma coverage of approximately 95.44% for a centred normal process."
+  },
+  {
+    "type": "application",
+    "difficulty": "hard",
+    "question": "A factory measures N = 30 pistons: x_bar = 80.05 mm, s = 0.12 mm. Specification: [79.80, 80.20] mm. (a) Construct a 99% CI for mu using t_{0.005; 29} = 2.756. (b) Does the process mean meet specification? (c) What does the CI say about individual parts?",
+    "answer": "(a) Half-width = 2.756 * 0.12 / sqrt(30) = 2.756 * 0.0219 = 0.0604\nCI: [80.05 - 0.060, 80.05 + 0.060] = [79.990 mm, 80.110 mm]\n(b) The CI [79.990, 80.110] lies entirely within [79.80, 80.20]. This provides statistical evidence that the process mean is centred within the tolerance range at alpha = 1%.\n(c) The CI describes uncertainty about the population MEAN, not about individual parts. Individual diameters scatter around the mean with s = 0.12 mm. To assess whether individual parts meet specification, a prediction interval or a process capability index (Cp, Cpk) must be calculated separately."
+  },
+  {
+    "type": "application",
+    "difficulty": "hard",
+    "question": "A sensor regression y = b0 + b1*x with N = 20 data points gives b1 = 0.15 mV/C, s_e = 0.3 mV, x_bar = 50 C, sum((x_n - x_bar)^2) = 800. Calculate the 95% CI for b1. Use t_{0.025; 18} = 2.101.",
+    "answer": "Standard error of slope:\nse(b1) = s_e / sqrt(sum((x_n - x_bar)^2)) = 0.3 / sqrt(800) = 0.3 / 28.28 = 0.01061 mV/C\nCI for b1:\n0.15 +/- 2.101 * 0.01061 = 0.15 +/- 0.0223 = [0.1277, 0.1723] mV/C\nInterpretation: with 95% confidence the true sensor sensitivity lies between 0.128 and 0.172 mV/C. Since zero is not in the interval, the slope is statistically significant — temperature has a significant linear effect on sensor output."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "easy",
+    "question": "How many permutations exist for 4 distinct elements?",
+    "answer": "The number of permutations of N distinct elements is N!. For N=4: M = 4! = 4 × 3 × 2 × 1 = 24. There are 24 different arrangements."
+  },
+  {
+    "type": "derivation",
+    "difficulty": "hard",
+    "question": "Derive the marginal probability mass P(X = k) for the multinomial distribution and show that it equals the binomial Bin(N, p_k).",
+    "answer": "Step 1: For a multinomial distribution with parameters N and (p_1, ..., p_K), the joint pmf is P(X_1 = k_1, ..., X_K = k_K) = N! / (k_1! * ... * k_K!) * product p_j^k_j, with k_1 + ... + k_K = N.\nStep 2: To obtain the marginal P(X_1 = k), sum the joint over all valid (k_2, ..., k_K) with k_2 + ... + k_K = N - k.\nStep 3: Factor out fixed terms: P(X_1 = k) = (N! / (k! * (N - k)!)) * p_1^k * (sum_{k_2 + ... + k_K = N - k} ((N - k)! / (k_2! * ... * k_K!)) * product_{j>=2} p_j^k_j).\nStep 4: The inner sum is the multinomial expansion of (p_2 + ... + p_K)^(N - k) = (1 - p_1)^(N - k).\nStep 5: Substitute: P(X_1 = k) = C(N, k) * p_1^k * (1 - p_1)^(N - k).\nFinal result: P(X_1 = k) is exactly Binomial(N, p_1). By symmetry, each marginal X_j follows Bin(N, p_j); the multinomial generalises the binomial to K >= 2 outcome categories."
+  },
+  {
+    "type": "factual",
+    "difficulty": "easy",
+    "question": "State the formula for the arithmetic mean of classified data using class midpoints c_m and absolute class frequencies h_A(c_m).",
+    "answer": "For data grouped into K classes, the mean of classified data is x_bar = (1/N) * sum_{m=1}^{K} h_A(c_m) * c_m, where N = sum h_A(c_m). Each class midpoint c_m is weighted by its absolute frequency. This formula introduces a small loss of precision compared to using individual values, because all observations in class m are represented by c_m, but it allows mean calculations directly from a frequency table or histogram."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What is the standardised regression coefficient beta_j*, and how does it relate to the unstandardised coefficient b_j?",
+    "answer": "The standardised regression coefficient is beta_j* = b_j * (s_x_j / s_y), where s_x_j is the sample standard deviation of predictor x_j and s_y is that of the response. It corresponds to the slope obtained when both variables are first standardised to zero mean and unit variance. Standardised coefficients are dimensionless and allow informal comparison of predictor influence on the same scale, but only meaningfully when predictors are mutually uncorrelated."
+  },
+  {
+    "type": "derivation",
+    "difficulty": "easy",
+    "question": "Derive that P(X = x) = 0 for any specific x in a continuous distribution.",
+    "answer": "Step 1: For a continuous random variable, the CDF F(x) is continuous (no jumps). Define P(X = x) = F(x) - F(x-) where F(x-) is the left-limit.\nStep 2: By continuity of F at x: F(x) = F(x-).\nStep 3: Therefore P(X = x) = 0.\nStep 4: Equivalently, P(a < X < b) = integral_a^b f(t) dt, which equals 0 when a = b (zero-width interval).\nFinal result: For any continuous random variable, the probability of exactly any specific value is zero. This is why continuous probabilities are computed over intervals, not points. Note: P(X = x) = 0 does NOT mean x is impossible — only that it has zero probability mass, consistent with measure-theoretic notions of 'almost everywhere'."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "medium",
+    "question": "What happens to regression results if the variance of residuals is not constant (heteroscedasticity)?",
+    "answer": "If residual variance changes with x (heteroscedasticity), the regression coefficients b0 and b1 are still unbiased but no longer have minimum variance (they are inefficient). More critically, the standard errors of the coefficients are incorrect, making confidence intervals and hypothesis tests unreliable. The t-tests may be too liberal (too many false positives) or too conservative. Detection: plot residuals vs. fitted values — a fan shape indicates heteroscedasticity. Solutions: weighted least squares, log-transform the response, or use heteroscedasticity-robust standard errors."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "easy",
+    "question": "After finding p=0.08>alpha=0.05, a researcher concludes: 'The null hypothesis is proven true.' What is wrong?",
+    "answer": "Error: interpreting non-rejection as proof of H0. Failing to reject H0 means insufficient statistical evidence to reject at alpha=5%, not that H0 is true. Two reasons: (1) the test may lack power — a real difference may exist but the test cannot detect it with the given N; (2) absence of evidence is not evidence of absence. Correct language: 'At alpha=5%, H0 cannot be rejected.' To strengthen a non-rejection, the type II error probability beta and power (1-beta) for a relevant alternative should be evaluated."
+  },
+  {
+    "type": "application",
+    "difficulty": "medium",
+    "question": "Chemical process purity: N=25, x_bar=98.6%, s=1.2%. (a) Test H0: mu=99% vs H1: mu<99% at alpha=1% (t_{0.01;24}=-2.492). (b) 99% CI for mu (t_{0.005;24}=2.797).",
+    "answer": "(a) t=(98.6-99.0)/(1.2/5)=-0.4/0.24=-1.667\nAcceptance: t>=-2.492; -1.667>-2.492 → do not reject H0\nAt alpha=1%, insufficient evidence that purity is below 99%.\n(b) Half-width=2.797*1.2/sqrt(25)=2.797*0.24=0.671\nCI: [98.6-0.671, 98.6+0.671]=[97.93%, 99.27%]\nInterpretation: 99% target is within CI, consistent with non-rejection."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "easy",
+    "question": "A multivariate sample with M = 2 variables has variances s_1^2 = 9, s_2^2 = 16, and covariance s_{12} = 8. Construct the covariance matrix and the correlation matrix.",
+    "answer": "Step 1: Covariance matrix: Sigma = [[s_1^2, s_{12}], [s_{12}, s_2^2]] = [[9, 8], [8, 16]].\nStep 2: Standard deviations: s_1 = 3, s_2 = 4.\nStep 3: Correlation: r_{12} = s_{12} / (s_1 * s_2) = 8 / 12 ≈ 0.667.\nStep 4: Correlation matrix: R = [[1, 0.667], [0.667, 1]].\nFinal answer: Sigma = [[9, 8], [8, 16]], R = [[1, 0.667], [0.667, 1]]. The strong positive correlation (0.667) means the two variables increase together; the covariance matrix preserves both scale and correlation information, while the correlation matrix is scale-free."
+  },
+  {
+    "type": "derivation",
+    "difficulty": "medium",
+    "question": "Derive E[s^2] = sigma^2 to show that the sample variance with divisor (N - 1) is unbiased.",
+    "answer": "Step 1: Let X_1, ..., X_N be i.i.d. with E[X_n] = mu and Var(X_n) = sigma^2. Define s^2 = (1/(N-1)) * sum (X_n - x_bar)^2.\nStep 2: Use the identity sum (X_n - x_bar)^2 = sum (X_n - mu)^2 - N * (x_bar - mu)^2.\nStep 3: Take expectations: E[sum (X_n - mu)^2] = N * sigma^2 and E[(x_bar - mu)^2] = Var(x_bar) = sigma^2 / N, so E[N * (x_bar - mu)^2] = sigma^2.\nStep 4: Combine: E[sum (X_n - x_bar)^2] = N * sigma^2 - sigma^2 = (N - 1) * sigma^2.\nStep 5: Divide by (N - 1): E[s^2] = sigma^2.\nFinal result: With divisor (N - 1), s^2 is unbiased for sigma^2; the divisor compensates exactly for the one degree of freedom lost when mu is replaced by x_bar."
+  },
+  {
+    "type": "application",
+    "difficulty": "medium",
+    "question": "What is the difference between interpolation and extrapolation in regression?",
+    "answer": "Interpolation makes predictions within the range of the observed data — this is generally reliable if the model fits well. Extrapolation makes predictions outside the observed range — this is risky because the assumed relationship may not hold beyond the data. For example, if a temperature sensor is calibrated between 0°C and 100°C, predicting output at 50°C (interpolation) is reliable, but predicting at 200°C (extrapolation) may be very inaccurate because the linear relationship may break down at extreme temperatures."
+  },
+  {
+    "type": "definition",
+    "difficulty": "hard",
+    "question": "Define the sample kurtosis g_2 and state the bias correction applied for finite-sample inference.",
+    "answer": "Sample kurtosis: g_2 = (1/N) * sum ((x_n - x_bar)/s)^4. For a normal population, E[g_2] approaches 3 as N -> infinity, but in finite samples g_2 is biased downward by approximately 3*(N-1)/(N+1) instead of 3. Bias-corrected version: G_2 = ((N+1)/((N-1)*(N-2)*(N-3))) * ((N+1)*sum(z_n^4) - 3*(N-1)^2) - 3 (using the formula often labelled excess kurtosis with finite-sample correction). The unbiased version reduces bias under normality but increases variance. The asymptotic SE of G_2 is approximately sqrt(24/N) under normality."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "medium",
+    "question": "Two regression models on different datasets gave R^2 = 0.81 and R^2 = 0.64. Calculate the corresponding sample correlation coefficients in absolute value, and identify which model has the stronger linear association.",
+    "answer": "Step 1: In simple linear regression, R^2 = r^2, so |r| = sqrt(R^2).\nStep 2: For R^2 = 0.81: |r| = 0.9.\nStep 3: For R^2 = 0.64: |r| = 0.8.\nFinal answer: |r| = 0.9 for the first model versus 0.8 for the second; the first model captures the stronger linear association. The sign of r cannot be inferred from R^2 alone and must be read from the slope b1."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "hard",
+    "question": "Compare the use of the multinomial distribution and a series of independent binomials for analysing a contingency table with K classes: under what condition are they interchangeable?",
+    "answer": "If the K class counts (O_1, ..., O_K) are drawn from a single sample of fixed N, their joint distribution is multinomial(N; p_1, ..., p_K) with sum p_k = 1. Treating each O_k as binomial(N, p_k) marginally is valid for each cell, but the K binomials are not independent — they share the constraint sum O_k = N. Independent binomials would correspond to K separate experiments with separately fixed N_k each. Inference can use either, but the multinomial form is necessary when computing joint probabilities or chi-squared distances; independent binomials apply when each class has its own sample size."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "easy",
+    "question": "Compare a unimodal and a bimodal histogram: what conclusion follows from each about the data-generating process?",
+    "answer": "A unimodal histogram has a single peak and is consistent with a single homogeneous data-generating process. A bimodal histogram has two distinct peaks and strongly suggests two underlying subpopulations have been combined — e.g., parts from two suppliers, two shifts, or two machines. Unimodal: pool analyses across the whole sample. Bimodal: identify a stratification variable and analyse subgroups separately. Pooled statistics from a bimodal sample inflate variance, distort capability indices (Cp, Cpk), and can mask important differences between subpopulations."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "What is the standard deviation and how does it relate to variance?",
+    "answer": "The standard deviation s is the positive square root of the variance: s = sqrt(s^2). While variance is measured in squared units of the original data, the standard deviation returns to the original unit, making it directly interpretable. For example, if capacitance variance is 4 nF^2, the standard deviation is 2 nF."
+  },
+  {
+    "type": "factual",
+    "difficulty": "hard",
+    "question": "State the F-statistics in two-factor ANOVA with interaction for: (a) main effect A, (b) main effect B, (c) interaction AB, including their degrees of freedom.",
+    "answer": "Let factor A have a levels, factor B have b levels, and n replicates per cell, so total N = a*b*n. (a) F_A = MS_A / MS_E with df = (a - 1, a*b*(n-1)); (b) F_B = MS_B / MS_E with df = (b - 1, a*b*(n-1)); (c) F_AB = MS_AB / MS_E with df = ((a - 1)(b - 1), a*b*(n-1)). All three use the same denominator MS_E (within-cell mean square). The interaction is tested first; if significant, the main effects must be interpreted with caution because the effect of A depends on the level of B."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "easy",
+    "question": "Why is the relative frequency h(x) of a sample considered an estimator of the probability P(x)?",
+    "answer": "By the law of large numbers, the relative frequency h(x) = h_A(x) / N converges to the true probability P(x) as N grows. For large samples, h(x) is therefore a natural estimator of P(x). This is the empirical foundation of the frequentist interpretation of probability and justifies using histograms and contingency tables to approximate distributions."
+  },
+  {
+    "type": "application",
+    "difficulty": "easy",
+    "question": "Give a real-world example where you would use a confidence interval.",
+    "answer": "A pharmaceutical company tests a new drug on 100 patients. The average blood pressure reduction is 12 mmHg with standard deviation 5 mmHg. The 95% confidence interval is 12 ± 1.96×(5/sqrt(100)) = 12 ± 0.98 = [11.02, 12.98] mmHg. This means: we are 95% confident the true average reduction for all patients lies between 11 and 13 mmHg. The drug approval board uses this interval to decide if the effect is clinically meaningful."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "easy",
+    "question": "A team uses a CRD to compare three treatments but ignores known operator-to-operator variability. What is the design issue?",
+    "answer": "CRD assigns treatments randomly across all experimental units without controlling for known sources of variability. Operator-to-operator differences contribute to SS_error, inflating MS_error and reducing the power of the treatment comparison. Better design: randomised block design (RBD) with operators as blocks. Within each operator (block), randomise the three treatments. The block design absorbs operator-level variability into SS_blocks, leaving a smaller MS_error and a more sensitive treatment test. If operators is a known and substantial source of variability, ignoring it in CRD is statistically wasteful. The lesson: always consider blocking for known nuisance factors."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "easy",
+    "question": "Compare the variance and the interquartile range (IQR) as dispersion measures. Which is more robust and why?",
+    "answer": "Variance: s^2 = (1/(N-1))*sum((x_n - x_bar)^2). Uses all data and squares deviations, giving greater weight to extreme values. Standard for normally distributed data and parametric tests. Sensitive to outliers because one extreme value can substantially inflate s^2. Interquartile range: IQR = Q3 - Q1. Measures the spread of the middle 50% of the data and is completely unaffected by the most extreme 25% on each side. More robust than the variance for skewed distributions or data with outliers. Both are used in quality engineering: variance and standard deviation for parametric analyses; IQR for exploratory analysis and box plots."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "hard",
+    "question": "A team reports a confidence interval for the geometric mean by taking the arithmetic mean of the bounds of the CI for the logarithm. What is wrong with this back-transformation?",
+    "answer": "If [L_log, U_log] is the CI for the mean on the log scale, the CI for the geometric mean is obtained by exponentiating each bound: [exp(L_log), exp(U_log)]. The exponential is monotonic, so order is preserved, and the result is a valid CI for the geometric mean. Taking the arithmetic mean of L_log and U_log on the log scale and then exponentiating gives a single point, not a CI. Furthermore, the arithmetic mean of L_log and U_log is the centre of the log-scale CI (often the log of the geometric mean of the data), not the bound of an interval. The team has confused the back-transformation of CI bounds with the back-transformation of the centre. Correct procedure: exponentiate each bound separately to get the CI for the geometric mean on the original scale."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "What is the continuous uniform distribution U(a, b), and what are its mean and variance?",
+    "answer": "The continuous uniform distribution on [a, b] has constant density f(x) = 1/(b - a) for a <= x <= b and 0 otherwise; its distribution function is F(x) = (x - a)/(b - a). Mean: E[x] = (a + b)/2. Variance: Var(x) = (b - a)^2 / 12. It models complete ignorance about location within an interval, e.g., rounding error or random angle."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "What is the coefficient of variation CV, and in what unit is it expressed?",
+    "answer": "The coefficient of variation is the ratio of the sample standard deviation to the sample mean: CV = s / x_bar. It is a dimensionless measure of relative dispersion (often reported as a percentage), unlike s which carries the units of the data. CV is defined only when x_bar > 0 and is useful for comparing variability across processes with different mean levels (e.g., a 1 mm spread is large at mu = 10 mm but negligible at mu = 1000 mm)."
+  },
+  {
+    "type": "derivation",
+    "difficulty": "medium",
+    "question": "Derive the standardised regression coefficient beta_j* = b_j * (s_xj / s_y) from the OLS solution applied to centred and scaled variables.",
+    "answer": "Step 1: Original model: y = b_0 + sum b_j * x_j + e.\nStep 2: Define standardised variables: y* = (y - y_bar)/s_y, x_j* = (x_j - x_bar_j)/s_xj.\nStep 3: Substitute: y_bar + s_y * y* = b_0 + sum b_j * (x_bar_j + s_xj * x_j*) + e.\nStep 4: Match coefficients of y*: divide both sides by s_y: y* = (b_0 + sum b_j * x_bar_j - y_bar)/s_y + sum (b_j * s_xj / s_y) * x_j* + e/s_y.\nStep 5: The intercept term vanishes since OLS satisfies y_bar = b_0 + sum b_j * x_bar_j. The coefficient on x_j* is therefore beta_j* = b_j * s_xj / s_y.\nFinal result: beta_j* = b_j * (s_xj / s_y). Standardised coefficients are obtained from raw coefficients by rescaling by the ratio of predictor and response standard deviations."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "medium",
+    "question": "A study claims to have demonstrated 'equivalence between two formulations' because the two-sided t-test of H0: mu_1 = mu_2 returned p = 0.6. What is the inferential error, and what is the correct procedure?",
+    "answer": "Failing to reject H0 is not equivalent to demonstrating H0. A large p-value can arise from (i) no difference, (ii) low power (small N or large variance), or (iii) a moderate but undetected difference. Without a power calculation, p = 0.6 is uninformative about equivalence. The correct procedure is a two-one-sided-test (TOST) equivalence procedure: define a margin of practical equivalence delta, and demonstrate that the (1 - 2*alpha) CI for mu_1 - mu_2 lies entirely within (-delta, +delta). Only then is equivalence formally established."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "hard",
+    "question": "A team uses adjusted R^2 to choose among regression models, selects the one with the highest value, and reports its coefficients as 'the best estimates'. What model-selection bias is overlooked?",
+    "answer": "Model-selection bias (also called the 'winner's curse' or 'post-selection inference' problem): once a model is selected based on the same data used for fitting, the standard SEs, p-values, and CIs of its coefficients are no longer valid. The selection process effectively conditions on the model being chosen, which is a non-random event. The reported SEs underestimate true uncertainty because they ignore the variability across the candidate-model set. Remedies: (a) use a separate model-selection sample and an independent inference sample (sample splitting); (b) use cross-validation; (c) apply post-selection inference methods (e.g., conditional or selective inference). The adjusted R^2-selected model's coefficients should be reported with this caveat, and naive p-values should be treated as descriptive only."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "easy",
+    "question": "What is Design For Six Sigma (DFSS) and what role do statistical methods play in it?",
+    "answer": "Design For Six Sigma (DFSS) is a systematic methodology for product and process development. Statistical methods are used across its phases: in the Optimize phase for evaluating process reliability and tolerance analysis, in the Develop phase for statistical simulation, robust design, and design of experiments, and in the Verify phase for confirming manufacturability and reliability through measurement system analysis and statistical process control (SPC)."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "medium",
+    "question": "A normally distributed production process has mean mu = 100 g and standard deviation sigma = 5 g. What percentage of parts fall outside the tolerance range [90 g, 110 g]? Use F(2) = 0.9772.",
+    "answer": "Step 1: Standardise tolerance limits:\nz_lower = (90 - 100) / 5 = -2; z_upper = (110 - 100) / 5 = +2\nStep 2: Probability within tolerance:\nP(-2 < Z <= 2) = F(2) - F(-2) = 0.9772 - (1 - 0.9772) = 0.9772 - 0.0228 = 0.9544\nStep 3: Probability outside tolerance:\nP(X < 90 or X > 110) = 1 - 0.9544 = 0.0456\nConclusion: approximately 4.56% of parts fall outside the tolerance range. This corresponds to the 2-sigma interval, which contains 95.44% of normally distributed values."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "easy",
+    "question": "Compare frequentist and Bayesian interpretations of probability in the context of a confidence/credible interval for a parameter theta.",
+    "answer": "Frequentist: probability refers to the long-run frequency of an event under repeated sampling. A 95% confidence interval is a random object that contains theta in 95% of hypothetical replications; for any single realised interval, the statement 'P(theta in CI) = 0.95' is incorrect — theta is fixed, the interval is random. Bayesian: probability quantifies degree of belief. A 95% credible interval for theta is constructed from the posterior distribution P(theta | data); the statement 'P(theta in credible interval | data) = 0.95' is valid by construction. The two coincide in form for many problems but differ in interpretation; the Bayesian framework offers direct probability statements about the parameter at the cost of requiring a prior."
+  },
+  {
+    "type": "factual",
+    "difficulty": "medium",
+    "question": "State the form of the partial F-test for comparing nested regression models.",
+    "answer": "Given a full model with p_full predictors and a reduced model with p_red predictors (p_red < p_full), and SS_res_full and SS_res_red respectively, the test statistic is F = ((SS_res_red - SS_res_full)/(p_full - p_red)) / (SS_res_full / (N - p_full - 1)) ~ F(p_full - p_red, N - p_full - 1) under H0: the extra coefficients are jointly zero. Reject H0 for large F. The numerator measures the explanatory power gained by the additional predictors; the denominator is the residual mean square of the full model."
+  },
+  {
+    "type": "derivation",
+    "difficulty": "easy",
+    "question": "Derive P(a < x <= b) = F(b) - F(a) from the definition of the distribution function for a continuous random variable.",
+    "answer": "Step 1: By definition, F(x) = P(X <= x) for any x.\nStep 2: The events {X <= a} and {a < X <= b} are disjoint, and their union is {X <= b}.\nStep 3: By Kolmogorov's additivity axiom, P(X <= b) = P(X <= a) + P(a < X <= b), i.e. F(b) = F(a) + P(a < X <= b).\nStep 4: Solving for the interval probability: P(a < X <= b) = F(b) - F(a).\nFinal result: P(a < X <= b) = F(b) - F(a). Equivalently, this is the integral of f(x) from a to b for a continuous distribution."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What is a multivariate or multidimensional sample?",
+    "answer": "A multivariate sample consists of observations where multiple variables are measured simultaneously for each unit. For example, measuring both height and weight of N people gives a two-dimensional sample. Each observation is a vector (x1n, x2n, ..., xMn) where M is the number of variables. Multivariate analysis studies the relationships and dependencies between these variables."
+  },
+  {
+    "type": "factual",
+    "difficulty": "hard",
+    "question": "State the formula for the variance of an order statistic X_(k) from a continuous distribution in terms of F^(-1) (the quantile function).",
+    "answer": "For an i.i.d. sample of size N from a continuous distribution F with quantile function F^(-1)(u), the asymptotic distribution of the k-th order statistic X_(k) with k/N -> p in (0, 1) is X_(k) ~ approximately N(F^(-1)(p), p*(1-p) / (N * (f(F^(-1)(p)))^2)). Hence Var(X_(k)) ≈ p*(1 - p) / (N * f(x_p)^2), where f is the density and x_p = F^(-1)(p) is the population p-quantile. The variance is minimised at p = 0.5 if f peaks at the median (e.g., normal distribution), and grows in the tails where f is small."
+  },
+  {
+    "type": "application",
+    "difficulty": "medium",
+    "question": "Describe the general procedure for conducting a hypothesis test.",
+    "answer": "Step 1: Formulate H0 (null hypothesis) and H1 (alternative hypothesis). Step 2: Choose the significance level alpha (typically 0.05 or 0.01). Step 3: Select the appropriate test statistic based on the problem type and assumptions. Step 4: Calculate the test statistic from sample data. Step 5: Determine the critical value(s) or p-value. Step 6: Compare: reject H0 if the test statistic falls in the rejection region (or if p-value < alpha). Step 7: State the conclusion in the context of the problem."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "medium",
+    "question": "Compare the mean, median, and mode as measures of central tendency.",
+    "answer": "The mean is the arithmetic average — sensitive to outliers but uses all data. The median is the middle value when sorted — robust to outliers but ignores actual magnitudes. The mode is the most frequent value — useful for categorical data but may not be unique. For symmetric distributions, all three coincide. For skewed distributions they differ: in right-skewed data, mean > median > mode. The choice depends on data characteristics: use the median for skewed data or when outliers are present."
+  },
+  {
+    "type": "derivation",
+    "difficulty": "easy",
+    "question": "Show that the expected value operator is linear, i.e. that E[a*h(x) + b*g(x)] = a*E[h(x)] + b*E[g(x)] for constants a, b and a continuous random variable x.",
+    "answer": "Starting point: E[y] = integral_{-inf}^{+inf} (a*h(x) + b*g(x)) * f(x) dx.\nStep 1: Split using additivity of the integral:\nE[y] = integral a*h(x)*f(x) dx + integral b*g(x)*f(x) dx\nStep 2: Pull constants outside:\nE[y] = a * integral h(x)*f(x) dx + b * integral g(x)*f(x) dx\nStep 3: Recognise the expected value definition:\nE[y] = a * E[h(x)] + b * E[g(x)]\nConclusion: the expected value inherits linearity from the integral. This holds for discrete variables with sums. Linearity underlies the derivation of variance formulas, unbiased estimators, and properties of sums of random variables."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "medium",
+    "question": "A technician reports: 'p=0.3 for the variance equality test, so the two lines have equal variance and are identical.' What are the errors?",
+    "answer": "Error 1 — Non-rejection is not proof: p=0.3>>alpha means insufficient evidence to detect a difference, not confirmation of equality. The test may lack power (small N). Error 2 — Equal variance does not imply identical lines: even if variances were equal, means could differ significantly or other properties could differ. Equal variance is one aspect of comparison, not complete equivalence. Error 3 — Power not assessed: without evaluating beta and the practically relevant effect size, a non-significant result is uninformative about whether a real difference exists."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "medium",
+    "question": "A regression line is fitted by minimising perpendicular (orthogonal) distance instead of vertical distance. The team interprets the slope as the rate of change of y per unit x. What is the issue?",
+    "answer": "Perpendicular least squares (also called orthogonal regression, total least squares, or Deming regression) treats x and y symmetrically. The resulting line is not 'the regression of y on x' but a different fit: minimising perpendicular distance is appropriate when both x and y are measured with random error. The slope from orthogonal regression is generally different from the OLS slope b_yx of y on x. Interpretation as 'rate of change of y per unit x' applies strictly to b_yx; the orthogonal slope reflects a symmetric relationship and depends on the relative variances of x-error and y-error. If x is exact (controlled), use OLS. If both have error, use total least squares but interpret carefully — the slope's meaning depends on the error structure assumption."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "easy",
+    "question": "Compare a discrete and a continuous random variable: which probability function is appropriate for each, and how is a probability over an interval computed?",
+    "answer": "A discrete random variable takes countable values; its distribution is described by a probability mass function f(x_k) = P(X = x_k), and probabilities over a set are obtained by summation: P(a < X <= b) = sum f(x_k) for x_k in (a, b]. A continuous random variable takes any value in an interval; its distribution is described by a probability density function f(x) with P(X = x) = 0 for any single point, and probabilities are computed by integration: P(a < X <= b) = integral_a^b f(x) dx. The cumulative distribution function F(x) is defined for both."
+  },
+  {
+    "type": "factual",
+    "difficulty": "medium",
+    "question": "State the residence probabilities for a standard normal variable z in the intervals +/-1, +/-2, and +/-3 standard deviations, and explain their importance in quality engineering.",
+    "answer": "P(-1 < z <= 1) = 68.27%; P(-2 < z <= 2) = 95.45%; P(-3 < z <= 3) = 99.73%. These are the sigma rules of the normal distribution. Importance in quality engineering: (1) A process is considered capable if the tolerance range covers at least +/-3 sigma, yielding at most 0.27% non-conforming parts (2700 ppm). (2) Control limits in SPC charts are set at +/-3 sigma; points outside trigger investigation. (3) Six Sigma methodology targets a defect rate of 3.4 ppm by requiring +/-6 sigma coverage (assuming a 1.5-sigma process drift). (4) The complement (1 - residence probability) gives the expected rejection rate for a centred normally distributed process."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "medium",
+    "question": "Compare the chi-squared test for variance and the chi-squared goodness-of-fit test.",
+    "answer": "Both use the chi-squared distribution but for different purposes. Variance test: tests whether sample variance matches a hypothesized value, statistic = (N-1)×s^2/sigma0^2, df = N-1. Goodness-of-fit test: tests whether observed frequencies match expected frequencies from a theoretical distribution, statistic = sum((observed-expected)^2/expected), df = number of classes - estimated parameters - 1. The first tests a parameter; the second tests a distributional shape."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "medium",
+    "question": "A reliability test runs for 1000 hours; all 20 units survive. The engineer concludes lambda = 0 / 20 000 = 0 and MTBF is 'infinite'. Why is this conclusion misleading, and what is a usable bound?",
+    "answer": "The point estimate lambda_hat = r / T = 0 / 20 000 = 0 reflects the maximum-likelihood value but ignores sampling uncertainty: with zero failures, all that is known is lambda <= some upper bound. A usable one-sided upper confidence bound at level 1 - alpha is lambda_upper = chi^2_{1-alpha; 2} / (2*T) = chi^2_{0.95; 2} / 40 000 ≈ 5.991 / 40 000 ≈ 1.50 * 10^-4 per hour, giving a lower MTBF bound of 1 / 1.50*10^-4 ≈ 6670 hours. So 'MTBF is infinite' should be 'MTBF >= 6670 hours with 95% confidence' — a meaningful but finite claim. The error is treating the absence of failures as proof of perfection."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "hard",
+    "question": "An engineer reports a 95% CI for mu_1 - mu_2 that includes 0 and concludes 'the two groups are equivalent'. What is the conceptual error, and what would constitute a proper equivalence claim?",
+    "answer": "Not rejecting H0: mu_1 = mu_2 does not prove equivalence. A wide CI that contains 0 is also consistent with substantial differences. Conventional hypothesis testing controls type I error only; the conclusion 'equivalent' requires controlling type II error against a pre-specified meaningful difference. A proper equivalence claim uses equivalence testing: pre-specify a margin delta of practical irrelevance and require both bounds of the CI to lie within (-delta, +delta). Only then is equivalence demonstrated; otherwise the data merely 'fail to detect a difference'."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "medium",
+    "question": "Compare the exponential and normal distributions.",
+    "answer": "Normal: symmetric, bell-shaped, defined on (-infinity, +infinity), characterized by mu and sigma^2. Exponential: right-skewed, defined on [0, +infinity), characterized by single parameter lambda. Normal has mean=mu and mode=mean. Exponential has mean=1/lambda but mode=0. The exponential is memoryless; the normal is not. Normal arises from sums of many variables (CLT). Exponential models waiting times between random events. In reliability, exponential implies constant failure rate, while normal implies increasing failure rate near end of life."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "What are joint, marginal, and conditional relative frequencies in a two-way table?",
+    "answer": "Joint relative frequency: h_ij = h_A_ij / N, the fraction of observations falling in cell (i, j). Marginal relative frequency for row i: h_i. = (sum_j h_A_ij) / N, the row total fraction (ignoring the column variable). Marginal for column j: h_.j = (sum_i h_A_ij) / N. Conditional relative frequency: h(j | i) = h_ij / h_i. = fraction of row-i observations falling in column j. The relationships parallel probability: marginal = sum of joint over the other dimension; conditional = joint / marginal."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "Why does the adjusted R^2 better reflect model parsimony than R^2 when comparing models with different numbers of predictors?",
+    "answer": "R^2 is monotonically non-decreasing in the number of predictors: adding any predictor (even a useless one) cannot reduce R^2 because OLS can always fit residual noise slightly better. Adjusted R^2 = 1 - (1 - R^2) * (N - 1) / (N - p - 1) explicitly penalises model complexity through the (N - p - 1) denominator. For a useless predictor, the small increase in R^2 is overwhelmed by the loss of one residual degree of freedom, so adjusted R^2 decreases. For a useful predictor, R^2 rises substantially and adjusted R^2 also increases. Adjusted R^2 therefore distinguishes substantive improvement from overfitting."
+  },
+  {
+    "type": "application",
+    "difficulty": "hard",
+    "question": "A two-dimensional sample (x, y) has bivariate normal characteristics with mu = (50, 60), sigma_x = 5, sigma_y = 8, rho = 0.6. Calculate E[y | x = 55] and Var(y | x = 55).",
+    "answer": "Step 1: For bivariate normal, conditional mean E[y | x] = mu_y + rho * (sigma_y / sigma_x) * (x - mu_x).\nStep 2: Substitute: E[y | x = 55] = 60 + 0.6 * (8/5) * (55 - 50) = 60 + 0.6 * 1.6 * 5 = 60 + 4.8 = 64.8.\nStep 3: Conditional variance: Var(y | x) = sigma_y^2 * (1 - rho^2) = 64 * (1 - 0.36) = 64 * 0.64 = 40.96.\nStep 4: Conditional SD: sqrt(40.96) = 6.4 (a 20% reduction from sigma_y = 8 due to information from x).\nFinal answer: E[y | x = 55] = 64.8; Var(y | x = 55) = 40.96. The conditional variance is independent of x — a hallmark of bivariate normality."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "Why does R^2 increase whenever a predictor is added to a regression, even if the predictor is unrelated to y?",
+    "answer": "R^2 = 1 - SS_res / SS_tot. Adding a predictor enlarges the set of basis functions over which OLS minimises SS_res. The minimisation can never produce a larger SS_res (a constraint is removed, allowing better fit); typically it decreases SS_res by some small random amount even for a useless predictor. SS_tot remains unchanged. Therefore R^2 = 1 - SS_res/SS_tot can only increase or stay the same when a predictor is added. The 'free' improvement from useless predictors motivates adjusted R^2 = 1 - (1 - R^2)*(N - 1)/(N - p - 1), which penalises the loss of residual degrees of freedom."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What is the difference between a probability distribution f(x) and a distribution function F(x)?",
+    "answer": "The probability distribution (or density function) f(x) gives the probability of each outcome for discrete variables, or the probability density for continuous variables. The distribution function F(x) = P(X <= x) gives the cumulative probability that the random variable takes a value less than or equal to x. For discrete variables: F(x) = sum of f(xi) for all xi <= x. For continuous variables: F(x) = integral from -infinity to x of f(t)dt. The density f(x) is the derivative of F(x)."
+  },
+  {
+    "type": "application",
+    "difficulty": "easy",
+    "question": "An engineer needs to decide whether to use a binomial or a hypergeometric distribution to model defects in a sample of 50 parts drawn from a lot of 1000. Which approximation rule justifies the choice, and what is the implication for variance?",
+    "answer": "The sampling fraction is N/M = 50/1000 = 0.05 (i.e., 5%). The rule N/M <= 0.05 - 0.10 justifies the binomial approximation: the finite population correction (M - N)/(M - 1) ≈ 0.951 differs from 1 by only about 5%, so the variance under hypergeometric and binomial differ only slightly. The binomial is simpler computationally and the loss in accuracy is negligible. If N/M were larger, the hypergeometric model would be necessary, and the variance would be smaller than the binomial counterpart by the FPC factor."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "medium",
+    "question": "Compare the chi-squared CI for sigma^2 and the t-based CI for mu: what assumptions does each require, and how do they differ in width behaviour with N?",
+    "answer": "Chi-squared CI for sigma^2: ((N-1)*s^2/chi^2_{alpha/2; N-1}, (N-1)*s^2/chi^2_{1-alpha/2; N-1}). Requires normal-population assumption (since (N-1)*s^2/sigma^2 ~ chi-squared(N-1) exactly only under normality). Asymmetric around s^2. The CI is highly sensitive to non-normality. t-based CI for mu: x_bar +/- t*s/sqrt(N). Requires normality for exact validity but is approximately valid for large N by the CLT (less sensitive to non-normality). Width behaviour: t-CI width scales as 1/sqrt(N), shrinks predictably. Chi-squared CI for sigma^2 width is more complex — the multiplicative factor (chi^2_{alpha/2}/chi^2_{1-alpha/2}) shrinks slowly. The t-CI is robust; the chi-squared CI is fragile."
+  },
+  {
+    "type": "application",
+    "difficulty": "medium",
+    "question": "How do you test whether a sample comes from a normal distribution?",
+    "answer": "Several methods exist: (1) Visual methods: histogram inspection, Q-Q plot (quantile-quantile plot) where normal data falls on a straight line, and probability paper. (2) Formal tests: Shapiro-Wilk test (best for small samples), Anderson-Darling test, Kolmogorov-Smirnov test, and chi-squared goodness-of-fit test. The null hypothesis is that the data is normally distributed. Reject if p-value < alpha. Visual methods are recommended alongside formal tests because formal tests can be too sensitive with large samples, rejecting slight deviations from normality that are practically irrelevant."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "hard",
+    "question": "For a contrast C = mu_1 - 0.5*(mu_2 + mu_3) with group means x_bar_1 = 12, x_bar_2 = 10, x_bar_3 = 9, equal sample sizes n = 5 per group, and MS_within = 2.0, compute C_hat, the standard error of C_hat, and the t-statistic.",
+    "answer": "Step 1: Estimate C: C_hat = 12 - 0.5*(10 + 9) = 12 - 9.5 = 2.5.\nStep 2: For a contrast with coefficients c_j, Var(C_hat) = MS_within * sum c_j^2 / n. Here sum c_j^2 = 1^2 + (-0.5)^2 + (-0.5)^2 = 1.5.\nStep 3: Var(C_hat) = 2.0 * 1.5 / 5 = 0.6. SE(C_hat) = sqrt(0.6) ≈ 0.7746.\nStep 4: t-statistic: t = C_hat / SE(C_hat) = 2.5 / 0.7746 ≈ 3.227 with df = N - J (here, 15 - 3 = 12).\nFinal answer: C_hat = 2.5, SE ≈ 0.775, t ≈ 3.23. Compare with t_{0.025; 12} = 2.179: the contrast is significant at alpha = 5%."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "hard",
+    "question": "Compare the chi-squared, t, and F distributions in terms of their origin and applications.",
+    "answer": "Chi-squared distribution: Sum of squared standard normal variables, used for testing variance and goodness-of-fit. Parameters: nu (degrees of freedom). t-distribution: Ratio of a standard normal to the square root of a chi-squared/nu, used for mean testing when variance is unknown. Parameters: nu. F-distribution: Ratio of two independent chi-squared variables divided by their df, used for comparing variances and in ANOVA. Parameters: nu1, nu2. Key relationship: t^2 with nu df equals F with (1, nu) df. All three are derived from the normal distribution and converge toward it as df increases."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "medium",
+    "question": "Compare a fixed-effect and a random-effect model for the same J groups: what changes in the F-test, and what changes in the conclusions one can draw?",
+    "answer": "The F-statistic F = MS_treatment / MS_error has the same form in both models. Critical values are the same. However, the expected mean squares differ: fixed-effects E[MS_treat] = sigma_e^2 + n * (sum(mu_j - mu)^2) / (J - 1); random-effects E[MS_treat] = sigma_e^2 + n * sigma_alpha^2. Conclusions differ: fixed-effects rejection means the J specific levels' means differ; random-effects rejection means the variance component sigma_alpha^2 > 0, generalising to the larger population of levels. Practically, random-effects modelling allows generalisation beyond the sampled levels; fixed-effects is appropriate when only the sampled levels matter."
+  },
+  {
+    "type": "application",
+    "difficulty": "hard",
+    "question": "A quality engineer has data on 20 process parameters and only 25 product samples, far too few for OLS. Recommend an analysis strategy and justify why classical regression fails.",
+    "answer": "Step 1: With p = 20 and N = 25, OLS has only N - p - 1 = 4 residual degrees of freedom. The model nearly interpolates the data, yielding R^2 close to 1 but no genuine predictive content.\nStep 2: Standard errors and t-tests are unreliable; the model has essentially no statistical power for parameter inference.\nStep 3: Recommended strategy: (a) use regularised regression (lasso for variable selection or elastic net for stability); (b) reduce dimensionality with PCA, retaining first 2-3 PCs and regressing on them (principal-components regression); (c) screen variables based on prior knowledge before fitting; (d) collect more data — the most reliable solution but often not feasible.\nStep 4: For inference, use bootstrap or post-selection inference methods that account for the model-selection step. Report regularised coefficients with the caveat that interpretation requires care.\nFinal answer: Use regularised regression (lasso or elastic net) with cross-validation. Classical OLS fails because p approaches N. Validate the chosen model on an independent sample before drawing engineering conclusions."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "easy",
+    "question": "Compare R^2 and adjusted R^2: which one penalises model complexity, and which is more appropriate for model comparison?",
+    "answer": "R^2 = 1 - SS_res/SS_tot increases monotonically with the number of predictors; it does not penalise complexity and favours larger models. Adjusted R^2 = 1 - (1 - R^2) * (N - 1)/(N - p - 1) explicitly penalises adding predictors through the (N - p - 1) divisor; adding a useless predictor typically reduces adjusted R^2. For model comparison across different p, adjusted R^2 is preferable to R^2; even better criteria are AIC and BIC, which extend the penalty to non-nested models and use likelihood rather than the OLS sum of squares."
+  },
+  {
+    "type": "factual",
+    "difficulty": "easy",
+    "question": "What are the three most common graphical methods for assessing whether a sample is normally distributed, and what does each show?",
+    "answer": "1. Histogram with fitted normal curve: the frequency distribution is plotted and overlaid with the theoretical normal density matched to x_bar and s. Deviations from the bell shape suggest non-normality. Limitation: depends on class width; does not support quantified statements. 2. Normal probability plot (Q-Q plot): sample quantiles are plotted against theoretical normal quantiles. Normally distributed data lie approximately on a straight line; systematic curvature or S-shapes indicate non-normality. 3. Box plot: shows min, Q1, median, Q3, max, and outliers. Symmetric distribution produces a symmetric box and equal whisker lengths. Asymmetry indicates skewness. Formal analytical tests (Shapiro-Wilk, Kolmogorov-Smirnov, Anderson-Darling) are required for a quantified normality decision."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "easy",
+    "question": "A continuous random variable has density f(x) = 3*x^2 on [0, 1] and 0 otherwise. Calculate F(0.5).",
+    "answer": "Step 1: F(x) = integral_0^x 3*t^2 dt = [t^3]_0^x = x^3 for 0 <= x <= 1.\nStep 2: F(0.5) = 0.5^3 = 0.125.\nFinal answer: F(0.5) = 0.125, i.e. 12.5% of probability mass lies below 0.5."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "medium",
+    "question": "A sample x_1, ..., x_5 yields differences from a target T = 50 of -1, 2, -3, 4, -2. Calculate the sum-of-squared deviations from the target T and from the sample mean x_bar, and explain the algebraic relationship.",
+    "answer": "Step 1: Differences (x_n - T): -1, 2, -3, 4, -2. Sum (x_n - T) = 0. So x_bar = T = 50.\nStep 2: Sum (x_n - T)^2 = 1 + 4 + 9 + 16 + 4 = 34.\nStep 3: Because x_bar = T exactly in this sample, the deviations from the mean equal the deviations from T: sum (x_n - x_bar)^2 = 34 as well.\nStep 4: In general, sum (x_n - T)^2 = sum (x_n - x_bar)^2 + N * (x_bar - T)^2 (parallel-axis identity). Here N * (x_bar - T)^2 = 0 because x_bar = T.\nFinal answer: Sum of squares from both T and x_bar equals 34; the equality is because x_bar happens to coincide with T."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "medium",
+    "question": "A binomial random variable has N = 30 and p = 0.4. Calculate P(X = 10) using the binomial formula. Use C(30, 10) = 30 045 015, 0.4^10 ≈ 1.0486 * 10^-4, and 0.6^20 ≈ 3.656 * 10^-5.",
+    "answer": "Step 1: Binomial probability: P(X = 10) = C(30, 10) * 0.4^10 * 0.6^(30-10).\nStep 2: Substitute the supplied values: P(X = 10) = 30 045 015 * 1.0486*10^-4 * 3.656*10^-5.\nStep 3: Multiply: 30 045 015 * 1.0486*10^-4 ≈ 3151.5; then 3151.5 * 3.656*10^-5 ≈ 0.1152.\nFinal answer: P(X = 10) ≈ 0.1152 = 11.52%. The mean is N*p = 12, so 10 lies one standard deviation below."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "easy",
+    "question": "A team uses a histogram with K = 30 bins for a sample of N = 25 measurements. What is wrong with this choice?",
+    "answer": "There are more bins than observations, so most bins are empty or contain a single value. The histogram becomes a noisy display of individual data points rather than a smooth representation of the underlying distribution. Common rules of thumb suggest K = sqrt(N) ≈ 5 or K = 1 + log_2(N) ≈ 6 for N = 25. Far fewer bins reveal the distribution's shape; with N = 25 the histogram is in any case of limited value, and a dot plot or box plot may be preferable."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "hard",
+    "question": "A scientist performs Bayesian inference with a flat (improper) prior on the variance sigma^2 and reports the posterior. What technical issue arises with improper priors?",
+    "answer": "Improper priors are unnormalised — they do not integrate to 1 over the parameter space (e.g., flat prior on sigma^2 in (0, infinity) has infinite total measure). Issues: (a) the prior is not a valid probability distribution; (b) the posterior may or may not be proper (well-defined). Whether the posterior is proper depends on the likelihood: improper * proper-likelihood can yield a proper posterior if the data are informative enough. Specific concerns: (a) Bayes factors are undefined with improper priors (the marginal likelihood is infinite); (b) some inferences may depend on the limiting form of an improper prior in non-trivial ways. Remedy: use weakly informative proper priors (e.g., Gamma(0.01, 0.01) or half-Cauchy for variance) that approximate flat priors but are proper. Always verify posterior propriety before drawing conclusions."
+  },
+  {
+    "type": "factual",
+    "difficulty": "hard",
+    "question": "State the intraclass correlation rho_ICC in the one-way random-effects model and its interpretation.",
+    "answer": "rho_ICC = sigma_alpha^2 / (sigma_alpha^2 + sigma_e^2), the fraction of total response variance attributable to the random factor. rho_ICC = 0 means all variation is within-cluster (no clustering effect); rho_ICC = 1 means all variation is between-cluster (units within a cluster are identical). It is also the correlation between two observations from the same cluster: Cor(y_{ij}, y_{ij'}) = rho_ICC for j != j'. Used to assess clustering severity, plan multi-stage sampling designs (design-effect calculations), and quantify reliability in test-retest studies."
+  },
+  {
+    "type": "derivation",
+    "difficulty": "medium",
+    "question": "Derive the formula for the least-squares slope b1 of simple linear regression y_hat = b0 + b1*x by minimising the sum of squared residuals.",
+    "answer": "Minimise: a = sum_{n=1}^{N} (y_n - b0 - b1*x_n)^2\nStep 1 - Normal equation for b0 (da/db0 = 0):\n-2*sum(y_n - b0 - b1*x_n) = 0 => y_bar = b0 + b1*x_bar => b0 = y_bar - b1*x_bar\nStep 2 - Normal equation for b1 (da/db1 = 0):\n-2*sum(x_n*(y_n - b0 - b1*x_n)) = 0 => sum(x_n*y_n) = b0*sum(x_n) + b1*sum(x_n^2)\nStep 3 - Substitute b0 = y_bar - b1*x_bar:\nAfter rearranging: b1 = sum((x_n - x_bar)*(y_n - y_bar)) / sum((x_n - x_bar)^2)\nConclusion: b1 is the ratio of the sample covariance of x and y to the variance of x. It minimises the total squared vertical distance between observations and the fitted line."
+  },
+  {
+    "type": "derivation",
+    "difficulty": "hard",
+    "question": "Derive Sheppard's continuity correction s^2_corrected = s^2_classified - w^2/12 for the variance of classified data.",
+    "answer": "Step 1: Suppose true observations within a class of width w are uniformly distributed around the class midpoint c_m. Variance contribution from this within-class spread: each observation deviates from c_m by U ~ Uniform(-w/2, w/2), with E[U] = 0 and Var(U) = w^2/12.\nStep 2: Total variance decomposition: Var(X) = Var(within-class spread) + Var(between-class midpoints) = w^2/12 + s^2_midpoints.\nStep 3: The classified-data variance computes Var(midpoints) directly: s^2_classified = (1/(N-1)) * sum h_A(c_m) * (c_m - x_bar)^2 ≈ s^2_midpoints.\nStep 4: True variance: sigma^2_true = w^2/12 + sigma^2_midpoints.\nStep 5: For consistency: the classified estimator is biased low by w^2/12. Correction: s^2_corrected = s^2_classified + w^2/12.\nStep 6: Note: some sources give the correction as -w^2/12 if the classified formula uses midpoints as 'true' values, treating within-class as additional. Convention varies; check the direction in the specific formula being used.\nFinal result: Sheppard's correction is +w^2/12 (if classified treats midpoints as concentrated values, missing within-class spread). For narrow classes (w << s), the correction is negligible."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "What is the difference between a one-sided and two-sided hypothesis test?",
+    "answer": "A two-sided test checks whether a parameter differs from the null value in either direction: H1: mu ≠ mu0. A one-sided test checks only one direction: H1: mu > mu0 (right-sided) or H1: mu < mu0 (left-sided). One-sided tests have more power to detect effects in the specified direction because the entire significance level alpha is allocated to one tail. Use one-sided tests only when deviations in one direction are meaningless or impossible."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "hard",
+    "question": "In a production batch of 100 items with a defect rate of 2%, what is the probability of finding exactly 3 defective items?",
+    "answer": "Step 1: This is a binomial problem with N = 100, p = 0.02, x = 3.\nStep 2: f(3) = C(100,3) × 0.02^3 × 0.98^97\nStep 3: C(100,3) = 100!/(3!×97!) = 161700\nStep 4: 0.02^3 = 8×10^-6\nStep 5: 0.98^97 ≈ 0.1380\nStep 6: f(3) = 161700 × 8×10^-6 × 0.1380 ≈ 0.1823\nFinal answer: The probability of finding exactly 3 defective items is approximately 18.23%."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What is a random (i.i.d.) sample, and why is the independence requirement important for standard inference?",
+    "answer": "A random sample of size N consists of observations x_1, ..., x_N that are independent and identically distributed (i.i.d.): each x_n is drawn from the same population distribution, and the value of one observation gives no information about another. Independence is essential because the standard formulas for variance of x_bar, t-statistics, F-statistics, and confidence intervals rely on summing variances of independent components. Violating independence (e.g., serially correlated measurements) inflates or deflates the true sampling variability and invalidates standard p-values and intervals."
+  },
+  {
+    "type": "factual",
+    "difficulty": "easy",
+    "question": "What is the MTBF of the exponential distribution, and how is it related to the failure rate lambda?",
+    "answer": "MTBF=E[T]=1/lambda; lambda=1/MTBF (reciprocal relationship). MTBF is the average time between two successive failures for a continuously operated, repairable unit. At t=MTBF: S(MTBF)=e^{-1}=36.8% — more than 63% of units fail before the MTBF time. The standard deviation of the exponential distribution also equals 1/lambda=MTBF, so the coefficient of variation is 1 (100%), indicating high variability of individual lifetimes around the mean."
+  },
+  {
+    "type": "definition",
+    "difficulty": "hard",
+    "question": "Define the Root Mean Square Error (RMSE) of a regression model and explain its role in comparing regression functions of different orders fitted to the same data.",
+    "answer": "RMSE = sqrt(sum(y_n-y_hat_n)^2/(N-M-1)), where N is observations and M is the number of regression coefficients excluding the intercept. It measures average residual magnitude in the units of y. RMSE always decreases as model order M increases, so it must be combined with significance tests for individual coefficients to avoid overfitting. A model should be preferred over a simpler one only if the added terms are statistically significant."
+  },
+  {
+    "type": "factual",
+    "difficulty": "hard",
+    "question": "State the conditions for a sample to provide consistent estimators of population parameters.",
+    "answer": "Consistency requires: (1) representativeness (so that bias -> 0 as N -> infinity); (2) bounded variance (so that variance -> 0 as N -> infinity); (3) appropriate sampling scheme (i.i.d. or independent with the same expected value). Under simple random sampling with replacement (or large M effectively infinite), sample averages converge by the Law of Large Numbers: x_bar -> mu almost surely. Under stratified sampling, the stratified estimator is consistent with the same conditions within each stratum. Cluster sampling preserves consistency under appropriate weighting. Non-probability samples often fail to be consistent because the systematic bias persists even as N -> infinity."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "hard",
+    "question": "Compare the chi-squared test and the likelihood-ratio (G^2) test for a contingency table: what is the form of each statistic, and how do they relate asymptotically?",
+    "answer": "Both tests target H0: independence (or a specified probability structure). The Pearson chi-squared statistic is chi^2 = sum (O_ij - E_ij)^2 / E_ij. The likelihood-ratio (G^2) statistic is G^2 = 2 * sum O_ij * ln(O_ij / E_ij), based on the log-likelihood ratio under H0 versus the saturated model. Both are asymptotically chi-squared with the same degrees of freedom under H0. For large E_ij, chi^2 ≈ G^2; for small E_ij, G^2 tends to give slightly different and sometimes more accurate p-values, while chi^2 is computationally simpler. Both share the same asymptotic limit but emerge from different statistical philosophies (squared error vs. likelihood)."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "hard",
+    "question": "Compare the bias-variance trade-off for the sample variance estimators s^2 (denominator N - 1) and sigma_hat^2 (denominator N): which has smaller bias and which has smaller MSE for a normal sample?",
+    "answer": "s^2 = (1/(N-1)) * sum (x_n - x_bar)^2 is unbiased: E[s^2] = sigma^2. Var(s^2) = 2*sigma^4 / (N - 1) under normality, so MSE(s^2) = 2*sigma^4 / (N - 1). The MLE sigma_hat^2 = (1/N) * sum (x_n - x_bar)^2 = ((N-1)/N) * s^2 has bias -sigma^2 / N and variance ((N-1)/N)^2 * Var(s^2) = 2*(N-1)*sigma^4 / N^2. Substituting in MSE = Var + Bias^2: MSE(sigma_hat^2) = (2N - 1) * sigma^4 / N^2 < 2*sigma^4 / (N - 1) = MSE(s^2) for all N > 1. The biased MLE has smaller MSE under normality, illustrating the trade-off."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "easy",
+    "question": "A multiple regression with p = 4 predictors using N = 30 observations has R^2 = 0.80. Compute the adjusted R^2.",
+    "answer": "Step 1: Apply adjusted R^2 = 1 - (1 - R^2) * (N - 1) / (N - p - 1).\nStep 2: Substitute: 1 - (1 - 0.80) * (30 - 1) / (30 - 4 - 1) = 1 - 0.20 * 29 / 25.\nStep 3: Compute: 0.20 * 29 / 25 = 5.8 / 25 = 0.232.\nStep 4: 1 - 0.232 = 0.768.\nFinal answer: Adjusted R^2 ≈ 0.768. The downward adjustment of ~3.2 percentage points reflects the penalty for the 4 predictors relative to a 30-observation sample."
+  },
+  {
+    "type": "application",
+    "difficulty": "medium",
+    "question": "A two-predictor regression yields r_{xy} = 0.50, r_{xz} = 0.60, r_{yz} = 0.45. Compute the partial correlation r_{xy.z} and interpret the change relative to r_{xy}.",
+    "answer": "Step 1: Apply r_{xy.z} = (r_{xy} - r_{xz}*r_{yz}) / sqrt((1 - r_{xz}^2)(1 - r_{yz}^2)).\nStep 2: Numerator: 0.50 - 0.60*0.45 = 0.50 - 0.27 = 0.23.\nStep 3: Denominator: sqrt((1 - 0.36)*(1 - 0.2025)) = sqrt(0.64 * 0.7975) = sqrt(0.5104) ≈ 0.7144.\nStep 4: r_{xy.z} = 0.23 / 0.7144 ≈ 0.322.\nStep 5: The marginal correlation r_{xy} = 0.50 is partly explained by z's joint association with both x and y. After controlling for z, the residual correlation is 0.32 — substantially reduced but still positive.\nFinal answer: r_{xy.z} ≈ 0.32. The variable z partially confounds the x-y relationship; the genuine partial association is 0.32, not 0.50."
+  },
+  {
+    "type": "derivation",
+    "difficulty": "hard",
+    "question": "Derive the conditional variance Var(Y | X = x) = sigma_y^2 * (1 - rho^2) for the bivariate normal distribution.",
+    "answer": "Step 1: From the decomposition Y = a + b*X + epsilon (see related derivation) with b = rho * sigma_y / sigma_x and epsilon independent of X, take variances on both sides given X = x.\nStep 2: Conditional on X = x, the b*X term is non-random: Var(Y | X = x) = Var(epsilon).\nStep 3: Take unconditional variance of Y: sigma_y^2 = Var(Y) = b^2 * Var(X) + Var(epsilon) = b^2 * sigma_x^2 + Var(epsilon).\nStep 4: Substitute b: b^2 * sigma_x^2 = rho^2 * (sigma_y / sigma_x)^2 * sigma_x^2 = rho^2 * sigma_y^2. Therefore Var(epsilon) = sigma_y^2 - rho^2 * sigma_y^2 = sigma_y^2 * (1 - rho^2).\nStep 5: Conclude: Var(Y | X = x) = sigma_y^2 * (1 - rho^2), independent of x.\nFinal result: The conditional variance is reduced by the factor (1 - rho^2). For rho = 0 it equals sigma_y^2; for rho = +/-1 it equals 0 (perfect linear dependence)."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "easy",
+    "question": "Why is a probability density f(x) at a single point not itself a probability for a continuous distribution?",
+    "answer": "For a continuous random variable, P(X = x) = integral over the single point of f(t) dt = 0; any individual outcome has zero probability. The density f(x) measures probability per unit length, with units inverse to those of x, and only an integral over an interval of positive width yields a proper probability: P(a < X <= b) = integral_a^b f(t) dt. Density values can therefore exceed 1 (e.g., a uniform distribution on [0, 0.1] has f(x) = 10 throughout)."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What is the p-value in hypothesis testing?",
+    "answer": "The p-value is the probability of obtaining a test statistic as extreme as or more extreme than the observed value, assuming the null hypothesis is true. A small p-value indicates that the observed data is unlikely under H0, providing evidence against it. Decision rule: reject H0 if p-value < alpha (significance level). The p-value provides more information than a simple reject/fail-to-reject decision because it indicates the strength of evidence."
+  },
+  {
+    "type": "factual",
+    "difficulty": "hard",
+    "question": "State Sheppard's continuity correction for variance computed from classified data with class width w.",
+    "answer": "Sheppard's correction: s^2_corrected = s^2_classified - w^2/12, where s^2_classified is the variance computed from classified data using class midpoints and w is the (constant) class width. The correction subtracts the variance within a uniform distribution over each class (w^2/12), which is the average within-class variance that the midpoint approximation 'misses'. Without correction, s^2_classified slightly overestimates the true variance (because the data are spread within classes, not concentrated at midpoints). The correction is most important for wide classes; for narrow classes (w << s), the correction is negligible."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "What is the Laplace definition of probability?",
+    "answer": "According to Laplace's classical definition, the probability P(A) of an event A is the ratio of the number of favorable outcomes g to the total number of equally possible outcomes m: P(A) = g/m. This definition requires that all elementary events are equally probable and mutually exclusive, which is the case for example with a regular die."
+  },
+  {
+    "type": "factual",
+    "difficulty": "hard",
+    "question": "State the moment generating function M_X(t) of a Binomial(N, p) distribution and the relationship of its expansion to the binomial theorem.",
+    "answer": "M_X(t) = E[exp(t*X)] = sum_{k=0}^{N} C(N, k) * p^k * (1 - p)^(N - k) * exp(t*k) = sum_{k=0}^{N} C(N, k) * (p*exp(t))^k * (1 - p)^(N - k). By the binomial theorem, this sum equals (p*exp(t) + (1 - p))^N = (1 - p + p*exp(t))^N. Differentiation gives the moments: M_X'(0) = N*p (mean) and M_X''(0) = N*p + N*(N - 1)*p^2, yielding Var(X) = M_X''(0) - (M_X'(0))^2 = N*p*(1 - p)."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "What is a combination of k elements from N, and how is the binomial coefficient C(N, k) computed?",
+    "answer": "A combination is a selection of k elements from N without regard to order. The number of combinations is the binomial coefficient C(N, k) = N! / (k! * (N - k)!). Property: C(N, k) = C(N, N - k). Special cases: C(N, 0) = C(N, N) = 1, C(N, 1) = N. The binomial coefficient appears in the binomial distribution as the number of ways to obtain k successes in N trials and in Pascal's triangle as the addition formula C(N, k) = C(N - 1, k - 1) + C(N - 1, k)."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "easy",
+    "question": "Given five measurements x = {12, 15, 11, 14, 13}, calculate the sample mean x_bar, sample variance s^2, and sample standard deviation s.",
+    "answer": "Step 1: Mean: x_bar = (12+15+11+14+13)/5 = 65/5 = 13\nStep 2: Squared deviations: (12-13)^2=1, (15-13)^2=4, (11-13)^2=4, (14-13)^2=1, (13-13)^2=0; Sum = 10\nStep 3: Variance (N-1 = 4): s^2 = 10/4 = 2.5\nStep 4: Standard deviation: s = sqrt(2.5) = 1.581\nResult: x_bar = 13, s^2 = 2.5, s = 1.581"
+  },
+  {
+    "type": "calculation",
+    "difficulty": "hard",
+    "question": "Three groups with means x_bar_1 = 10, x_bar_2 = 12, x_bar_3 = 14, each of size n = 10, have common within-group variance s_W^2 = 4. Compute SS_between, SS_within, MS_between, MS_within, and the F-statistic.",
+    "answer": "Step 1: Grand mean: x_bar = (10 + 12 + 14)/3 = 12. Total observations N = 30.\nStep 2: SS_between = n * sum (x_bar_j - x_bar)^2 = 10 * ((10-12)^2 + (12-12)^2 + (14-12)^2) = 10 * (4 + 0 + 4) = 80.\nStep 3: SS_within = sum_j (n - 1) * s_j^2 = 3 * 9 * 4 = 108.\nStep 4: MS_between = SS_between / (J - 1) = 80 / 2 = 40.\nStep 5: MS_within = SS_within / (N - J) = 108 / 27 = 4.0.\nStep 6: F = MS_between / MS_within = 40 / 4.0 = 10.0.\nFinal answer: F = 10.0 with df = (2, 27). The critical value F_{0.05; 2, 27} ≈ 3.35 is well below 10.0, so the group means differ significantly."
+  },
+  {
+    "type": "derivation",
+    "difficulty": "hard",
+    "question": "Derive the asymptotic variance of the sample median for normal data, Var(median) ≈ pi*sigma^2 / (2N), from the general order-statistic asymptotic formula.",
+    "answer": "Step 1: General result: for the p-th sample quantile X_(k) with k/N -> p, Var(X_(k)) ≈ p*(1 - p) / (N * f(x_p)^2), where x_p = F^(-1)(p) is the true p-quantile and f the density.\nStep 2: For the median, p = 0.5; x_0.5 = mu for symmetric distributions.\nStep 3: For N(mu, sigma^2), the density at the mean is f(mu) = 1 / (sigma * sqrt(2*pi)).\nStep 4: Substitute: Var(median) ≈ 0.25 / (N * (1 / (sigma * sqrt(2*pi)))^2) = 0.25 * sigma^2 * 2*pi / N = pi * sigma^2 / (2*N).\nFinal result: Var(median) ≈ pi*sigma^2 / (2N) ≈ 1.5708 * sigma^2 / N. The ratio to Var(x_bar) = sigma^2/N is pi/2 ≈ 1.5708, so the median's variance is about 57% larger than the mean's, corresponding to relative efficiency 2/pi ≈ 64% under normality."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "What is the failure rate (instantaneous failure rate) of a component with continuous lifetime distribution?",
+    "answer": "The failure rate (also called hazard rate) lambda(t) for a lifetime T with density f(t) and survival function S(t) = P(T > t) is lambda(t) = f(t) / S(t). It is the conditional probability of failure per unit time given survival to time t: P(T < t + dt | T > t) ≈ lambda(t) * dt for small dt. Constant failure rate (exponential) gives the memoryless property; increasing failure rate (Weibull beta > 1) indicates wear-out; decreasing failure rate (Weibull beta < 1) indicates infant mortality."
+  },
+  {
+    "type": "application",
+    "difficulty": "easy",
+    "question": "An engineer needs to read the 30th percentile from an ogive. Describe the procedure.",
+    "answer": "Step 1: On the y-axis (cumulative relative frequency), locate H = 0.30.\nStep 2: Draw a horizontal line from H = 0.30 until it intersects the ogive curve.\nStep 3: From the intersection point, draw a vertical line down to the x-axis.\nStep 4: Read the corresponding x-value: this is the 30th percentile (q_0.30).\nStep 5: For an ogive constructed from classified data, the percentile is approximate (linear interpolation within the class containing H = 0.30).\nFinal answer: Find H = 0.30 on the y-axis, trace horizontally to the ogive, then vertically down to read the x-value. The ogive enables quick quantile reading without computation."
+  },
+  {
+    "type": "derivation",
+    "difficulty": "easy",
+    "question": "Derive Var(a*x) = a^2 * Var(x) for a constant a and a random variable x.",
+    "answer": "Step 1: Definition: Var(a*x) = E[(a*x - E[a*x])^2].\nStep 2: Linearity of expectation: E[a*x] = a*E[x] = a*mu.\nStep 3: Substitute: Var(a*x) = E[(a*x - a*mu)^2] = E[a^2 * (x - mu)^2].\nStep 4: Pull constants out: Var(a*x) = a^2 * E[(x - mu)^2] = a^2 * Var(x).\nFinal result: Var(a*x) = a^2 * Var(x). Note that the additive constant b in y = a*x + b does not appear, consistent with Var(x + b) = Var(x)."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "medium",
+    "question": "Calculate the 95% confidence interval for a proportion when 42 out of 200 items are defective.",
+    "answer": "Step 1: p_hat = 42/200 = 0.21.\nStep 2: Standard error: SE = sqrt(p_hat × (1-p_hat) / N) = sqrt(0.21 × 0.79 / 200) = sqrt(0.000830) = 0.0288.\nStep 3: For 95% confidence, z = 1.96.\nStep 4: CI = p_hat ± z × SE = 0.21 ± 1.96 × 0.0288 = 0.21 ± 0.0564.\nStep 5: CI = [0.1536, 0.2664].\nFinal answer: The 95% CI for the defect rate is [15.4%, 26.6%]."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "medium",
+    "question": "An engineer fits y = b0 + b1*x to data where physics requires y = 0 when x = 0, but does not constrain b0. The fit gives b0 = 4.2 with se(b0) = 1.1. What is the practical concern?",
+    "answer": "An unconstrained intercept can absorb part of the signal that should be carried by the slope, leading to a biased b1 estimate and to extrapolation problems near x = 0 where the model now incorrectly predicts y = 4.2 instead of 0. The corrected approach is to fit a no-intercept model y = b1*x by minimising sum (y_n - b1*x_n)^2 with respect to b1 alone. Before doing so, the engineer should also confirm that the physical constraint truly applies (e.g. no offset effect, no measurement bias), as forcing b0 = 0 inappropriately would in turn bias b1."
+  },
+  {
+    "type": "factual",
+    "difficulty": "hard",
+    "question": "State the expected mean square (EMS) for the single-factor fixed-effects ANOVA's treatment effect.",
+    "answer": "For a balanced one-way fixed-effects ANOVA with J levels and n observations per level, the treatment's expected mean square is E[MS_treatment] = sigma^2 + n * (1/(J - 1)) * sum_{j=1}^{J} (mu_j - mu)^2, where mu_j is the mean at level j and mu is the grand mean. The error mean square is E[MS_error] = sigma^2. Under H0 (all mu_j equal), the sum vanishes and E[MS_treatment] = sigma^2 = E[MS_error]; their ratio F is centered at 1. Under H1, E[MS_treatment] > sigma^2 by the noncentrality term; F is shifted to the right. The treatment SS depends quadratically on the spread of group means."
+  },
+  {
+    "type": "application",
+    "difficulty": "medium",
+    "question": "A two-sample test of means with N1 = N2 = 30 and known equal variances is planned with alpha = 5% (two-sided) and a desired power of 80% to detect a true difference delta = 1.0 in units where sigma = 2. State whether N is adequate. Use z_{0.025} = 1.96 and z_{0.20} = 0.842.",
+    "answer": "Step 1: For equal-variance two-sample z-tests, the standard error of x_bar_1 - x_bar_2 is sigma * sqrt(2/N) (where N is the per-group size). For power 1 - beta, the standard formula gives N = 2 * sigma^2 * (z_{alpha/2} + z_{beta})^2 / delta^2.\nStep 2: Substitute: N = 2 * 4 * (1.96 + 0.842)^2 / 1 = 8 * 7.851 ≈ 62.8 per group.\nStep 3: The available 30 per group is far below the required ≈ 63.\nFinal answer: With N = 30 per group, the test is underpowered for delta = 1 at alpha = 5%; either N must be roughly doubled or a larger effect must be tolerated."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "easy",
+    "question": "Compare one-sided and two-sided hypothesis tests: rejection regions and when each is used.",
+    "answer": "Two-sided: rejection region split between both tails — reject H0: mu=mu0 if statistic is too large or too small. Critical values: c1=F^{-1}(alpha/2) and c2=F^{-1}(1-alpha/2). H1: mu!=mu0. Used when deviations in either direction matter, e.g. testing if two suppliers differ. One-sided: entire rejection region in one tail. H1: mu>mu0 → reject if statistic exceeds c=F^{-1}(1-alpha). H1: mu<mu0 → reject if below c=F^{-1}(alpha). Used when only one direction matters, e.g. testing if consumption exceeds a limit. One-sided tests are more powerful for detecting a deviation in the hypothesised direction."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "hard",
+    "question": "A Kolmogorov-Smirnov test on N = 50 measurements against N(50, 4) gives D = 0.18. Test H0 at alpha = 5% with critical value D_{50; 0.05} = 0.192.",
+    "answer": "Step 1: Compute the test statistic D_N = sup_x |F_N(x) - F_0(x)| = 0.18 (given).\nStep 2: Compare with critical value: D_{50; 0.05} = 0.192.\nStep 3: 0.18 < 0.192, so do not reject H0.\nStep 4: Interpretation: the empirical distribution does not differ significantly from N(50, 4) at the 5% level. Note that this conclusion holds for the fully specified F_0 with known mean and variance; estimating these from the same data requires different critical values (Lilliefors correction).\nFinal answer: Do not reject H0; the sample is consistent with N(50, 4) at alpha = 5%, although only marginally."
+  },
+  {
+    "type": "application",
+    "difficulty": "easy",
+    "question": "A team observes a clear bimodal histogram in their process data. What action should be taken?",
+    "answer": "Step 1: Bimodality strongly suggests mixing of two distinct subpopulations rather than a homogeneous source.\nStep 2: Identify candidate stratification variables: shift, operator, machine, material lot, time of day, supplier.\nStep 3: Stratify the data by each candidate and re-plot the histogram per subgroup.\nStep 4: If one stratification produces two unimodal subgroups, the original bimodality was driven by that variable; analyses (mean, sigma, capability) should be conducted within strata.\nStep 5: If subgroups remain bimodal, deeper investigation is needed (e.g., another hidden variable, measurement system issue, sampling problem).\nFinal answer: Investigate sources of heterogeneity and stratify the data; pooled analysis of bimodal data can mislead substantially."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "hard",
+    "question": "A normality test on N = 2000 measurements gives p < 0.01, leading the team to reject normality and refuse to apply a t-test for the mean. Why can this conclusion be overly conservative?",
+    "answer": "Formal normality tests detect very small deviations from normality at large N because power increases with N; practically irrelevant departures (skewness g = 0.1, slight kurtosis) become statistically significant. However, by the Central Limit Theorem, the t-test for the mean is robust against modest non-normality once N is large, because the sampling distribution of x_bar is already approximately normal. With N = 2000, refusing the t-test on the basis of a strict normality test is overly conservative; the engineer should also inspect the Q-Q plot and the histogram, and proceed with the t-test if the deviation is small. For severely skewed or heavy-tailed data, transformations or non-parametric methods are alternatives."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "easy",
+    "question": "Compare a left-skewed (negatively skewed) and a right-skewed (positively skewed) distribution: where does the long tail extend in each, and how do mean and median typically order?",
+    "answer": "A right-skewed distribution has its long tail on the right, producing rare large values. The mean is pulled toward the right tail above the median: mean > median. A left-skewed distribution has its long tail on the left, with rare small values; the mean lies below the median: mean < median. In both cases, the mode (for unimodal distributions) is at the peak on the opposite side of the tail. Income distributions are typically right-skewed; age-at-death distributions can be left-skewed."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "medium",
+    "question": "Compare the t-test and the F-test in terms of purpose and application.",
+    "answer": "The t-test compares means: one-sample (mu vs mu0), two-sample (mu1 vs mu2), or paired samples. The F-test compares variances (sigma1^2 vs sigma2^2) or is used in ANOVA to compare multiple group means. Key relationship: for two groups, the F-test in ANOVA gives the same result as the two-sample t-test, since F = t^2. The F-test generalizes to K groups, while the t-test is limited to 2."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What is the covariance s_xy of a bivariate sample, and what does its sign and magnitude indicate?",
+    "answer": "The sample covariance s_xy is defined as s_xy = (1/(N-1)) * sum((x_n - x_bar)(y_n - y_bar)). It measures the direction and strength of linear co-variation between two variables x and y. Sign: if large x-values tend to occur with large y-values, the products are predominantly positive and s_xy > 0. The reverse gives s_xy < 0. Magnitude: the covariance is not normalised and depends on the physical units of x and y, making comparisons across variable pairs difficult. For this reason, the correlation coefficient r = s_xy / (s_x * s_y) is preferred for assessing strength of a linear relationship, because it is dimensionless and bounded to [-1, 1]."
+  }
+]

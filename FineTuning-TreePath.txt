@@ -1,0 +1,2902 @@
+FineTuning
+│   ├── data_fixtures
+│   │   ├── 04_qa_final.json
+│   │   ├── 05_train_chatml.jsonl
+│   │   ├── QA.json
+│   │   ├── test_qa.json
+│   │   ├── train_qa.json
+│       └── validation_qa.json
+│   ├── DFSS_FineTuning_Dokumentation_DE.pdf
+│   ├── FineTuning-Tree.txt
+│   ├── llama.cpp
+│   │   ├── .clang-format
+│   │   ├── .clang-tidy
+│   │   ├── .devops
+│   │   │   ├── cann.Dockerfile
+│   │   │   ├── cpu.Dockerfile
+│   │   │   ├── cuda-new.Dockerfile
+│   │   │   ├── cuda.Dockerfile
+│   │   │   ├── intel.Dockerfile
+│   │   │   ├── llama-cli-cann.Dockerfile
+│   │   │   ├── llama-cpp-cuda.srpm.spec
+│   │   │   ├── llama-cpp.srpm.spec
+│   │   │   ├── musa.Dockerfile
+│   │   │   ├── nix
+│   │   │   │   ├── apps.nix
+│   │   │   │   ├── devshells.nix
+│   │   │   │   ├── docker.nix
+│   │   │   │   ├── jetson-support.nix
+│   │   │   │   ├── nixpkgs-instances.nix
+│   │   │   │   ├── package-gguf-py.nix
+│   │   │   │   ├── package.nix
+│   │   │   │   ├── python-scripts.nix
+│   │   │   │   ├── scope.nix
+│   │   │       └── sif.nix
+│   │   │   ├── openvino.Dockerfile
+│   │   │   ├── rocm.Dockerfile
+│   │   │   ├── s390x.Dockerfile
+│   │   │   ├── tools.sh
+│   │       └── vulkan.Dockerfile
+│   │   ├── .dockerignore
+│   │   ├── .ecrc
+│   │   ├── .editorconfig
+│   │   ├── .flake8
+│   │   ├── .gemini
+│   │       └── settings.json
+│   │   ├── .git
+│   │   │   ├── config
+│   │   │   ├── description
+│   │   │   ├── HEAD
+│   │   │   ├── hooks
+│   │   │   │   ├── applypatch-msg.sample
+│   │   │   │   ├── commit-msg.sample
+│   │   │   │   ├── fsmonitor-watchman.sample
+│   │   │   │   ├── post-update.sample
+│   │   │   │   ├── pre-applypatch.sample
+│   │   │   │   ├── pre-commit.sample
+│   │   │   │   ├── pre-merge-commit.sample
+│   │   │   │   ├── pre-push.sample
+│   │   │   │   ├── pre-rebase.sample
+│   │   │   │   ├── pre-receive.sample
+│   │   │   │   ├── prepare-commit-msg.sample
+│   │   │   │   ├── push-to-checkout.sample
+│   │   │   │   ├── sendemail-validate.sample
+│   │   │       └── update.sample
+│   │   │   ├── index
+│   │   │   ├── info
+│   │   │       └── exclude
+│   │   │   ├── logs
+│   │   │       └── HEAD
+│   │   │   ├── objects
+│   │   │       └── pack
+│   │   │       │   ├── pack-0d67217db90d77bfc9b724309971e7ed5b118c0c.idx
+│   │   │       │   ├── pack-0d67217db90d77bfc9b724309971e7ed5b118c0c.pack
+│   │   │           └── pack-0d67217db90d77bfc9b724309971e7ed5b118c0c.rev
+│   │   │   ├── packed-refs
+│   │       └── refs
+│   │           └── heads
+│   │               └── master
+│   │   ├── .github
+│   │   │   ├── actions
+│   │   │   │   ├── get-tag-name
+│   │   │   │       └── action.yml
+│   │   │   │   ├── install-exe
+│   │   │   │       └── action.yml
+│   │   │   │   ├── linux-setup-openvino
+│   │   │   │       └── action.yml
+│   │   │   │   ├── linux-setup-spacemit
+│   │   │   │       └── action.yml
+│   │   │   │   ├── linux-setup-vulkan
+│   │   │   │       └── action.yml
+│   │   │   │   ├── unarchive-tar
+│   │   │   │       └── action.yml
+│   │   │   │   ├── windows-setup-cuda
+│   │   │   │       └── action.yml
+│   │   │       └── windows-setup-rocm
+│   │   │           └── action.yml
+│   │   │   ├── ISSUE_TEMPLATE
+│   │   │   │   ├── 010-bug-compilation.yml
+│   │   │   │   ├── 011-bug-results.yml
+│   │   │   │   ├── 019-bug-misc.yml
+│   │   │   │   ├── 020-enhancement.yml
+│   │   │   │   ├── 030-research.yml
+│   │   │   │   ├── 040-refactor.yml
+│   │   │       └── config.yml
+│   │   │   ├── labeler.yml
+│   │   │   ├── pull_request_template.md
+│   │       └── workflows
+│   │       │   ├── ai-issues.yml
+│   │       │   ├── bench.yml.disabled
+│   │       │   ├── build-3rd-party.yml
+│   │       │   ├── build-android.yml
+│   │       │   ├── build-apple.yml
+│   │       │   ├── build-cache.yml
+│   │       │   ├── build-cann.yml
+│   │       │   ├── build-cmake-pkg.yml
+│   │       │   ├── build-cross.yml
+│   │       │   ├── build-msys.yml
+│   │       │   ├── build-riscv.yml
+│   │       │   ├── build-sanitize.yml
+│   │       │   ├── build-self-hosted.yml
+│   │       │   ├── build-vulkan.yml
+│   │       │   ├── build.yml
+│   │       │   ├── check-vendor.yml
+│   │       │   ├── close-issue.yml
+│   │       │   ├── copilot-setup-steps.yml
+│   │       │   ├── docker.yml
+│   │       │   ├── editorconfig.yml
+│   │       │   ├── gguf-publish.yml
+│   │       │   ├── hip-quality-check.yml
+│   │       │   ├── labeler.yml
+│   │       │   ├── pre-tokenizer-hashes.yml
+│   │       │   ├── python-check-requirements.yml
+│   │       │   ├── python-lint.yml
+│   │       │   ├── python-type-check.yml
+│   │       │   ├── release.yml
+│   │       │   ├── server-sanitize.yml
+│   │       │   ├── server-self-hosted.yml
+│   │       │   ├── server-webui.yml
+│   │       │   ├── server.yml
+│   │       │   ├── update-ops-docs.yml
+│   │           └── winget.yml
+│   │   ├── .gitignore
+│   │   ├── .gitmodules
+│   │   ├── .pre-commit-config.yaml
+│   │   ├── AGENTS.md
+│   │   ├── AUTHORS
+│   │   ├── benches
+│   │   │   ├── dgx-spark
+│   │   │   │   ├── aime25_openai__gpt-oss-120b-high_temp1.0_20251109_094547.html
+│   │   │   │   ├── aime25_openai__gpt-oss-120b-high_temp1.0_20251109_094547.json
+│   │   │   │   ├── aime25_openai__gpt-oss-120b-high_temp1.0_20251109_094547_allresults.json
+│   │   │   │   ├── dgx-spark.md
+│   │   │       └── run-aime-120b-t8-x8-high.log
+│   │   │   ├── mac-m2-ultra
+│   │   │       └── mac-m2-ultra.md
+│   │       └── nemotron
+│   │           └── nemotron-dgx-spark.md
+│   │   ├── build
+│   │   │   ├── ALL_BUILD.vcxproj
+│   │   │   ├── ALL_BUILD.vcxproj.filters
+│   │   │   ├── bin
+│   │   │       └── Release
+│   │   │       │   ├── export-graph-ops.exe
+│   │   │       │   ├── ggml-base.dll
+│   │   │       │   ├── ggml-cpu.dll
+│   │   │       │   ├── ggml.dll
+│   │   │       │   ├── llama-batched-bench.exe
+│   │   │       │   ├── llama-batched.exe
+│   │   │       │   ├── llama-bench.exe
+│   │   │       │   ├── llama-cli.exe
+│   │   │       │   ├── llama-completion.exe
+│   │   │       │   ├── llama-convert-llama2c-to-ggml.exe
+│   │   │       │   ├── llama-cvector-generator.exe
+│   │   │       │   ├── llama-debug.exe
+│   │   │       │   ├── llama-diffusion-cli.exe
+│   │   │       │   ├── llama-embedding.exe
+│   │   │       │   ├── llama-eval-callback.exe
+│   │   │       │   ├── llama-export-lora.exe
+│   │   │       │   ├── llama-finetune.exe
+│   │   │       │   ├── llama-fit-params.exe
+│   │   │       │   ├── llama-gemma3-cli.exe
+│   │   │       │   ├── llama-gen-docs.exe
+│   │   │       │   ├── llama-gguf-hash.exe
+│   │   │       │   ├── llama-gguf-split.exe
+│   │   │       │   ├── llama-gguf.exe
+│   │   │       │   ├── llama-idle.exe
+│   │   │       │   ├── llama-imatrix.exe
+│   │   │       │   ├── llama-llava-cli.exe
+│   │   │       │   ├── llama-lookahead.exe
+│   │   │       │   ├── llama-lookup-create.exe
+│   │   │       │   ├── llama-lookup-merge.exe
+│   │   │       │   ├── llama-lookup-stats.exe
+│   │   │       │   ├── llama-lookup.exe
+│   │   │       │   ├── llama-minicpmv-cli.exe
+│   │   │       │   ├── llama-mtmd-cli.exe
+│   │   │       │   ├── llama-mtmd-debug.exe
+│   │   │       │   ├── llama-parallel.exe
+│   │   │       │   ├── llama-passkey.exe
+│   │   │       │   ├── llama-perplexity.exe
+│   │   │       │   ├── llama-q8dot.exe
+│   │   │       │   ├── llama-quantize.exe
+│   │   │       │   ├── llama-qwen2vl-cli.exe
+│   │   │       │   ├── llama-results.exe
+│   │   │       │   ├── llama-retrieval.exe
+│   │   │       │   ├── llama-save-load-state.exe
+│   │   │       │   ├── llama-server.exe
+│   │   │       │   ├── llama-simple-chat.exe
+│   │   │       │   ├── llama-simple.exe
+│   │   │       │   ├── llama-speculative-simple.exe
+│   │   │       │   ├── llama-speculative.exe
+│   │   │       │   ├── llama-template-analysis.exe
+│   │   │       │   ├── llama-tokenize.exe
+│   │   │       │   ├── llama-tts.exe
+│   │   │       │   ├── llama-vdot.exe
+│   │   │       │   ├── llama.dll
+│   │   │       │   ├── mtmd.dll
+│   │   │       │   ├── test-alloc.exe
+│   │   │       │   ├── test-arg-parser.exe
+│   │   │       │   ├── test-autorelease.exe
+│   │   │       │   ├── test-backend-ops.exe
+│   │   │       │   ├── test-backend-sampler.exe
+│   │   │       │   ├── test-barrier.exe
+│   │   │       │   ├── test-c.exe
+│   │   │       │   ├── test-chat-auto-parser.exe
+│   │   │       │   ├── test-chat-peg-parser.exe
+│   │   │       │   ├── test-chat-template.exe
+│   │   │       │   ├── test-gguf.exe
+│   │   │       │   ├── test-jinja.exe
+│   │   │       │   ├── test-json-partial.exe
+│   │   │       │   ├── test-log.exe
+│   │   │       │   ├── test-model-load-cancel.exe
+│   │   │       │   ├── test-mtmd-c-api.exe
+│   │   │       │   ├── test-opt.exe
+│   │   │       │   ├── test-peg-parser.exe
+│   │   │       │   ├── test-quantize-fns.exe
+│   │   │       │   ├── test-quantize-perf.exe
+│   │   │       │   ├── test-regex-partial.exe
+│   │   │       │   ├── test-rope.exe
+│   │   │       │   ├── test-state-restore-fragmented.exe
+│   │   │       │   ├── test-thread-safety.exe
+│   │   │           └── test-tokenizer-0.exe
+│   │   │   ├── cmake_install.cmake
+│   │   │   ├── CMakeCache.txt
+│   │   │   ├── CMakeFiles
+│   │   │   │   ├── 02f1bb69c692ebaeed5b7127427e5f08
+│   │   │   │   │   ├── index.html.gz.hpp.rule
+│   │   │   │       └── loading.html.hpp.rule
+│   │   │   │   ├── 08888679735e82780093562cee165b94
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 09710b86a73fd313da4efd90a5f241d5
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 0f9276949c80dbc4ba56073043044aaa
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 165d4b593975f9f5eddcce9294497046
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 18aa8b00c40de307ed21b5699ef1a821
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 1b32e53a4084a74d9ef5aff6c10b2e6a
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 1dc1503302386b6eb1be5aa88598729c
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 278f90ac94576e3c30092b69b9c14ab2
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 2c6c6a816ee8905e3592ebf567f96f4d
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 3638e0dc8bc7bf23fb30a5a354f19ed1
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 3a75d375121aa59e68df4c05dbc7ebcb
+│   │   │   │   │   ├── Continuous.rule
+│   │   │   │   │   ├── Experimental.rule
+│   │   │   │   │   ├── generate.stamp.rule
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │   │   ├── Nightly.rule
+│   │   │   │   │   ├── NightlyMemoryCheck.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 3bde271d61dd0c44adde9079bbbcd1b8
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 4.2.1
+│   │   │   │   │   ├── CMakeASMCompiler.cmake
+│   │   │   │   │   ├── CMakeCCompiler.cmake
+│   │   │   │   │   ├── CMakeCXXCompiler.cmake
+│   │   │   │   │   ├── CMakeDetermineCompilerABI_C.bin
+│   │   │   │   │   ├── CMakeDetermineCompilerABI_CXX.bin
+│   │   │   │   │   ├── CMakeRCCompiler.cmake
+│   │   │   │   │   ├── CMakeSystem.cmake
+│   │   │   │   │   ├── VCTargetsPath.txt
+│   │   │   │       └── VCTargetsPath.vcxproj
+│   │   │   │   ├── 42a2997ba7fed431ea31dbdadba84d1b
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 45182ac2cc9027b3f21b6d2eb77fae93
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 45cda07c7e74c6365810a8b0c36388a4
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 480eaf849d4b9a90c1608d802e1a6eca
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 4ab5e91275faa5a24c82c40113423bbf
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 554af35629bd73e12c62197d879447dc
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 56b025d389b384c9ce635ac447fe6f7c
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 5f3704b9bcf38ef7da6a4e3d44d0ce75
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 6704ae488bbb11d5860f2b699a19a426
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 6746fd69bda26c0b2d8f8ca0185840ee
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 6ac14ec87216a4726af05526c1d611ad
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 6b3dad33c39a9d5a10567c32ef7af799
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 6b407323c88a3cdcdebab2757e293f62
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 6c7efdb052c7b042a0c55c7889c96b40
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 6ed410635383c2bfca393bcec72d059b
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 70330032a41f407ce3eac57cdd5fef73
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 706f66e5c48e97881c11872fcf02191c
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 84b2cb34824b196339dfcab122c11854
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 857d115bb7d80523c093aed166b21ab4
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 88b0f588836261b71c76258c7fcbd2f7
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 8b9aaa8f61aa9b48d990e3a291ebc86a
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 8cacee35528b70f6df1e709d2e295651
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 90b172fe0292aa517ee4561a92809507
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 994cf54d5dceb16687a2cfe9bd0f4f05
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── 995b264124756bf2238b3f50991eac57
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── a9af45d492954eefc9b8174727747d5c
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── ad6f4a4d3c93d2b26565d8f927f1d2f5
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── b7b0655596699ec648d8182cb4a8de0d
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── b7b749027a27630d15ce6c099381efd5
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── b983204fe6758ba24783bcbf90a4d478
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── bb4bbdd072798e3805a7126c19862bcc
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── c60128947989d043f7a8f5d1038f479c
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── cmake.check_cache
+│   │   │   │   ├── CMakeConfigureLog.yaml
+│   │   │   │   ├── CTestScript.cmake
+│   │   │   │   ├── d1e67e5db36216d022cd68153b2a7d97
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── d3540bea511c2528581df214016da45a
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── d600585425a10d32dca61ce1c7b34984
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── f22d250cdc97c8ecd280e2569d73b52f
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── f6e09396d39040a37a5eeb05e43c1025
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── f9afaa0bdabbff59305add3e732c226d
+│   │   │   │   │   ├── INSTALL_force.rule
+│   │   │   │       └── RUN_TESTS_force.rule
+│   │   │   │   ├── FindOpenMP
+│   │   │   │   │   ├── ompver_C.bin
+│   │   │   │       └── ompver_CXX.bin
+│   │   │   │   ├── generate.stamp
+│   │   │   │   ├── generate.stamp.depend
+│   │   │   │   ├── generate.stamp.list
+│   │   │   │   ├── InstallScripts.json
+│   │   │       └── TargetDirectories.txt
+│   │   │   ├── common
+│   │   │   │   ├── build-info.cpp
+│   │   │   │   ├── build_info.vcxproj
+│   │   │   │   ├── build_info.vcxproj.filters
+│   │   │   │   ├── cmake_install.cmake
+│   │   │   │   ├── CMakeFiles
+│   │   │   │   │   ├── generate.stamp
+│   │   │   │       └── generate.stamp.depend
+│   │   │   │   ├── common.vcxproj
+│   │   │   │   ├── common.vcxproj.filters
+│   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   ├── Release
+│   │   │   │       └── common.lib
+│   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   ├── Continuous.vcxproj
+│   │   │   ├── Continuous.vcxproj.filters
+│   │   │   ├── CTestTestfile.cmake
+│   │   │   ├── DartConfiguration.tcl
+│   │   │   ├── examples
+│   │   │   │   ├── batched
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-batched.vcxproj
+│   │   │   │   │   ├── llama-batched.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── cmake_install.cmake
+│   │   │   │   ├── CMakeFiles
+│   │   │   │   │   ├── generate.stamp
+│   │   │   │       └── generate.stamp.depend
+│   │   │   │   ├── convert-llama2c-to-ggml
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-convert-llama2c-to-ggml.vcxproj
+│   │   │   │   │   ├── llama-convert-llama2c-to-ggml.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   ├── debug
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-debug.vcxproj
+│   │   │   │   │   ├── llama-debug.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── diffusion
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-diffusion-cli.vcxproj
+│   │   │   │   │   ├── llama-diffusion-cli.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── embedding
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-embedding.vcxproj
+│   │   │   │   │   ├── llama-embedding.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── eval-callback
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-eval-callback.vcxproj
+│   │   │   │   │   ├── llama-eval-callback.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── gen-docs
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-gen-docs.vcxproj
+│   │   │   │   │   ├── llama-gen-docs.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── gguf
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-gguf.vcxproj
+│   │   │   │   │   ├── llama-gguf.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── gguf-hash
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-gguf-hash.vcxproj
+│   │   │   │   │   ├── llama-gguf-hash.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │   │   ├── RUN_TESTS.vcxproj.filters
+│   │   │   │   │   ├── sha1.vcxproj
+│   │   │   │   │   ├── sha1.vcxproj.filters
+│   │   │   │   │   ├── sha256.vcxproj
+│   │   │   │   │   ├── sha256.vcxproj.filters
+│   │   │   │   │   ├── xxhash.vcxproj
+│   │   │   │       └── xxhash.vcxproj.filters
+│   │   │   │   ├── idle
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-idle.vcxproj
+│   │   │   │   │   ├── llama-idle.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   ├── lookahead
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-lookahead.vcxproj
+│   │   │   │   │   ├── llama-lookahead.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── lookup
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-lookup-create.vcxproj
+│   │   │   │   │   ├── llama-lookup-create.vcxproj.filters
+│   │   │   │   │   ├── llama-lookup-merge.vcxproj
+│   │   │   │   │   ├── llama-lookup-merge.vcxproj.filters
+│   │   │   │   │   ├── llama-lookup-stats.vcxproj
+│   │   │   │   │   ├── llama-lookup-stats.vcxproj.filters
+│   │   │   │   │   ├── llama-lookup.vcxproj
+│   │   │   │   │   ├── llama-lookup.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── parallel
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-parallel.vcxproj
+│   │   │   │   │   ├── llama-parallel.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── passkey
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-passkey.vcxproj
+│   │   │   │   │   ├── llama-passkey.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── retrieval
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-retrieval.vcxproj
+│   │   │   │   │   ├── llama-retrieval.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │   ├── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── save-load-state
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-save-load-state.vcxproj
+│   │   │   │   │   ├── llama-save-load-state.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── simple
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-simple.vcxproj
+│   │   │   │   │   ├── llama-simple.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── simple-chat
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-simple-chat.vcxproj
+│   │   │   │   │   ├── llama-simple-chat.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── speculative
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-speculative.vcxproj
+│   │   │   │   │   ├── llama-speculative.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── speculative-simple
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-speculative-simple.vcxproj
+│   │   │   │   │   ├── llama-speculative-simple.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │       └── training
+│   │   │       │   ├── cmake_install.cmake
+│   │   │       │   ├── CTestTestfile.cmake
+│   │   │       │   ├── INSTALL.vcxproj
+│   │   │       │   ├── INSTALL.vcxproj.filters
+│   │   │       │   ├── llama-finetune.vcxproj
+│   │   │       │   ├── llama-finetune.vcxproj.filters
+│   │   │       │   ├── RUN_TESTS.vcxproj
+│   │   │           └── RUN_TESTS.vcxproj.filters
+│   │   │   ├── Experimental.vcxproj
+│   │   │   ├── Experimental.vcxproj.filters
+│   │   │   ├── ggml
+│   │   │   │   ├── ALL_BUILD.vcxproj
+│   │   │   │   ├── ALL_BUILD.vcxproj.filters
+│   │   │   │   ├── cmake_install.cmake
+│   │   │   │   ├── CMakeFiles
+│   │   │   │   │   ├── generate.stamp
+│   │   │   │       └── generate.stamp.depend
+│   │   │   │   ├── ggml-config.cmake
+│   │   │   │   ├── ggml-version.cmake
+│   │   │   │   ├── ggml.sln
+│   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │   ├── RUN_TESTS.vcxproj.filters
+│   │   │       └── src
+│   │   │       │   ├── cmake_install.cmake
+│   │   │       │   ├── ggml-base.vcxproj
+│   │   │       │   ├── ggml-base.vcxproj.filters
+│   │   │       │   ├── ggml-cpu.vcxproj
+│   │   │       │   ├── ggml-cpu.vcxproj.filters
+│   │   │       │   ├── ggml.vcxproj
+│   │   │       │   ├── ggml.vcxproj.filters
+│   │   │       │   ├── INSTALL.vcxproj
+│   │   │       │   ├── INSTALL.vcxproj.filters
+│   │   │       │   ├── RUN_TESTS.vcxproj
+│   │   │           └── RUN_TESTS.vcxproj.filters
+│   │   │   ├── INSTALL.vcxproj
+│   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   ├── license.cpp
+│   │   │   ├── llama-config.cmake
+│   │   │   ├── llama-version.cmake
+│   │   │   ├── llama.cpp.sln
+│   │   │   ├── llama.pc
+│   │   │   ├── Nightly.vcxproj
+│   │   │   ├── Nightly.vcxproj.filters
+│   │   │   ├── NightlyMemoryCheck.vcxproj
+│   │   │   ├── NightlyMemoryCheck.vcxproj.filters
+│   │   │   ├── pocs
+│   │   │   │   ├── cmake_install.cmake
+│   │   │   │   ├── CMakeFiles
+│   │   │   │   │   ├── generate.stamp
+│   │   │   │       └── generate.stamp.depend
+│   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │   ├── RUN_TESTS.vcxproj.filters
+│   │   │       └── vdot
+│   │   │       │   ├── cmake_install.cmake
+│   │   │       │   ├── CTestTestfile.cmake
+│   │   │       │   ├── INSTALL.vcxproj
+│   │   │       │   ├── INSTALL.vcxproj.filters
+│   │   │       │   ├── llama-q8dot.vcxproj
+│   │   │       │   ├── llama-q8dot.vcxproj.filters
+│   │   │       │   ├── llama-vdot.vcxproj
+│   │   │       │   ├── llama-vdot.vcxproj.filters
+│   │   │       │   ├── RUN_TESTS.vcxproj
+│   │   │           └── RUN_TESTS.vcxproj.filters
+│   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   ├── RUN_TESTS.vcxproj.filters
+│   │   │   ├── src
+│   │   │   │   ├── cmake_install.cmake
+│   │   │   │   ├── CMakeFiles
+│   │   │   │   │   ├── generate.stamp
+│   │   │   │       └── generate.stamp.depend
+│   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   ├── llama.vcxproj
+│   │   │   │   ├── llama.vcxproj.filters
+│   │   │   │   ├── Release
+│   │   │   │   │   ├── llama.exp
+│   │   │   │       └── llama.lib
+│   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   ├── tests
+│   │   │   │   ├── cmake_install.cmake
+│   │   │   │   ├── CMakeFiles
+│   │   │   │   │   ├── generate.stamp
+│   │   │   │       └── generate.stamp.depend
+│   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   ├── export-graph-ops.vcxproj
+│   │   │   │   ├── export-graph-ops.vcxproj.filters
+│   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │   ├── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── test-alloc.vcxproj
+│   │   │   │   ├── test-alloc.vcxproj.filters
+│   │   │   │   ├── test-arg-parser.vcxproj
+│   │   │   │   ├── test-arg-parser.vcxproj.filters
+│   │   │   │   ├── test-autorelease.vcxproj
+│   │   │   │   ├── test-autorelease.vcxproj.filters
+│   │   │   │   ├── test-backend-ops.vcxproj
+│   │   │   │   ├── test-backend-ops.vcxproj.filters
+│   │   │   │   ├── test-backend-sampler.vcxproj
+│   │   │   │   ├── test-backend-sampler.vcxproj.filters
+│   │   │   │   ├── test-barrier.vcxproj
+│   │   │   │   ├── test-barrier.vcxproj.filters
+│   │   │   │   ├── test-c.vcxproj
+│   │   │   │   ├── test-c.vcxproj.filters
+│   │   │   │   ├── test-chat-auto-parser.vcxproj
+│   │   │   │   ├── test-chat-auto-parser.vcxproj.filters
+│   │   │   │   ├── test-chat-peg-parser.vcxproj
+│   │   │   │   ├── test-chat-peg-parser.vcxproj.filters
+│   │   │   │   ├── test-chat-template.vcxproj
+│   │   │   │   ├── test-chat-template.vcxproj.filters
+│   │   │   │   ├── test-gguf.vcxproj
+│   │   │   │   ├── test-gguf.vcxproj.filters
+│   │   │   │   ├── test-jinja.vcxproj
+│   │   │   │   ├── test-jinja.vcxproj.filters
+│   │   │   │   ├── test-json-partial.vcxproj
+│   │   │   │   ├── test-json-partial.vcxproj.filters
+│   │   │   │   ├── test-log.vcxproj
+│   │   │   │   ├── test-log.vcxproj.filters
+│   │   │   │   ├── test-model-load-cancel.vcxproj
+│   │   │   │   ├── test-model-load-cancel.vcxproj.filters
+│   │   │   │   ├── test-mtmd-c-api.vcxproj
+│   │   │   │   ├── test-mtmd-c-api.vcxproj.filters
+│   │   │   │   ├── test-opt.vcxproj
+│   │   │   │   ├── test-opt.vcxproj.filters
+│   │   │   │   ├── test-peg-parser.vcxproj
+│   │   │   │   ├── test-peg-parser.vcxproj.filters
+│   │   │   │   ├── test-quantize-fns.vcxproj
+│   │   │   │   ├── test-quantize-fns.vcxproj.filters
+│   │   │   │   ├── test-quantize-perf.vcxproj
+│   │   │   │   ├── test-quantize-perf.vcxproj.filters
+│   │   │   │   ├── test-regex-partial.vcxproj
+│   │   │   │   ├── test-regex-partial.vcxproj.filters
+│   │   │   │   ├── test-rope.vcxproj
+│   │   │   │   ├── test-rope.vcxproj.filters
+│   │   │   │   ├── test-state-restore-fragmented.vcxproj
+│   │   │   │   ├── test-state-restore-fragmented.vcxproj.filters
+│   │   │   │   ├── test-thread-safety.vcxproj
+│   │   │   │   ├── test-thread-safety.vcxproj.filters
+│   │   │   │   ├── test-tokenizer-0.vcxproj
+│   │   │       └── test-tokenizer-0.vcxproj.filters
+│   │   │   ├── tools
+│   │   │   │   ├── batched-bench
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-batched-bench.vcxproj
+│   │   │   │   │   ├── llama-batched-bench.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── cli
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-cli.vcxproj
+│   │   │   │   │   ├── llama-cli.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── cmake_install.cmake
+│   │   │   │   ├── CMakeFiles
+│   │   │   │   │   ├── generate.stamp
+│   │   │   │       └── generate.stamp.depend
+│   │   │   │   ├── completion
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-completion.vcxproj
+│   │   │   │   │   ├── llama-completion.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   ├── cvector-generator
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-cvector-generator.vcxproj
+│   │   │   │   │   ├── llama-cvector-generator.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── export-lora
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-export-lora.vcxproj
+│   │   │   │   │   ├── llama-export-lora.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── fit-params
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-fit-params.vcxproj
+│   │   │   │   │   ├── llama-fit-params.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── gguf-split
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-gguf-split.vcxproj
+│   │   │   │   │   ├── llama-gguf-split.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── imatrix
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-imatrix.vcxproj
+│   │   │   │   │   ├── llama-imatrix.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   ├── llama-bench
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-bench.vcxproj
+│   │   │   │   │   ├── llama-bench.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── mtmd
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-gemma3-cli.vcxproj
+│   │   │   │   │   ├── llama-gemma3-cli.vcxproj.filters
+│   │   │   │   │   ├── llama-llava-cli.vcxproj
+│   │   │   │   │   ├── llama-llava-cli.vcxproj.filters
+│   │   │   │   │   ├── llama-minicpmv-cli.vcxproj
+│   │   │   │   │   ├── llama-minicpmv-cli.vcxproj.filters
+│   │   │   │   │   ├── llama-mtmd-cli.vcxproj
+│   │   │   │   │   ├── llama-mtmd-cli.vcxproj.filters
+│   │   │   │   │   ├── llama-mtmd-debug.vcxproj
+│   │   │   │   │   ├── llama-mtmd-debug.vcxproj.filters
+│   │   │   │   │   ├── llama-qwen2vl-cli.vcxproj
+│   │   │   │   │   ├── llama-qwen2vl-cli.vcxproj.filters
+│   │   │   │   │   ├── mtmd.vcxproj
+│   │   │   │   │   ├── mtmd.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── parser
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-template-analysis.vcxproj
+│   │   │   │   │   ├── llama-template-analysis.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── perplexity
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-perplexity.vcxproj
+│   │   │   │   │   ├── llama-perplexity.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── quantize
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-quantize.vcxproj
+│   │   │   │   │   ├── llama-quantize.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── results
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-results.vcxproj
+│   │   │   │   │   ├── llama-results.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │   ├── RUN_TESTS.vcxproj.filters
+│   │   │   │   ├── server
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── index.html.gz.hpp
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-server.vcxproj
+│   │   │   │   │   ├── llama-server.vcxproj.filters
+│   │   │   │   │   ├── loading.html.hpp
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │   │   ├── RUN_TESTS.vcxproj.filters
+│   │   │   │   │   ├── server-context.vcxproj
+│   │   │   │       └── server-context.vcxproj.filters
+│   │   │   │   ├── tokenize
+│   │   │   │   │   ├── cmake_install.cmake
+│   │   │   │   │   ├── CTestTestfile.cmake
+│   │   │   │   │   ├── INSTALL.vcxproj
+│   │   │   │   │   ├── INSTALL.vcxproj.filters
+│   │   │   │   │   ├── llama-tokenize.vcxproj
+│   │   │   │   │   ├── llama-tokenize.vcxproj.filters
+│   │   │   │   │   ├── RUN_TESTS.vcxproj
+│   │   │   │       └── RUN_TESTS.vcxproj.filters
+│   │   │       └── tts
+│   │   │       │   ├── cmake_install.cmake
+│   │   │       │   ├── CTestTestfile.cmake
+│   │   │       │   ├── INSTALL.vcxproj
+│   │   │       │   ├── INSTALL.vcxproj.filters
+│   │   │       │   ├── llama-tts.vcxproj
+│   │   │       │   ├── llama-tts.vcxproj.filters
+│   │   │       │   ├── RUN_TESTS.vcxproj
+│   │   │           └── RUN_TESTS.vcxproj.filters
+│   │   │   ├── vendor
+│   │   │       └── cpp-httplib
+│   │   │       │   ├── cmake_install.cmake
+│   │   │       │   ├── cpp-httplib.vcxproj
+│   │   │       │   ├── cpp-httplib.vcxproj.filters
+│   │   │       │   ├── INSTALL.vcxproj
+│   │   │       │   ├── INSTALL.vcxproj.filters
+│   │   │       │   ├── RUN_TESTS.vcxproj
+│   │   │           └── RUN_TESTS.vcxproj.filters
+│   │   │   ├── ZERO_CHECK.vcxproj
+│   │       └── ZERO_CHECK.vcxproj.filters
+│   │   ├── build-xcframework.sh
+│   │   ├── ci
+│   │   │   ├── README-MUSA.md
+│   │   │   ├── README.md
+│   │       └── run.sh
+│   │   ├── CLAUDE.md
+│   │   ├── cmake
+│   │   │   ├── arm64-apple-clang.cmake
+│   │   │   ├── arm64-windows-llvm.cmake
+│   │   │   ├── build-info.cmake
+│   │   │   ├── common.cmake
+│   │   │   ├── download-models.cmake
+│   │   │   ├── git-vars.cmake
+│   │   │   ├── license.cmake
+│   │   │   ├── llama-config.cmake.in
+│   │   │   ├── llama.pc.in
+│   │   │   ├── riscv64-spacemit-linux-gnu-gcc.cmake
+│   │       └── x64-windows-llvm.cmake
+│   │   ├── CMakeLists.txt
+│   │   ├── CMakePresets.json
+│   │   ├── CODEOWNERS
+│   │   ├── common
+│   │   │   ├── arg.cpp
+│   │   │   ├── arg.h
+│   │   │   ├── base64.hpp
+│   │   │   ├── build-info.cpp.in
+│   │   │   ├── chat-auto-parser-generator.cpp
+│   │   │   ├── chat-auto-parser-helpers.cpp
+│   │   │   ├── chat-auto-parser-helpers.h
+│   │   │   ├── chat-auto-parser.h
+│   │   │   ├── chat-diff-analyzer.cpp
+│   │   │   ├── chat-peg-parser.cpp
+│   │   │   ├── chat-peg-parser.h
+│   │   │   ├── chat.cpp
+│   │   │   ├── chat.h
+│   │   │   ├── CMakeLists.txt
+│   │   │   ├── common.cpp
+│   │   │   ├── common.h
+│   │   │   ├── console.cpp
+│   │   │   ├── console.h
+│   │   │   ├── debug.cpp
+│   │   │   ├── debug.h
+│   │   │   ├── download.cpp
+│   │   │   ├── download.h
+│   │   │   ├── hf-cache.cpp
+│   │   │   ├── hf-cache.h
+│   │   │   ├── http.h
+│   │   │   ├── jinja
+│   │   │   │   ├── caps.cpp
+│   │   │   │   ├── caps.h
+│   │   │   │   ├── lexer.cpp
+│   │   │   │   ├── lexer.h
+│   │   │   │   ├── parser.cpp
+│   │   │   │   ├── parser.h
+│   │   │   │   ├── README.md
+│   │   │   │   ├── runtime.cpp
+│   │   │   │   ├── runtime.h
+│   │   │   │   ├── string.cpp
+│   │   │   │   ├── string.h
+│   │   │   │   ├── utils.h
+│   │   │   │   ├── value.cpp
+│   │   │       └── value.h
+│   │   │   ├── json-partial.cpp
+│   │   │   ├── json-partial.h
+│   │   │   ├── json-schema-to-grammar.cpp
+│   │   │   ├── json-schema-to-grammar.h
+│   │   │   ├── llguidance.cpp
+│   │   │   ├── log.cpp
+│   │   │   ├── log.h
+│   │   │   ├── ngram-cache.cpp
+│   │   │   ├── ngram-cache.h
+│   │   │   ├── ngram-map.cpp
+│   │   │   ├── ngram-map.h
+│   │   │   ├── ngram-mod.cpp
+│   │   │   ├── ngram-mod.h
+│   │   │   ├── peg-parser.cpp
+│   │   │   ├── peg-parser.h
+│   │   │   ├── preset.cpp
+│   │   │   ├── preset.h
+│   │   │   ├── reasoning-budget.cpp
+│   │   │   ├── reasoning-budget.h
+│   │   │   ├── regex-partial.cpp
+│   │   │   ├── regex-partial.h
+│   │   │   ├── sampling.cpp
+│   │   │   ├── sampling.h
+│   │   │   ├── speculative.cpp
+│   │   │   ├── speculative.h
+│   │   │   ├── unicode.cpp
+│   │       └── unicode.h
+│   │   ├── CONTRIBUTING.md
+│   │   ├── convert_hf_to_gguf.py
+│   │   ├── convert_hf_to_gguf_update.py
+│   │   ├── convert_llama_ggml_to_gguf.py
+│   │   ├── convert_lora_to_gguf.py
+│   │   ├── docs
+│   │   │   ├── android
+│   │   │       └── imported-into-android-studio.jpg
+│   │   │   ├── android.md
+│   │   │   ├── autoparser.md
+│   │   │   ├── backend
+│   │   │   │   ├── BLIS.md
+│   │   │   │   ├── CANN.md
+│   │   │   │   ├── CUDA-FEDORA.md
+│   │   │   │   ├── OPENCL.md
+│   │   │   │   ├── OPENVINO.md
+│   │   │   │   ├── snapdragon
+│   │   │   │   │   ├── CMakeUserPresets.json
+│   │   │   │   │   ├── developer.md
+│   │   │   │   │   ├── README.md
+│   │   │   │       └── windows.md
+│   │   │   │   ├── SYCL.md
+│   │   │   │   ├── VirtGPU
+│   │   │   │   │   ├── configuration.md
+│   │   │   │       └── development.md
+│   │   │   │   ├── VirtGPU.md
+│   │   │   │   ├── zDNN.md
+│   │   │       └── ZenDNN.md
+│   │   │   ├── build-riscv64-spacemit.md
+│   │   │   ├── build-s390x.md
+│   │   │   ├── build.md
+│   │   │   ├── development
+│   │   │   │   ├── debugging-tests.md
+│   │   │   │   ├── HOWTO-add-model.md
+│   │   │   │   ├── llama-star
+│   │   │   │   │   ├── idea-arch.key
+│   │   │   │       └── idea-arch.pdf
+│   │   │   │   ├── parsing.md
+│   │   │       └── token_generation_performance_tips.md
+│   │   │   ├── docker.md
+│   │   │   ├── function-calling.md
+│   │   │   ├── install.md
+│   │   │   ├── llguidance.md
+│   │   │   ├── multimodal
+│   │   │   │   ├── gemma3.md
+│   │   │   │   ├── glmedge.md
+│   │   │   │   ├── granitevision.md
+│   │   │   │   ├── llava.md
+│   │   │   │   ├── minicpmo2.6.md
+│   │   │   │   ├── minicpmo4.0.md
+│   │   │   │   ├── minicpmv2.5.md
+│   │   │   │   ├── minicpmv2.6.md
+│   │   │   │   ├── minicpmv4.0.md
+│   │   │   │   ├── minicpmv4.5.md
+│   │   │       └── MobileVLM.md
+│   │   │   ├── multimodal.md
+│   │   │   ├── ops
+│   │   │   │   ├── BLAS.csv
+│   │   │   │   ├── CANN.csv
+│   │   │   │   ├── CPU.csv
+│   │   │   │   ├── CUDA.csv
+│   │   │   │   ├── Metal.csv
+│   │   │   │   ├── OpenCL.csv
+│   │   │   │   ├── SYCL.csv
+│   │   │   │   ├── Vulkan.csv
+│   │   │   │   ├── WebGPU.csv
+│   │   │   │   ├── zDNN.csv
+│   │   │       └── ZenDNN.csv
+│   │   │   ├── ops.md
+│   │   │   ├── preset.md
+│   │       └── speculative.md
+│   │   ├── examples
+│   │   │   ├── batched
+│   │   │   │   ├── batched.cpp
+│   │   │   │   ├── CMakeLists.txt
+│   │   │       └── README.md
+│   │   │   ├── batched.swift
+│   │   │   │   ├── .gitignore
+│   │   │   │   ├── Makefile
+│   │   │   │   ├── Package.swift
+│   │   │   │   ├── README.md
+│   │   │       └── Sources
+│   │   │           └── main.swift
+│   │   │   ├── CMakeLists.txt
+│   │   │   ├── convert-llama2c-to-ggml
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── convert-llama2c-to-ggml.cpp
+│   │   │       └── README.md
+│   │   │   ├── convert_legacy_llama.py
+│   │   │   ├── debug
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── debug.cpp
+│   │   │       └── README.md
+│   │   │   ├── deprecation-warning
+│   │   │   │   ├── deprecation-warning.cpp
+│   │   │       └── README.md
+│   │   │   ├── diffusion
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── diffusion-cli.cpp
+│   │   │       └── README.md
+│   │   │   ├── embedding
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── embedding.cpp
+│   │   │       └── README.md
+│   │   │   ├── eval-callback
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── eval-callback.cpp
+│   │   │       └── README.md
+│   │   │   ├── gen-docs
+│   │   │   │   ├── CMakeLists.txt
+│   │   │       └── gen-docs.cpp
+│   │   │   ├── gguf
+│   │   │   │   ├── CMakeLists.txt
+│   │   │       └── gguf.cpp
+│   │   │   ├── gguf-hash
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── deps
+│   │   │   │   │   ├── rotate-bits
+│   │   │   │   │   │   ├── package.json
+│   │   │   │   │       └── rotate-bits.h
+│   │   │   │   │   ├── sha1
+│   │   │   │   │   │   ├── package.json
+│   │   │   │   │   │   ├── sha1.c
+│   │   │   │   │       └── sha1.h
+│   │   │   │   │   ├── sha256
+│   │   │   │   │   │   ├── package.json
+│   │   │   │   │   │   ├── sha256.c
+│   │   │   │   │       └── sha256.h
+│   │   │   │       └── xxhash
+│   │   │   │       │   ├── clib.json
+│   │   │   │       │   ├── xxhash.c
+│   │   │   │           └── xxhash.h
+│   │   │   │   ├── gguf-hash.cpp
+│   │   │       └── README.md
+│   │   │   ├── idle
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── idle.cpp
+│   │   │       └── README.md
+│   │   │   ├── json_schema_pydantic_example.py
+│   │   │   ├── json_schema_to_grammar.py
+│   │   │   ├── llama.android
+│   │   │   │   ├── .gitignore
+│   │   │   │   ├── app
+│   │   │   │   │   ├── .gitignore
+│   │   │   │   │   ├── build.gradle.kts
+│   │   │   │       └── proguard-rules.pro
+│   │   │   │   ├── build.gradle.kts
+│   │   │   │   ├── gradle
+│   │   │   │   │   ├── libs.versions.toml
+│   │   │   │       └── wrapper
+│   │   │   │       │   ├── gradle-wrapper.jar
+│   │   │   │           └── gradle-wrapper.properties
+│   │   │   │   ├── gradle.properties
+│   │   │   │   ├── gradlew
+│   │   │   │   ├── lib
+│   │   │   │   │   ├── .gitignore
+│   │   │   │   │   ├── build.gradle.kts
+│   │   │   │   │   ├── consumer-rules.pro
+│   │   │   │       └── proguard-rules.pro
+│   │   │       └── settings.gradle.kts
+│   │   │   ├── llama.swiftui
+│   │   │   │   ├── .gitignore
+│   │   │   │   ├── Assets.xcassets
+│   │   │   │       └── Contents.json
+│   │   │   │   ├── llama.cpp.swift
+│   │   │   │       └── LibLlama.swift
+│   │   │   │   ├── llama.swiftui.xcodeproj
+│   │   │   │   │   ├── project.pbxproj
+│   │   │   │       └── project.xcworkspace
+│   │   │   │           └── contents.xcworkspacedata
+│   │   │   │   ├── llama_swiftuiApp.swift
+│   │   │   │   ├── Models
+│   │   │   │       └── LlamaState.swift
+│   │   │   │   ├── README.md
+│   │   │       └── UI
+│   │   │       │   ├── ContentView.swift
+│   │   │       │   ├── DownloadButton.swift
+│   │   │       │   ├── InputButton.swift
+│   │   │           └── LoadCustomButton.swift
+│   │   │   ├── llama.vim
+│   │   │   ├── lookahead
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── lookahead.cpp
+│   │   │       └── README.md
+│   │   │   ├── lookup
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── lookup-create.cpp
+│   │   │   │   ├── lookup-merge.cpp
+│   │   │   │   ├── lookup-stats.cpp
+│   │   │   │   ├── lookup.cpp
+│   │   │       └── README.md
+│   │   │   ├── model-conversion
+│   │   │   │   ├── .gitignore
+│   │   │   │   ├── Makefile
+│   │   │   │   ├── README.md
+│   │   │   │   ├── requirements.txt
+│   │   │       └── scripts
+│   │   │       │   ├── causal
+│   │   │       │   │   ├── compare-embeddings-logits.sh
+│   │   │       │   │   ├── compare-logits.py
+│   │   │       │   │   ├── convert-model.sh
+│   │   │       │   │   ├── modelcard.template
+│   │   │       │   │   ├── run-casual-gen-embeddings-org.py
+│   │   │       │   │   ├── run-converted-model-embeddings-logits.sh
+│   │   │       │   │   ├── run-converted-model.sh
+│   │   │       │       └── run-org-model.py
+│   │   │       │   ├── embedding
+│   │   │       │   │   ├── compare-embeddings-logits.sh
+│   │   │       │   │   ├── convert-model.sh
+│   │   │       │   │   ├── modelcard.template
+│   │   │       │   │   ├── run-converted-model.sh
+│   │   │       │       └── run-original-model.py
+│   │   │           └── utils
+│   │   │           │   ├── __init__.py
+│   │   │           │   ├── check-nmse.py
+│   │   │           │   ├── common.py
+│   │   │           │   ├── compare_tokens.py
+│   │   │           │   ├── create-collection-add-model.sh
+│   │   │           │   ├── curl-embedding-server.sh
+│   │   │           │   ├── hf-add-model-to-collection.py
+│   │   │           │   ├── hf-create-collection.py
+│   │   │           │   ├── hf-create-model.py
+│   │   │           │   ├── hf-upload-gguf-model.py
+│   │   │           │   ├── inspect-converted-model.sh
+│   │   │           │   ├── inspect-org-model.py
+│   │   │           │   ├── perplexity-gen.sh
+│   │   │           │   ├── perplexity-run-simple.sh
+│   │   │           │   ├── perplexity-run.sh
+│   │   │           │   ├── quantize.sh
+│   │   │           │   ├── run-embedding-server.sh
+│   │   │               └── semantic_check.py
+│   │   │   ├── parallel
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── parallel.cpp
+│   │   │       └── README.md
+│   │   │   ├── passkey
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── passkey.cpp
+│   │   │       └── README.md
+│   │   │   ├── pydantic_models_to_grammar.py
+│   │   │   ├── pydantic_models_to_grammar_examples.py
+│   │   │   ├── reason-act.sh
+│   │   │   ├── regex_to_grammar.py
+│   │   │   ├── retrieval
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── README.md
+│   │   │       └── retrieval.cpp
+│   │   │   ├── save-load-state
+│   │   │   │   ├── CMakeLists.txt
+│   │   │       └── save-load-state.cpp
+│   │   │   ├── server-llama2-13B.sh
+│   │   │   ├── server_embd.py
+│   │   │   ├── simple
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── README.md
+│   │   │       └── simple.cpp
+│   │   │   ├── simple-chat
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── README.md
+│   │   │       └── simple-chat.cpp
+│   │   │   ├── simple-cmake-pkg
+│   │   │   │   ├── .gitignore
+│   │   │   │   ├── CMakeLists.txt
+│   │   │       └── README.md
+│   │   │   ├── speculative
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── README.md
+│   │   │       └── speculative.cpp
+│   │   │   ├── speculative-simple
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── README.md
+│   │   │       └── speculative-simple.cpp
+│   │   │   ├── sycl
+│   │   │   │   ├── build.sh
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── ls-sycl-device.cpp
+│   │   │   │   ├── README.md
+│   │   │   │   ├── run-llama2.sh
+│   │   │   │   ├── test.sh
+│   │   │   │   ├── win-build-sycl.bat
+│   │   │   │   ├── win-run-llama2.bat
+│   │   │       └── win-test.bat
+│   │   │   ├── training
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── finetune.cpp
+│   │   │       └── README.md
+│   │       └── ts-type-to-grammar.sh
+│   │   ├── flake.lock
+│   │   ├── flake.nix
+│   │   ├── ggml
+│   │   │   ├── .gitignore
+│   │   │   ├── cmake
+│   │   │   │   ├── common.cmake
+│   │   │   │   ├── ggml-config.cmake.in
+│   │   │       └── GitVars.cmake
+│   │   │   ├── CMakeLists.txt
+│   │   │   ├── include
+│   │   │   │   ├── ggml-alloc.h
+│   │   │   │   ├── ggml-backend.h
+│   │   │   │   ├── ggml-blas.h
+│   │   │   │   ├── ggml-cann.h
+│   │   │   │   ├── ggml-cpp.h
+│   │   │   │   ├── ggml-cpu.h
+│   │   │   │   ├── ggml-cuda.h
+│   │   │   │   ├── ggml-hexagon.h
+│   │   │   │   ├── ggml-metal.h
+│   │   │   │   ├── ggml-opencl.h
+│   │   │   │   ├── ggml-openvino.h
+│   │   │   │   ├── ggml-opt.h
+│   │   │   │   ├── ggml-rpc.h
+│   │   │   │   ├── ggml-sycl.h
+│   │   │   │   ├── ggml-virtgpu.h
+│   │   │   │   ├── ggml-vulkan.h
+│   │   │   │   ├── ggml-webgpu.h
+│   │   │   │   ├── ggml-zdnn.h
+│   │   │   │   ├── ggml-zendnn.h
+│   │   │   │   ├── ggml.h
+│   │   │       └── gguf.h
+│   │       └── src
+│   │       │   ├── CMakeLists.txt
+│   │       │   ├── ggml-alloc.c
+│   │       │   ├── ggml-backend-dl.cpp
+│   │       │   ├── ggml-backend-dl.h
+│   │       │   ├── ggml-backend-impl.h
+│   │       │   ├── ggml-backend-reg.cpp
+│   │       │   ├── ggml-backend.cpp
+│   │       │   ├── ggml-blas
+│   │       │   │   ├── CMakeLists.txt
+│   │       │       └── ggml-blas.cpp
+│   │       │   ├── ggml-cann
+│   │       │   │   ├── acl_tensor.cpp
+│   │       │   │   ├── acl_tensor.h
+│   │       │   │   ├── aclnn_ops.cpp
+│   │       │   │   ├── aclnn_ops.h
+│   │       │   │   ├── CMakeLists.txt
+│   │       │   │   ├── common.h
+│   │       │       └── ggml-cann.cpp
+│   │       │   ├── ggml-common.h
+│   │       │   ├── ggml-cpu
+│   │       │   │   ├── amx
+│   │       │   │   │   ├── amx.cpp
+│   │       │   │   │   ├── amx.h
+│   │       │   │   │   ├── common.h
+│   │       │   │   │   ├── mmq.cpp
+│   │       │   │       └── mmq.h
+│   │       │   │   ├── arch-fallback.h
+│   │       │   │   ├── binary-ops.cpp
+│   │       │   │   ├── binary-ops.h
+│   │       │   │   ├── cmake
+│   │       │   │       └── FindSIMD.cmake
+│   │       │   │   ├── CMakeLists.txt
+│   │       │   │   ├── common.h
+│   │       │   │   ├── ggml-cpu-impl.h
+│   │       │   │   ├── ggml-cpu.c
+│   │       │   │   ├── ggml-cpu.cpp
+│   │       │   │   ├── hbm.cpp
+│   │       │   │   ├── hbm.h
+│   │       │   │   ├── llamafile
+│   │       │   │   │   ├── sgemm.cpp
+│   │       │   │       └── sgemm.h
+│   │       │   │   ├── ops.cpp
+│   │       │   │   ├── ops.h
+│   │       │   │   ├── quants.c
+│   │       │   │   ├── quants.h
+│   │       │   │   ├── repack.cpp
+│   │       │   │   ├── repack.h
+│   │       │   │   ├── simd-gemm.h
+│   │       │   │   ├── simd-mappings.h
+│   │       │   │   ├── spacemit
+│   │       │   │   │   ├── ime.cpp
+│   │       │   │   │   ├── ime.h
+│   │       │   │   │   ├── ime1_kernels.cpp
+│   │       │   │       └── ime_kernels.h
+│   │       │   │   ├── traits.cpp
+│   │       │   │   ├── traits.h
+│   │       │   │   ├── unary-ops.cpp
+│   │       │   │   ├── unary-ops.h
+│   │       │   │   ├── vec.cpp
+│   │       │       └── vec.h
+│   │       │   ├── ggml-cuda
+│   │       │   │   ├── acc.cu
+│   │       │   │   ├── acc.cuh
+│   │       │   │   ├── add-id.cu
+│   │       │   │   ├── add-id.cuh
+│   │       │   │   ├── arange.cu
+│   │       │   │   ├── arange.cuh
+│   │       │   │   ├── argmax.cu
+│   │       │   │   ├── argmax.cuh
+│   │       │   │   ├── argsort.cu
+│   │       │   │   ├── argsort.cuh
+│   │       │   │   ├── binbcast.cu
+│   │       │   │   ├── binbcast.cuh
+│   │       │   │   ├── clamp.cu
+│   │       │   │   ├── clamp.cuh
+│   │       │   │   ├── CMakeLists.txt
+│   │       │   │   ├── common.cuh
+│   │       │   │   ├── concat.cu
+│   │       │   │   ├── concat.cuh
+│   │       │   │   ├── conv-transpose-1d.cu
+│   │       │   │   ├── conv-transpose-1d.cuh
+│   │       │   │   ├── conv2d-dw.cu
+│   │       │   │   ├── conv2d-dw.cuh
+│   │       │   │   ├── conv2d-transpose.cu
+│   │       │   │   ├── conv2d-transpose.cuh
+│   │       │   │   ├── conv2d.cu
+│   │       │   │   ├── conv2d.cuh
+│   │       │   │   ├── convert.cu
+│   │       │   │   ├── convert.cuh
+│   │       │   │   ├── count-equal.cu
+│   │       │   │   ├── count-equal.cuh
+│   │       │   │   ├── cp-async.cuh
+│   │       │   │   ├── cpy-utils.cuh
+│   │       │   │   ├── cpy.cu
+│   │       │   │   ├── cpy.cuh
+│   │       │   │   ├── cross-entropy-loss.cu
+│   │       │   │   ├── cross-entropy-loss.cuh
+│   │       │   │   ├── cumsum.cu
+│   │       │   │   ├── cumsum.cuh
+│   │       │   │   ├── dequantize.cuh
+│   │       │   │   ├── diag.cu
+│   │       │   │   ├── diag.cuh
+│   │       │   │   ├── diagmask.cu
+│   │       │   │   ├── diagmask.cuh
+│   │       │   │   ├── fattn-common.cuh
+│   │       │   │   ├── fattn-mma-f16.cuh
+│   │       │   │   ├── fattn-tile.cu
+│   │       │   │   ├── fattn-tile.cuh
+│   │       │   │   ├── fattn-vec.cuh
+│   │       │   │   ├── fattn-wmma-f16.cu
+│   │       │   │   ├── fattn-wmma-f16.cuh
+│   │       │   │   ├── fattn.cu
+│   │       │   │   ├── fattn.cuh
+│   │       │   │   ├── fill.cu
+│   │       │   │   ├── fill.cuh
+│   │       │   │   ├── gated_delta_net.cu
+│   │       │   │   ├── gated_delta_net.cuh
+│   │       │   │   ├── getrows.cu
+│   │       │   │   ├── getrows.cuh
+│   │       │   │   ├── ggml-cuda.cu
+│   │       │   │   ├── gla.cu
+│   │       │   │   ├── gla.cuh
+│   │       │   │   ├── im2col.cu
+│   │       │   │   ├── im2col.cuh
+│   │       │   │   ├── mean.cu
+│   │       │   │   ├── mean.cuh
+│   │       │   │   ├── mma.cuh
+│   │       │   │   ├── mmf.cu
+│   │       │   │   ├── mmf.cuh
+│   │       │   │   ├── mmid.cu
+│   │       │   │   ├── mmid.cuh
+│   │       │   │   ├── mmq.cu
+│   │       │   │   ├── mmq.cuh
+│   │       │   │   ├── mmvf.cu
+│   │       │   │   ├── mmvf.cuh
+│   │       │   │   ├── mmvq.cu
+│   │       │   │   ├── mmvq.cuh
+│   │       │   │   ├── norm.cu
+│   │       │   │   ├── norm.cuh
+│   │       │   │   ├── opt-step-adamw.cu
+│   │       │   │   ├── opt-step-adamw.cuh
+│   │       │   │   ├── opt-step-sgd.cu
+│   │       │   │   ├── opt-step-sgd.cuh
+│   │       │   │   ├── out-prod.cu
+│   │       │   │   ├── out-prod.cuh
+│   │       │   │   ├── pad.cu
+│   │       │   │   ├── pad.cuh
+│   │       │   │   ├── pad_reflect_1d.cu
+│   │       │   │   ├── pad_reflect_1d.cuh
+│   │       │   │   ├── pool2d.cu
+│   │       │   │   ├── pool2d.cuh
+│   │       │   │   ├── quantize.cu
+│   │       │   │   ├── quantize.cuh
+│   │       │   │   ├── reduce_rows.cuh
+│   │       │   │   ├── roll.cu
+│   │       │   │   ├── roll.cuh
+│   │       │   │   ├── rope.cu
+│   │       │   │   ├── rope.cuh
+│   │       │   │   ├── scale.cu
+│   │       │   │   ├── scale.cuh
+│   │       │   │   ├── set-rows.cu
+│   │       │   │   ├── set-rows.cuh
+│   │       │   │   ├── set.cu
+│   │       │   │   ├── set.cuh
+│   │       │   │   ├── softcap.cu
+│   │       │   │   ├── softcap.cuh
+│   │       │   │   ├── softmax.cu
+│   │       │   │   ├── softmax.cuh
+│   │       │   │   ├── solve_tri.cu
+│   │       │   │   ├── solve_tri.cuh
+│   │       │   │   ├── ssm-conv.cu
+│   │       │   │   ├── ssm-conv.cuh
+│   │       │   │   ├── ssm-scan.cu
+│   │       │   │   ├── ssm-scan.cuh
+│   │       │   │   ├── sum.cu
+│   │       │   │   ├── sum.cuh
+│   │       │   │   ├── sumrows.cu
+│   │       │   │   ├── sumrows.cuh
+│   │       │   │   ├── top-k.cu
+│   │       │   │   ├── top-k.cuh
+│   │       │   │   ├── topk-moe.cu
+│   │       │   │   ├── topk-moe.cuh
+│   │       │   │   ├── tri.cu
+│   │       │   │   ├── tri.cuh
+│   │       │   │   ├── tsembd.cu
+│   │       │   │   ├── tsembd.cuh
+│   │       │   │   ├── unary.cu
+│   │       │   │   ├── unary.cuh
+│   │       │   │   ├── upscale.cu
+│   │       │   │   ├── upscale.cuh
+│   │       │   │   ├── vecdotq.cuh
+│   │       │   │   ├── wkv.cu
+│   │       │       └── wkv.cuh
+│   │       │   ├── ggml-hexagon
+│   │       │   │   ├── CMakeLists.txt
+│   │       │   │   ├── ggml-hexagon.cpp
+│   │       │   │   ├── htp-drv.cpp
+│   │       │   │   ├── htp-drv.h
+│   │       │   │   ├── libdl.h
+│   │       │   │   ├── libggml-htp.inf
+│   │       │       └── op-desc.h
+│   │       │   ├── ggml-hip
+│   │       │       └── CMakeLists.txt
+│   │       │   ├── ggml-impl.h
+│   │       │   ├── ggml-metal
+│   │       │   │   ├── CMakeLists.txt
+│   │       │   │   ├── ggml-metal-common.cpp
+│   │       │   │   ├── ggml-metal-common.h
+│   │       │   │   ├── ggml-metal-context.h
+│   │       │   │   ├── ggml-metal-context.m
+│   │       │   │   ├── ggml-metal-device.cpp
+│   │       │   │   ├── ggml-metal-device.h
+│   │       │   │   ├── ggml-metal-device.m
+│   │       │   │   ├── ggml-metal-impl.h
+│   │       │   │   ├── ggml-metal-ops.cpp
+│   │       │   │   ├── ggml-metal-ops.h
+│   │       │   │   ├── ggml-metal.cpp
+│   │       │       └── ggml-metal.metal
+│   │       │   ├── ggml-musa
+│   │       │   │   ├── CMakeLists.txt
+│   │       │   │   ├── mudnn.cu
+│   │       │       └── mudnn.cuh
+│   │       │   ├── ggml-opencl
+│   │       │   │   ├── CMakeLists.txt
+│   │       │   │   ├── ggml-opencl.cpp
+│   │       │       └── kernels
+│   │       │       │   ├── add.cl
+│   │       │       │   ├── add_id.cl
+│   │       │       │   ├── argsort.cl
+│   │       │       │   ├── clamp.cl
+│   │       │       │   ├── concat.cl
+│   │       │       │   ├── conv2d.cl
+│   │       │       │   ├── conv2d_f16_f32.cl
+│   │       │       │   ├── cpy.cl
+│   │       │       │   ├── cumsum.cl
+│   │       │       │   ├── cvt.cl
+│   │       │       │   ├── diag.cl
+│   │       │       │   ├── diag_mask_inf.cl
+│   │       │       │   ├── div.cl
+│   │       │       │   ├── embed_kernel.py
+│   │       │       │   ├── exp.cl
+│   │       │       │   ├── expm1.cl
+│   │       │       │   ├── fill.cl
+│   │       │       │   ├── flash_attn_f16.cl
+│   │       │       │   ├── flash_attn_f32.cl
+│   │       │       │   ├── flash_attn_f32_f16.cl
+│   │       │       │   ├── gelu.cl
+│   │       │       │   ├── gemm_moe_mxfp4_f32.cl
+│   │       │       │   ├── gemm_noshuffle_q4_1_f32.cl
+│   │       │       │   ├── gemm_noshuffle_q4_k_f32.cl
+│   │       │       │   ├── gemm_noshuffle_q6_k_f32.cl
+│   │       │       │   ├── gemv_moe_mxfp4_f32.cl
+│   │       │       │   ├── gemv_noshuffle.cl
+│   │       │       │   ├── gemv_noshuffle_general.cl
+│   │       │       │   ├── gemv_noshuffle_general_q8_0_f32.cl
+│   │       │       │   ├── gemv_noshuffle_q4_1_f32.cl
+│   │       │       │   ├── gemv_noshuffle_q4_k_f32.cl
+│   │       │       │   ├── gemv_noshuffle_q6_k_f32.cl
+│   │       │       │   ├── get_rows.cl
+│   │       │       │   ├── glu.cl
+│   │       │       │   ├── group_norm.cl
+│   │       │       │   ├── im2col_f16.cl
+│   │       │       │   ├── im2col_f32.cl
+│   │       │       │   ├── l2_norm.cl
+│   │       │       │   ├── mean.cl
+│   │       │       │   ├── mul.cl
+│   │       │       │   ├── mul_mat_Ab_Bi_8x4.cl
+│   │       │       │   ├── mul_mat_f16_f32.cl
+│   │       │       │   ├── mul_mm_f16_f32_kq_kqv.cl
+│   │       │       │   ├── mul_mm_f16_f32_l4_lm.cl
+│   │       │       │   ├── mul_mm_f32_f32_l4_lm.cl
+│   │       │       │   ├── mul_mm_q4_0_f32_l4_lm.cl
+│   │       │       │   ├── mul_mm_q4_1_f32_l4_lm.cl
+│   │       │       │   ├── mul_mm_q4_k_f32_l4_lm.cl
+│   │       │       │   ├── mul_mm_q6_k_f32_l4_lm.cl
+│   │       │       │   ├── mul_mm_q8_0_f32_8x4.cl
+│   │       │       │   ├── mul_mm_q8_0_f32_l4_lm.cl
+│   │       │       │   ├── mul_mv_f16_f16.cl
+│   │       │       │   ├── mul_mv_f16_f32.cl
+│   │       │       │   ├── mul_mv_f16_f32_1row.cl
+│   │       │       │   ├── mul_mv_f16_f32_l4.cl
+│   │       │       │   ├── mul_mv_f32_f32.cl
+│   │       │       │   ├── mul_mv_id_mxfp4_f32.cl
+│   │       │       │   ├── mul_mv_id_mxfp4_f32_flat.cl
+│   │       │       │   ├── mul_mv_id_q4_0_f32_8x_flat.cl
+│   │       │       │   ├── mul_mv_id_q8_0_f32.cl
+│   │       │       │   ├── mul_mv_id_q8_0_f32_flat.cl
+│   │       │       │   ├── mul_mv_mxfp4_f32.cl
+│   │       │       │   ├── mul_mv_mxfp4_f32_flat.cl
+│   │       │       │   ├── mul_mv_q4_0_f32.cl
+│   │       │       │   ├── mul_mv_q4_0_f32_1d_16x_flat.cl
+│   │       │       │   ├── mul_mv_q4_0_f32_1d_8x_flat.cl
+│   │       │       │   ├── mul_mv_q4_0_f32_8x_flat.cl
+│   │       │       │   ├── mul_mv_q4_0_f32_v.cl
+│   │       │       │   ├── mul_mv_q4_1_f32.cl
+│   │       │       │   ├── mul_mv_q4_1_f32_flat.cl
+│   │       │       │   ├── mul_mv_q4_k_f32.cl
+│   │       │       │   ├── mul_mv_q4_k_f32_flat.cl
+│   │       │       │   ├── mul_mv_q6_k_f32.cl
+│   │       │       │   ├── mul_mv_q6_k_f32_flat.cl
+│   │       │       │   ├── mul_mv_q8_0_f32.cl
+│   │       │       │   ├── mul_mv_q8_0_f32_flat.cl
+│   │       │       │   ├── neg.cl
+│   │       │       │   ├── norm.cl
+│   │       │       │   ├── pad.cl
+│   │       │       │   ├── relu.cl
+│   │       │       │   ├── repeat.cl
+│   │       │       │   ├── rms_norm.cl
+│   │       │       │   ├── rope.cl
+│   │       │       │   ├── scale.cl
+│   │       │       │   ├── set_rows.cl
+│   │       │       │   ├── sigmoid.cl
+│   │       │       │   ├── silu.cl
+│   │       │       │   ├── softmax_4_f16.cl
+│   │       │       │   ├── softmax_4_f32.cl
+│   │       │       │   ├── softmax_f16.cl
+│   │       │       │   ├── softmax_f32.cl
+│   │       │       │   ├── softplus.cl
+│   │       │       │   ├── solve_tri.cl
+│   │       │       │   ├── sqr.cl
+│   │       │       │   ├── sqrt.cl
+│   │       │       │   ├── ssm_conv.cl
+│   │       │       │   ├── sub.cl
+│   │       │       │   ├── sum_rows.cl
+│   │       │       │   ├── tanh.cl
+│   │       │       │   ├── transpose.cl
+│   │       │       │   ├── tri.cl
+│   │       │       │   ├── tsembd.cl
+│   │       │           └── upscale.cl
+│   │       │   ├── ggml-openvino
+│   │       │   │   ├── .clang-format
+│   │       │   │   ├── CMakeLists.txt
+│   │       │   │   ├── ggml-decoder.cpp
+│   │       │   │   ├── ggml-decoder.h
+│   │       │   │   ├── ggml-openvino-extra.cpp
+│   │       │   │   ├── ggml-openvino-extra.h
+│   │       │   │   ├── ggml-openvino.cpp
+│   │       │   │   ├── ggml-quants.cpp
+│   │       │   │   ├── ggml-quants.h
+│   │       │   │   ├── utils.cpp
+│   │       │       └── utils.h
+│   │       │   ├── ggml-opt.cpp
+│   │       │   ├── ggml-quants.c
+│   │       │   ├── ggml-quants.h
+│   │       │   ├── ggml-rpc
+│   │       │   │   ├── CMakeLists.txt
+│   │       │       └── ggml-rpc.cpp
+│   │       │   ├── ggml-sycl
+│   │       │   │   ├── add-id.cpp
+│   │       │   │   ├── add-id.hpp
+│   │       │   │   ├── backend.hpp
+│   │       │   │   ├── binbcast.cpp
+│   │       │   │   ├── binbcast.hpp
+│   │       │   │   ├── CMakeLists.txt
+│   │       │   │   ├── common.cpp
+│   │       │   │   ├── common.hpp
+│   │       │   │   ├── concat.cpp
+│   │       │   │   ├── concat.hpp
+│   │       │   │   ├── conv.cpp
+│   │       │   │   ├── conv.hpp
+│   │       │   │   ├── convert.cpp
+│   │       │   │   ├── convert.hpp
+│   │       │   │   ├── count-equal.cpp
+│   │       │   │   ├── count-equal.hpp
+│   │       │   │   ├── cpy.cpp
+│   │       │   │   ├── cpy.hpp
+│   │       │   │   ├── dequantize.hpp
+│   │       │   │   ├── dmmv.cpp
+│   │       │   │   ├── dmmv.hpp
+│   │       │   │   ├── element_wise.cpp
+│   │       │   │   ├── element_wise.hpp
+│   │       │   │   ├── fattn-common.hpp
+│   │       │   │   ├── fattn-tile.cpp
+│   │       │   │   ├── fattn-tile.hpp
+│   │       │   │   ├── fattn-vec.hpp
+│   │       │   │   ├── fattn.cpp
+│   │       │   │   ├── fattn.hpp
+│   │       │   │   ├── gated_delta_net.cpp
+│   │       │   │   ├── gated_delta_net.hpp
+│   │       │   │   ├── gemm.hpp
+│   │       │   │   ├── getrows.cpp
+│   │       │   │   ├── getrows.hpp
+│   │       │   │   ├── ggml-sycl.cpp
+│   │       │   │   ├── gla.cpp
+│   │       │   │   ├── gla.hpp
+│   │       │   │   ├── im2col.cpp
+│   │       │   │   ├── im2col.hpp
+│   │       │   │   ├── mmq.cpp
+│   │       │   │   ├── mmq.hpp
+│   │       │   │   ├── mmvq.cpp
+│   │       │   │   ├── mmvq.hpp
+│   │       │   │   ├── norm.cpp
+│   │       │   │   ├── norm.hpp
+│   │       │   │   ├── outprod.cpp
+│   │       │   │   ├── outprod.hpp
+│   │       │   │   ├── pad.cpp
+│   │       │   │   ├── pad.hpp
+│   │       │   │   ├── pad_reflect_1d.cpp
+│   │       │   │   ├── pad_reflect_1d.hpp
+│   │       │   │   ├── presets.hpp
+│   │       │   │   ├── quantize.hpp
+│   │       │   │   ├── quants.hpp
+│   │       │   │   ├── repeat_back.cpp
+│   │       │   │   ├── repeat_back.hpp
+│   │       │   │   ├── roll.cpp
+│   │       │   │   ├── roll.hpp
+│   │       │   │   ├── rope.cpp
+│   │       │   │   ├── rope.hpp
+│   │       │   │   ├── set.cpp
+│   │       │   │   ├── set.hpp
+│   │       │   │   ├── set_rows.cpp
+│   │       │   │   ├── set_rows.hpp
+│   │       │   │   ├── softmax.cpp
+│   │       │   │   ├── softmax.hpp
+│   │       │   │   ├── ssm_conv.cpp
+│   │       │   │   ├── ssm_conv.hpp
+│   │       │   │   ├── sycl_hw.cpp
+│   │       │   │   ├── sycl_hw.hpp
+│   │       │   │   ├── tsembd.cpp
+│   │       │   │   ├── tsembd.hpp
+│   │       │   │   ├── upscale.cpp
+│   │       │   │   ├── upscale.hpp
+│   │       │   │   ├── vecdotq.hpp
+│   │       │   │   ├── wkv.cpp
+│   │       │       └── wkv.hpp
+│   │       │   ├── ggml-threading.cpp
+│   │       │   ├── ggml-threading.h
+│   │       │   ├── ggml-virtgpu
+│   │       │   │   ├── apir_cs_ggml-rpc-front.cpp
+│   │       │   │   ├── backend
+│   │       │   │   │   ├── apir_cs_ggml-rpc-back.cpp
+│   │       │   │   │   ├── backend-convert.h
+│   │       │   │   │   ├── backend-dispatched-backend.cpp
+│   │       │   │   │   ├── backend-dispatched-buffer-type.cpp
+│   │       │   │   │   ├── backend-dispatched-buffer.cpp
+│   │       │   │   │   ├── backend-dispatched-device.cpp
+│   │       │   │   │   ├── backend-dispatched.cpp
+│   │       │   │   │   ├── backend-dispatched.gen.h
+│   │       │   │   │   ├── backend-dispatched.h
+│   │       │   │   │   ├── backend-virgl-apir.h
+│   │       │   │   │   ├── backend.cpp
+│   │       │   │       └── CMakeLists.txt
+│   │       │   │   ├── CMakeLists.txt
+│   │       │   │   ├── ggml-backend-buffer-type.cpp
+│   │       │   │   ├── ggml-backend-buffer.cpp
+│   │       │   │   ├── ggml-backend-device.cpp
+│   │       │   │   ├── ggml-backend-reg.cpp
+│   │       │   │   ├── ggml-backend.cpp
+│   │       │   │   ├── ggml-remoting.h
+│   │       │   │   ├── ggmlremoting_functions.yaml
+│   │       │   │   ├── include
+│   │       │   │       └── apir_hw.h
+│   │       │   │   ├── regenerate_remoting.py
+│   │       │   │   ├── virtgpu-apir.h
+│   │       │   │   ├── virtgpu-forward-backend.cpp
+│   │       │   │   ├── virtgpu-forward-buffer-type.cpp
+│   │       │   │   ├── virtgpu-forward-buffer.cpp
+│   │       │   │   ├── virtgpu-forward-device.cpp
+│   │       │   │   ├── virtgpu-forward-impl.h
+│   │       │   │   ├── virtgpu-forward.gen.h
+│   │       │   │   ├── virtgpu-shm.cpp
+│   │       │   │   ├── virtgpu-shm.h
+│   │       │   │   ├── virtgpu-utils.cpp
+│   │       │   │   ├── virtgpu-utils.h
+│   │       │   │   ├── virtgpu.cpp
+│   │       │       └── virtgpu.h
+│   │       │   ├── ggml-vulkan
+│   │       │   │   ├── cmake
+│   │       │   │       └── host-toolchain.cmake.in
+│   │       │   │   ├── CMakeLists.txt
+│   │       │   │   ├── ggml-vulkan.cpp
+│   │       │       └── vulkan-shaders
+│   │       │       │   ├── abs.comp
+│   │       │       │   ├── acc.comp
+│   │       │       │   ├── add.comp
+│   │       │       │   ├── add1.comp
+│   │       │       │   ├── add_id.comp
+│   │       │       │   ├── arange.comp
+│   │       │       │   ├── argmax.comp
+│   │       │       │   ├── argsort.comp
+│   │       │       │   ├── argsort_large.comp
+│   │       │       │   ├── ceil.comp
+│   │       │       │   ├── clamp.comp
+│   │       │       │   ├── CMakeLists.txt
+│   │       │       │   ├── concat.comp
+│   │       │       │   ├── contig_copy.comp
+│   │       │       │   ├── conv2d_dw.comp
+│   │       │       │   ├── conv2d_mm.comp
+│   │       │       │   ├── conv_transpose_1d.comp
+│   │       │       │   ├── copy.comp
+│   │       │       │   ├── copy_from_quant.comp
+│   │       │       │   ├── copy_to_quant.comp
+│   │       │       │   ├── copy_transpose.comp
+│   │       │       │   ├── cos.comp
+│   │       │       │   ├── count_equal.comp
+│   │       │       │   ├── count_experts.comp
+│   │       │       │   ├── cumsum.comp
+│   │       │       │   ├── cumsum_multipass1.comp
+│   │       │       │   ├── cumsum_multipass2.comp
+│   │       │       │   ├── dequant_f32.comp
+│   │       │       │   ├── dequant_funcs.glsl
+│   │       │       │   ├── dequant_funcs_cm2.glsl
+│   │       │       │   ├── dequant_head.glsl
+│   │       │       │   ├── dequant_iq1_m.comp
+│   │       │       │   ├── dequant_iq1_s.comp
+│   │       │       │   ├── dequant_iq2_s.comp
+│   │       │       │   ├── dequant_iq2_xs.comp
+│   │       │       │   ├── dequant_iq2_xxs.comp
+│   │       │       │   ├── dequant_iq3_s.comp
+│   │       │       │   ├── dequant_iq3_xxs.comp
+│   │       │       │   ├── dequant_iq4_nl.comp
+│   │       │       │   ├── dequant_iq4_xs.comp
+│   │       │       │   ├── dequant_mxfp4.comp
+│   │       │       │   ├── dequant_q2_k.comp
+│   │       │       │   ├── dequant_q3_k.comp
+│   │       │       │   ├── dequant_q4_0.comp
+│   │       │       │   ├── dequant_q4_1.comp
+│   │       │       │   ├── dequant_q4_k.comp
+│   │       │       │   ├── dequant_q5_0.comp
+│   │       │       │   ├── dequant_q5_1.comp
+│   │       │       │   ├── dequant_q5_k.comp
+│   │       │       │   ├── dequant_q6_k.comp
+│   │       │       │   ├── dequant_q8_0.comp
+│   │       │       │   ├── diag.comp
+│   │       │       │   ├── diag_mask_inf.comp
+│   │       │       │   ├── div.comp
+│   │       │       │   ├── elu.comp
+│   │       │       │   ├── exp.comp
+│   │       │       │   ├── fill.comp
+│   │       │       │   ├── flash_attn.comp
+│   │       │       │   ├── flash_attn_base.glsl
+│   │       │       │   ├── flash_attn_cm1.comp
+│   │       │       │   ├── flash_attn_cm2.comp
+│   │       │       │   ├── flash_attn_mask_opt.comp
+│   │       │       │   ├── flash_attn_split_k_reduce.comp
+│   │       │       │   ├── floor.comp
+│   │       │       │   ├── gated_delta_net.comp
+│   │       │       │   ├── geglu.comp
+│   │       │       │   ├── geglu_erf.comp
+│   │       │       │   ├── geglu_quick.comp
+│   │       │       │   ├── gelu.comp
+│   │       │       │   ├── gelu_erf.comp
+│   │       │       │   ├── gelu_quick.comp
+│   │       │       │   ├── generic_binary_head.glsl
+│   │       │       │   ├── generic_head.glsl
+│   │       │       │   ├── generic_unary_head.glsl
+│   │       │       │   ├── get_rows.comp
+│   │       │       │   ├── get_rows_quant.comp
+│   │       │       │   ├── glu_head.glsl
+│   │       │       │   ├── glu_main.glsl
+│   │       │       │   ├── group_norm.comp
+│   │       │       │   ├── hardsigmoid.comp
+│   │       │       │   ├── hardswish.comp
+│   │       │       │   ├── im2col.comp
+│   │       │       │   ├── im2col_3d.comp
+│   │       │       │   ├── l2_norm.comp
+│   │       │       │   ├── leaky_relu.comp
+│   │       │       │   ├── log.comp
+│   │       │       │   ├── mul.comp
+│   │       │       │   ├── mul_mat_split_k_reduce.comp
+│   │       │       │   ├── mul_mat_vec.comp
+│   │       │       │   ├── mul_mat_vec_base.glsl
+│   │       │       │   ├── mul_mat_vec_iface.glsl
+│   │       │       │   ├── mul_mat_vec_iq1_m.comp
+│   │       │       │   ├── mul_mat_vec_iq1_s.comp
+│   │       │       │   ├── mul_mat_vec_iq2_s.comp
+│   │       │       │   ├── mul_mat_vec_iq2_xs.comp
+│   │       │       │   ├── mul_mat_vec_iq2_xxs.comp
+│   │       │       │   ├── mul_mat_vec_iq3_s.comp
+│   │       │       │   ├── mul_mat_vec_iq3_xxs.comp
+│   │       │       │   ├── mul_mat_vec_nc.comp
+│   │       │       │   ├── mul_mat_vec_p021.comp
+│   │       │       │   ├── mul_mat_vec_q2_k.comp
+│   │       │       │   ├── mul_mat_vec_q3_k.comp
+│   │       │       │   ├── mul_mat_vec_q4_k.comp
+│   │       │       │   ├── mul_mat_vec_q5_k.comp
+│   │       │       │   ├── mul_mat_vec_q6_k.comp
+│   │       │       │   ├── mul_mat_vecq.comp
+│   │       │       │   ├── mul_mat_vecq_funcs.glsl
+│   │       │       │   ├── mul_mm.comp
+│   │       │       │   ├── mul_mm_cm2.comp
+│   │       │       │   ├── mul_mm_funcs.glsl
+│   │       │       │   ├── mul_mm_id_funcs.glsl
+│   │       │       │   ├── mul_mmq.comp
+│   │       │       │   ├── mul_mmq_funcs.glsl
+│   │       │       │   ├── mul_mmq_shmem_types.glsl
+│   │       │       │   ├── multi_add.comp
+│   │       │       │   ├── neg.comp
+│   │       │       │   ├── norm.comp
+│   │       │       │   ├── opt_step_adamw.comp
+│   │       │       │   ├── opt_step_sgd.comp
+│   │       │       │   ├── pad.comp
+│   │       │       │   ├── pool2d.comp
+│   │       │       │   ├── quantize_q8_1.comp
+│   │       │       │   ├── reglu.comp
+│   │       │       │   ├── relu.comp
+│   │       │       │   ├── repeat.comp
+│   │       │       │   ├── repeat_back.comp
+│   │       │       │   ├── rms_norm.comp
+│   │       │       │   ├── rms_norm_back.comp
+│   │       │       │   ├── rms_norm_partials.comp
+│   │       │       │   ├── roll.comp
+│   │       │       │   ├── rope_funcs.glsl
+│   │       │       │   ├── rope_head.glsl
+│   │       │       │   ├── rope_multi.comp
+│   │       │       │   ├── rope_neox.comp
+│   │       │       │   ├── rope_norm.comp
+│   │       │       │   ├── rope_params.glsl
+│   │       │       │   ├── rope_vision.comp
+│   │       │       │   ├── round.comp
+│   │       │       │   ├── rte.glsl
+│   │       │       │   ├── scale.comp
+│   │       │       │   ├── sgn.comp
+│   │       │       │   ├── sigmoid.comp
+│   │       │       │   ├── silu.comp
+│   │       │       │   ├── silu_back.comp
+│   │       │       │   ├── sin.comp
+│   │       │       │   ├── soft_max.comp
+│   │       │       │   ├── soft_max_back.comp
+│   │       │       │   ├── soft_max_large1.comp
+│   │       │       │   ├── soft_max_large2.comp
+│   │       │       │   ├── soft_max_large3.comp
+│   │       │       │   ├── soft_max_large_common.glsl
+│   │       │       │   ├── softplus.comp
+│   │       │       │   ├── solve_tri.comp
+│   │       │       │   ├── sqrt.comp
+│   │       │       │   ├── square.comp
+│   │       │       │   ├── ssm_conv.comp
+│   │       │       │   ├── ssm_scan.comp
+│   │       │       │   ├── step.comp
+│   │       │       │   ├── sub.comp
+│   │       │       │   ├── sum_rows.comp
+│   │       │       │   ├── sum_rows.glsl
+│   │       │       │   ├── swiglu.comp
+│   │       │       │   ├── swiglu_oai.comp
+│   │       │       │   ├── tanh.comp
+│   │       │       │   ├── timestep_embedding.comp
+│   │       │       │   ├── topk_argsort.comp
+│   │       │       │   ├── topk_moe.comp
+│   │       │       │   ├── topk_nary_search.comp
+│   │       │       │   ├── tri.comp
+│   │       │       │   ├── trunc.comp
+│   │       │       │   ├── types.glsl
+│   │       │       │   ├── upscale.comp
+│   │       │       │   ├── utils.glsl
+│   │       │       │   ├── vulkan-shaders-gen.cpp
+│   │       │       │   ├── wkv6.comp
+│   │       │       │   ├── wkv7.comp
+│   │       │           └── xielu.comp
+│   │       │   ├── ggml-webgpu
+│   │       │   │   ├── CMakeLists.txt
+│   │       │   │   ├── ggml-webgpu-shader-lib.hpp
+│   │       │   │   ├── ggml-webgpu.cpp
+│   │       │       └── pre_wgsl.hpp
+│   │       │   ├── ggml-zdnn
+│   │       │   │   ├── .gitignore
+│   │       │   │   ├── CMakeLists.txt
+│   │       │   │   ├── common.hpp
+│   │       │   │   ├── ggml-zdnn.cpp
+│   │       │   │   ├── mmf.cpp
+│   │       │   │   ├── mmf.hpp
+│   │       │   │   ├── utils.cpp
+│   │       │       └── utils.hpp
+│   │       │   ├── ggml-zendnn
+│   │       │   │   ├── CMakeLists.txt
+│   │       │       └── ggml-zendnn.cpp
+│   │       │   ├── ggml.c
+│   │       │   ├── ggml.cpp
+│   │           └── gguf.cpp
+│   │   ├── gguf-py
+│   │   │   ├── examples
+│   │   │   │   ├── reader.py
+│   │   │       └── writer.py
+│   │   │   ├── gguf
+│   │   │   │   ├── __init__.py
+│   │   │   │   ├── constants.py
+│   │   │   │   ├── gguf.py
+│   │   │   │   ├── gguf_reader.py
+│   │   │   │   ├── gguf_writer.py
+│   │   │   │   ├── lazy.py
+│   │   │   │   ├── metadata.py
+│   │   │   │   ├── py.typed
+│   │   │   │   ├── quants.py
+│   │   │   │   ├── scripts
+│   │   │   │   │   ├── gguf_convert_endian.py
+│   │   │   │   │   ├── gguf_dump.py
+│   │   │   │   │   ├── gguf_editor_gui.py
+│   │   │   │   │   ├── gguf_hash.py
+│   │   │   │   │   ├── gguf_new_metadata.py
+│   │   │   │       └── gguf_set_metadata.py
+│   │   │   │   ├── tensor_mapping.py
+│   │   │   │   ├── utility.py
+│   │   │       └── vocab.py
+│   │   │   ├── LICENSE
+│   │   │   ├── pyproject.toml
+│   │   │   ├── README.md
+│   │       └── tests
+│   │       │   ├── __init__.py
+│   │       │   ├── test_metadata.py
+│   │           └── test_quants.py
+│   │   ├── grammars
+│   │   │   ├── arithmetic.gbnf
+│   │   │   ├── c.gbnf
+│   │   │   ├── chess.gbnf
+│   │   │   ├── english.gbnf
+│   │   │   ├── japanese.gbnf
+│   │   │   ├── json.gbnf
+│   │   │   ├── json_arr.gbnf
+│   │   │   ├── list.gbnf
+│   │       └── README.md
+│   │   ├── include
+│   │   │   ├── llama-cpp.h
+│   │       └── llama.h
+│   │   ├── LICENSE
+│   │   ├── licenses
+│   │       └── LICENSE-jsonhpp
+│   │   ├── Makefile
+│   │   ├── media
+│   │   │   ├── llama0-banner.png
+│   │   │   ├── llama0-logo.png
+│   │   │   ├── llama1-banner.png
+│   │   │   ├── llama1-icon-transparent.png
+│   │   │   ├── llama1-icon-transparent.svg
+│   │   │   ├── llama1-icon.png
+│   │   │   ├── llama1-icon.svg
+│   │   │   ├── llama1-logo.png
+│   │   │   ├── llama1-logo.svg
+│   │   │   ├── matmul.png
+│   │       └── matmul.svg
+│   │   ├── models
+│   │   │   ├── .editorconfig
+│   │   │   ├── ggml-vocab-aquila.gguf
+│   │   │   ├── ggml-vocab-baichuan.gguf
+│   │   │   ├── ggml-vocab-bert-bge.gguf
+│   │   │   ├── ggml-vocab-bert-bge.gguf.inp
+│   │   │   ├── ggml-vocab-bert-bge.gguf.out
+│   │   │   ├── ggml-vocab-command-r.gguf
+│   │   │   ├── ggml-vocab-command-r.gguf.inp
+│   │   │   ├── ggml-vocab-command-r.gguf.out
+│   │   │   ├── ggml-vocab-deepseek-coder.gguf
+│   │   │   ├── ggml-vocab-deepseek-coder.gguf.inp
+│   │   │   ├── ggml-vocab-deepseek-coder.gguf.out
+│   │   │   ├── ggml-vocab-deepseek-llm.gguf
+│   │   │   ├── ggml-vocab-deepseek-llm.gguf.inp
+│   │   │   ├── ggml-vocab-deepseek-llm.gguf.out
+│   │   │   ├── ggml-vocab-falcon.gguf
+│   │   │   ├── ggml-vocab-falcon.gguf.inp
+│   │   │   ├── ggml-vocab-falcon.gguf.out
+│   │   │   ├── ggml-vocab-gpt-2.gguf
+│   │   │   ├── ggml-vocab-gpt-2.gguf.inp
+│   │   │   ├── ggml-vocab-gpt-2.gguf.out
+│   │   │   ├── ggml-vocab-gpt-neox.gguf
+│   │   │   ├── ggml-vocab-llama-bpe.gguf
+│   │   │   ├── ggml-vocab-llama-bpe.gguf.inp
+│   │   │   ├── ggml-vocab-llama-bpe.gguf.out
+│   │   │   ├── ggml-vocab-llama-spm.gguf
+│   │   │   ├── ggml-vocab-llama-spm.gguf.inp
+│   │   │   ├── ggml-vocab-llama-spm.gguf.out
+│   │   │   ├── ggml-vocab-mpt.gguf
+│   │   │   ├── ggml-vocab-mpt.gguf.inp
+│   │   │   ├── ggml-vocab-mpt.gguf.out
+│   │   │   ├── ggml-vocab-nomic-bert-moe.gguf
+│   │   │   ├── ggml-vocab-phi-3.gguf
+│   │   │   ├── ggml-vocab-phi-3.gguf.inp
+│   │   │   ├── ggml-vocab-phi-3.gguf.out
+│   │   │   ├── ggml-vocab-qwen2.gguf
+│   │   │   ├── ggml-vocab-qwen2.gguf.inp
+│   │   │   ├── ggml-vocab-qwen2.gguf.out
+│   │   │   ├── ggml-vocab-refact.gguf
+│   │   │   ├── ggml-vocab-refact.gguf.inp
+│   │   │   ├── ggml-vocab-refact.gguf.out
+│   │   │   ├── ggml-vocab-starcoder.gguf
+│   │   │   ├── ggml-vocab-starcoder.gguf.inp
+│   │   │   ├── ggml-vocab-starcoder.gguf.out
+│   │       └── templates
+│   │       │   ├── Apertus-8B-Instruct.jinja
+│   │       │   ├── Apriel-1.6-15b-Thinker-fixed.jinja
+│   │       │   ├── Bielik-11B-v3.0-Instruct.jinja
+│   │       │   ├── ByteDance-Seed-OSS.jinja
+│   │       │   ├── CohereForAI-c4ai-command-r-plus-tool_use.jinja
+│   │       │   ├── CohereForAI-c4ai-command-r7b-12-2024-tool_use.jinja
+│   │       │   ├── deepseek-ai-DeepSeek-R1-Distill-Llama-8B.jinja
+│   │       │   ├── deepseek-ai-DeepSeek-R1-Distill-Qwen-32B.jinja
+│   │       │   ├── deepseek-ai-DeepSeek-V3.1.jinja
+│   │       │   ├── fireworks-ai-llama-3-firefunction-v2.jinja
+│   │       │   ├── GigaChat3-10B-A1.8B.jinja
+│   │       │   ├── GigaChat3.1-10B-A1.8B.jinja
+│   │       │   ├── GLM-4.6.jinja
+│   │       │   ├── GLM-4.7-Flash.jinja
+│   │       │   ├── google-gemma-2-2b-it.jinja
+│   │       │   ├── HuggingFaceTB-SmolLM3-3B.jinja
+│   │       │   ├── ibm-granite-granite-3.3-2B-Instruct.jinja
+│   │       │   ├── Kimi-K2-Instruct.jinja
+│   │       │   ├── Kimi-K2-Thinking.jinja
+│   │       │   ├── LFM2-8B-A1B.jinja
+│   │       │   ├── llama-cpp-deepseek-r1.jinja
+│   │       │   ├── llama-cpp-rwkv-world.jinja
+│   │       │   ├── meetkai-functionary-medium-v3.1.jinja
+│   │       │   ├── meetkai-functionary-medium-v3.2.jinja
+│   │       │   ├── meta-llama-Llama-3.1-8B-Instruct.jinja
+│   │       │   ├── meta-llama-Llama-3.2-3B-Instruct.jinja
+│   │       │   ├── meta-llama-Llama-3.3-70B-Instruct.jinja
+│   │       │   ├── microsoft-Phi-3.5-mini-instruct.jinja
+│   │       │   ├── MiMo-VL.jinja
+│   │       │   ├── MiniMax-M2.jinja
+│   │       │   ├── Mistral-Small-3.2-24B-Instruct-2506.jinja
+│   │       │   ├── mistralai-Ministral-3-14B-Reasoning-2512.jinja
+│   │       │   ├── mistralai-Mistral-Nemo-Instruct-2407.jinja
+│   │       │   ├── moonshotai-Kimi-K2.jinja
+│   │       │   ├── NousResearch-Hermes-2-Pro-Llama-3-8B-tool_use.jinja
+│   │       │   ├── NousResearch-Hermes-3-Llama-3.1-8B-tool_use.jinja
+│   │       │   ├── NVIDIA-Nemotron-3-Nano-30B-A3B-BF16.jinja
+│   │       │   ├── NVIDIA-Nemotron-Nano-v2.jinja
+│   │       │   ├── openai-gpt-oss-120b.jinja
+│   │       │   ├── Qwen-Qwen2.5-7B-Instruct.jinja
+│   │       │   ├── Qwen-Qwen3-0.6B.jinja
+│   │       │   ├── Qwen-QwQ-32B.jinja
+│   │       │   ├── Qwen3-Coder.jinja
+│   │       │   ├── Qwen3.5-4B.jinja
+│   │       │   ├── README.md
+│   │       │   ├── stepfun-ai-Step-3.5-Flash.jinja
+│   │       │   ├── StepFun3.5-Flash.jinja
+│   │       │   ├── unsloth-Apriel-1.5.jinja
+│   │       │   ├── unsloth-mistral-Devstral-Small-2507.jinja
+│   │           └── upstage-Solar-Open-100B.jinja
+│   │   ├── mypy.ini
+│   │   ├── pocs
+│   │   │   ├── CMakeLists.txt
+│   │       └── vdot
+│   │       │   ├── CMakeLists.txt
+│   │       │   ├── q8dot.cpp
+│   │           └── vdot.cpp
+│   │   ├── poetry.lock
+│   │   ├── pyproject.toml
+│   │   ├── pyrightconfig.json
+│   │   ├── README.md
+│   │   ├── requirements
+│   │   │   ├── requirements-all.txt
+│   │   │   ├── requirements-compare-llama-bench.txt
+│   │   │   ├── requirements-convert_hf_to_gguf.txt
+│   │   │   ├── requirements-convert_hf_to_gguf_update.txt
+│   │   │   ├── requirements-convert_legacy_llama.txt
+│   │   │   ├── requirements-convert_llama_ggml_to_gguf.txt
+│   │   │   ├── requirements-convert_lora_to_gguf.txt
+│   │   │   ├── requirements-gguf_editor_gui.txt
+│   │   │   ├── requirements-pydantic.txt
+│   │   │   ├── requirements-server-bench.txt
+│   │   │   ├── requirements-test-tokenizer-random.txt
+│   │       └── requirements-tool_bench.txt
+│   │   ├── requirements.txt
+│   │   ├── scripts
+│   │   │   ├── apple
+│   │   │   │   ├── validate-apps.sh
+│   │   │   │   ├── validate-ios.sh
+│   │   │   │   ├── validate-macos.sh
+│   │   │   │   ├── validate-tvos.sh
+│   │   │       └── validate-visionos.sh
+│   │   │   ├── bench-models.sh
+│   │   │   ├── build-info.sh
+│   │   │   ├── check-requirements.sh
+│   │   │   ├── compare-commits.sh
+│   │   │   ├── compare-llama-bench.py
+│   │   │   ├── compare-logprobs.py
+│   │   │   ├── create_ops_docs.py
+│   │   │   ├── debug-test.sh
+│   │   │   ├── fetch_server_test_models.py
+│   │   │   ├── gen-authors.sh
+│   │   │   ├── gen-unicode-data.py
+│   │   │   ├── get-flags.mk
+│   │   │   ├── get-hellaswag.sh
+│   │   │   ├── get-pg.sh
+│   │   │   ├── get-wikitext-2.sh
+│   │   │   ├── get-winogrande.sh
+│   │   │   ├── get_chat_template.py
+│   │   │   ├── git-bisect-run.sh
+│   │   │   ├── git-bisect.sh
+│   │   │   ├── hf.sh
+│   │   │   ├── hip
+│   │   │       └── gcn-cdna-vgpr-check.py
+│   │   │   ├── install-oneapi.bat
+│   │   │   ├── jinja
+│   │   │   │   ├── jinja-tester.py
+│   │   │       └── requirements.txt
+│   │   │   ├── pr2wt.sh
+│   │   │   ├── serve-static.js
+│   │   │   ├── server-bench.py
+│   │   │   ├── server-test-model.py
+│   │   │   ├── snapdragon
+│   │   │   │   ├── adb
+│   │   │   │   │   ├── llama-cli.farf
+│   │   │   │   │   ├── run-bench.sh
+│   │   │   │   │   ├── run-cli.sh
+│   │   │   │   │   ├── run-completion.sh
+│   │   │   │   │   ├── run-mtmd.sh
+│   │   │   │       └── run-tool.sh
+│   │   │   │   ├── qdc
+│   │   │   │   │   ├── readme.md
+│   │   │   │       └── requirements.txt
+│   │   │       └── windows
+│   │   │       │   ├── run-bench.ps1
+│   │   │       │   ├── run-cli.ps1
+│   │   │       │   ├── run-completion.ps1
+│   │   │       │   ├── run-mtmd.ps1
+│   │   │       │   ├── run-tool.ps1
+│   │   │           └── setup-build.ps1
+│   │   │   ├── sync-ggml-am.sh
+│   │   │   ├── sync-ggml.last
+│   │   │   ├── sync-ggml.sh
+│   │   │   ├── sync_vendor.py
+│   │   │   ├── tool_bench.py
+│   │   │   ├── tool_bench.sh
+│   │   │   ├── verify-checksum-models.py
+│   │       └── xxd.cmake
+│   │   ├── SECURITY.md
+│   │   ├── src
+│   │   │   ├── CMakeLists.txt
+│   │   │   ├── llama-adapter.cpp
+│   │   │   ├── llama-adapter.h
+│   │   │   ├── llama-arch.cpp
+│   │   │   ├── llama-arch.h
+│   │   │   ├── llama-batch.cpp
+│   │   │   ├── llama-batch.h
+│   │   │   ├── llama-chat.cpp
+│   │   │   ├── llama-chat.h
+│   │   │   ├── llama-context.cpp
+│   │   │   ├── llama-context.h
+│   │   │   ├── llama-cparams.cpp
+│   │   │   ├── llama-cparams.h
+│   │   │   ├── llama-ext.h
+│   │   │   ├── llama-grammar.cpp
+│   │   │   ├── llama-grammar.h
+│   │   │   ├── llama-graph.cpp
+│   │   │   ├── llama-graph.h
+│   │   │   ├── llama-hparams.cpp
+│   │   │   ├── llama-hparams.h
+│   │   │   ├── llama-impl.cpp
+│   │   │   ├── llama-impl.h
+│   │   │   ├── llama-io.cpp
+│   │   │   ├── llama-io.h
+│   │   │   ├── llama-kv-cache-iswa.cpp
+│   │   │   ├── llama-kv-cache-iswa.h
+│   │   │   ├── llama-kv-cache.cpp
+│   │   │   ├── llama-kv-cache.h
+│   │   │   ├── llama-kv-cells.h
+│   │   │   ├── llama-memory-hybrid-iswa.cpp
+│   │   │   ├── llama-memory-hybrid-iswa.h
+│   │   │   ├── llama-memory-hybrid.cpp
+│   │   │   ├── llama-memory-hybrid.h
+│   │   │   ├── llama-memory-recurrent.cpp
+│   │   │   ├── llama-memory-recurrent.h
+│   │   │   ├── llama-memory.cpp
+│   │   │   ├── llama-memory.h
+│   │   │   ├── llama-mmap.cpp
+│   │   │   ├── llama-mmap.h
+│   │   │   ├── llama-model-loader.cpp
+│   │   │   ├── llama-model-loader.h
+│   │   │   ├── llama-model-saver.cpp
+│   │   │   ├── llama-model-saver.h
+│   │   │   ├── llama-model.cpp
+│   │   │   ├── llama-model.h
+│   │   │   ├── llama-quant.cpp
+│   │   │   ├── llama-quant.h
+│   │   │   ├── llama-sampler.cpp
+│   │   │   ├── llama-sampler.h
+│   │   │   ├── llama-vocab.cpp
+│   │   │   ├── llama-vocab.h
+│   │   │   ├── llama.cpp
+│   │   │   ├── models
+│   │   │   │   ├── afmoe.cpp
+│   │   │   │   ├── apertus.cpp
+│   │   │   │   ├── arcee.cpp
+│   │   │   │   ├── arctic.cpp
+│   │   │   │   ├── arwkv7.cpp
+│   │   │   │   ├── baichuan.cpp
+│   │   │   │   ├── bailingmoe.cpp
+│   │   │   │   ├── bailingmoe2.cpp
+│   │   │   │   ├── bert.cpp
+│   │   │   │   ├── bitnet.cpp
+│   │   │   │   ├── bloom.cpp
+│   │   │   │   ├── chameleon.cpp
+│   │   │   │   ├── chatglm.cpp
+│   │   │   │   ├── codeshell.cpp
+│   │   │   │   ├── cogvlm.cpp
+│   │   │   │   ├── cohere2-iswa.cpp
+│   │   │   │   ├── command-r.cpp
+│   │   │   │   ├── dbrx.cpp
+│   │   │   │   ├── deci.cpp
+│   │   │   │   ├── deepseek.cpp
+│   │   │   │   ├── deepseek2.cpp
+│   │   │   │   ├── delta-net-base.cpp
+│   │   │   │   ├── dots1.cpp
+│   │   │   │   ├── dream.cpp
+│   │   │   │   ├── ernie4-5-moe.cpp
+│   │   │   │   ├── ernie4-5.cpp
+│   │   │   │   ├── eurobert.cpp
+│   │   │   │   ├── exaone-moe.cpp
+│   │   │   │   ├── exaone.cpp
+│   │   │   │   ├── exaone4.cpp
+│   │   │   │   ├── falcon-h1.cpp
+│   │   │   │   ├── falcon.cpp
+│   │   │   │   ├── gemma-embedding.cpp
+│   │   │   │   ├── gemma.cpp
+│   │   │   │   ├── gemma2-iswa.cpp
+│   │   │   │   ├── gemma3.cpp
+│   │   │   │   ├── gemma3n-iswa.cpp
+│   │   │   │   ├── glm4-moe.cpp
+│   │   │   │   ├── glm4.cpp
+│   │   │   │   ├── gpt2.cpp
+│   │   │   │   ├── gptneox.cpp
+│   │   │   │   ├── granite-hybrid.cpp
+│   │   │   │   ├── granite.cpp
+│   │   │   │   ├── grok.cpp
+│   │   │   │   ├── grovemoe.cpp
+│   │   │   │   ├── hunyuan-dense.cpp
+│   │   │   │   ├── hunyuan-moe.cpp
+│   │   │   │   ├── internlm2.cpp
+│   │   │   │   ├── jais.cpp
+│   │   │   │   ├── jais2.cpp
+│   │   │   │   ├── jamba.cpp
+│   │   │   │   ├── kimi-linear.cpp
+│   │   │   │   ├── lfm2.cpp
+│   │   │   │   ├── llada-moe.cpp
+│   │   │   │   ├── llada.cpp
+│   │   │   │   ├── llama-iswa.cpp
+│   │   │   │   ├── llama.cpp
+│   │   │   │   ├── maincoder.cpp
+│   │   │   │   ├── mamba-base.cpp
+│   │   │   │   ├── mamba.cpp
+│   │   │   │   ├── mimo2-iswa.cpp
+│   │   │   │   ├── minicpm3.cpp
+│   │   │   │   ├── minimax-m2.cpp
+│   │   │   │   ├── mistral3.cpp
+│   │   │   │   ├── models.h
+│   │   │   │   ├── modern-bert.cpp
+│   │   │   │   ├── mpt.cpp
+│   │   │   │   ├── nemotron-h.cpp
+│   │   │   │   ├── nemotron.cpp
+│   │   │   │   ├── neo-bert.cpp
+│   │   │   │   ├── olmo.cpp
+│   │   │   │   ├── olmo2.cpp
+│   │   │   │   ├── olmoe.cpp
+│   │   │   │   ├── openai-moe-iswa.cpp
+│   │   │   │   ├── openelm.cpp
+│   │   │   │   ├── orion.cpp
+│   │   │   │   ├── paddleocr.cpp
+│   │   │   │   ├── pangu-embedded.cpp
+│   │   │   │   ├── phi2.cpp
+│   │   │   │   ├── phi3.cpp
+│   │   │   │   ├── plamo.cpp
+│   │   │   │   ├── plamo2.cpp
+│   │   │   │   ├── plamo3.cpp
+│   │   │   │   ├── plm.cpp
+│   │   │   │   ├── qwen.cpp
+│   │   │   │   ├── qwen2.cpp
+│   │   │   │   ├── qwen2moe.cpp
+│   │   │   │   ├── qwen2vl.cpp
+│   │   │   │   ├── qwen3.cpp
+│   │   │   │   ├── qwen35.cpp
+│   │   │   │   ├── qwen35moe.cpp
+│   │   │   │   ├── qwen3moe.cpp
+│   │   │   │   ├── qwen3next.cpp
+│   │   │   │   ├── qwen3vl-moe.cpp
+│   │   │   │   ├── qwen3vl.cpp
+│   │   │   │   ├── refact.cpp
+│   │   │   │   ├── rnd1.cpp
+│   │   │   │   ├── rwkv6-base.cpp
+│   │   │   │   ├── rwkv6.cpp
+│   │   │   │   ├── rwkv6qwen2.cpp
+│   │   │   │   ├── rwkv7-base.cpp
+│   │   │   │   ├── rwkv7.cpp
+│   │   │   │   ├── seed-oss.cpp
+│   │   │   │   ├── smallthinker.cpp
+│   │   │   │   ├── smollm3.cpp
+│   │   │   │   ├── stablelm.cpp
+│   │   │   │   ├── starcoder.cpp
+│   │   │   │   ├── starcoder2.cpp
+│   │   │   │   ├── step35-iswa.cpp
+│   │   │   │   ├── t5-dec.cpp
+│   │   │   │   ├── t5-enc.cpp
+│   │   │   │   ├── wavtokenizer-dec.cpp
+│   │   │       └── xverse.cpp
+│   │   │   ├── unicode-data.cpp
+│   │   │   ├── unicode-data.h
+│   │   │   ├── unicode.cpp
+│   │       └── unicode.h
+│   │   ├── tests
+│   │   │   ├── .gitignore
+│   │   │   ├── CMakeLists.txt
+│   │   │   ├── export-graph-ops.cpp
+│   │   │   ├── get-model.cpp
+│   │   │   ├── get-model.h
+│   │   │   ├── gguf-model-data.cpp
+│   │   │   ├── gguf-model-data.h
+│   │   │   ├── peg-parser
+│   │   │   │   ├── simple-tokenize.cpp
+│   │   │   │   ├── simple-tokenize.h
+│   │   │   │   ├── test-basic.cpp
+│   │   │   │   ├── test-gbnf-generation.cpp
+│   │   │   │   ├── test-json-parser.cpp
+│   │   │   │   ├── test-json-serialization.cpp
+│   │   │   │   ├── test-python-dict-parser.cpp
+│   │   │   │   ├── test-unicode.cpp
+│   │   │       └── tests.h
+│   │   │   ├── run-json-schema-to-grammar.mjs
+│   │   │   ├── test-alloc.cpp
+│   │   │   ├── test-arg-parser.cpp
+│   │   │   ├── test-autorelease.cpp
+│   │   │   ├── test-backend-ops.cpp
+│   │   │   ├── test-backend-sampler.cpp
+│   │   │   ├── test-barrier.cpp
+│   │   │   ├── test-c.c
+│   │   │   ├── test-chat-auto-parser.cpp
+│   │   │   ├── test-chat-peg-parser.cpp
+│   │   │   ├── test-chat-template.cpp
+│   │   │   ├── test-chat.cpp
+│   │   │   ├── test-double-float.cpp
+│   │   │   ├── test-gbnf-validator.cpp
+│   │   │   ├── test-gguf-model-data.cpp
+│   │   │   ├── test-gguf.cpp
+│   │   │   ├── test-grammar-integration.cpp
+│   │   │   ├── test-grammar-llguidance.cpp
+│   │   │   ├── test-grammar-parser.cpp
+│   │   │   ├── test-jinja.cpp
+│   │   │   ├── test-json-partial.cpp
+│   │   │   ├── test-json-schema-to-grammar.cpp
+│   │   │   ├── test-llama-archs.cpp
+│   │   │   ├── test-llama-grammar.cpp
+│   │   │   ├── test-log.cpp
+│   │   │   ├── test-lora-conversion-inference.sh
+│   │   │   ├── test-model-load-cancel.cpp
+│   │   │   ├── test-mtmd-c-api.c
+│   │   │   ├── test-opt.cpp
+│   │   │   ├── test-peg-parser.cpp
+│   │   │   ├── test-quantize-fns.cpp
+│   │   │   ├── test-quantize-perf.cpp
+│   │   │   ├── test-quantize-stats.cpp
+│   │   │   ├── test-reasoning-budget.cpp
+│   │   │   ├── test-regex-partial.cpp
+│   │   │   ├── test-rope.cpp
+│   │   │   ├── test-sampling.cpp
+│   │   │   ├── test-state-restore-fragmented.cpp
+│   │   │   ├── test-thread-safety.cpp
+│   │   │   ├── test-tokenizer-0.cpp
+│   │   │   ├── test-tokenizer-0.py
+│   │   │   ├── test-tokenizer-0.sh
+│   │   │   ├── test-tokenizer-1-bpe.cpp
+│   │   │   ├── test-tokenizer-1-spm.cpp
+│   │   │   ├── test-tokenizer-random.py
+│   │   │   ├── test-tokenizers-repo.sh
+│   │       └── testing.h
+│   │   ├── tools
+│   │   │   ├── batched-bench
+│   │   │   │   ├── batched-bench.cpp
+│   │   │   │   ├── CMakeLists.txt
+│   │   │       └── README.md
+│   │   │   ├── cli
+│   │   │   │   ├── cli.cpp
+│   │   │   │   ├── CMakeLists.txt
+│   │   │       └── README.md
+│   │   │   ├── CMakeLists.txt
+│   │   │   ├── completion
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── completion.cpp
+│   │   │       └── README.md
+│   │   │   ├── cvector-generator
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── completions.txt
+│   │   │   │   ├── cvector-generator.cpp
+│   │   │   │   ├── mean.hpp
+│   │   │   │   ├── negative.txt
+│   │   │   │   ├── pca.hpp
+│   │   │   │   ├── positive.txt
+│   │   │       └── README.md
+│   │   │   ├── export-lora
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── export-lora.cpp
+│   │   │       └── README.md
+│   │   │   ├── fit-params
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── fit-params.cpp
+│   │   │       └── README.md
+│   │   │   ├── gguf-split
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── gguf-split.cpp
+│   │   │   │   ├── README.md
+│   │   │       └── tests.sh
+│   │   │   ├── imatrix
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── imatrix.cpp
+│   │   │       └── README.md
+│   │   │   ├── llama-bench
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── llama-bench.cpp
+│   │   │       └── README.md
+│   │   │   ├── mtmd
+│   │   │   │   ├── clip-graph.h
+│   │   │   │   ├── clip-impl.h
+│   │   │   │   ├── clip-model.h
+│   │   │   │   ├── clip.cpp
+│   │   │   │   ├── clip.h
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── debug
+│   │   │   │   │   ├── mtmd-debug.cpp
+│   │   │   │   │   ├── mtmd-debug.h
+│   │   │   │       └── mtmd-debug.md
+│   │   │   │   ├── deprecation-warning.cpp
+│   │   │   │   ├── legacy-models
+│   │   │   │   │   ├── convert_image_encoder_to_gguf.py
+│   │   │   │   │   ├── glmedge-convert-image-encoder-to-gguf.py
+│   │   │   │   │   ├── glmedge-surgery.py
+│   │   │   │   │   ├── llava_surgery.py
+│   │   │   │   │   ├── llava_surgery_v2.py
+│   │   │   │   │   ├── minicpmv-convert-image-encoder-to-gguf.py
+│   │   │   │       └── minicpmv-surgery.py
+│   │   │   │   ├── models
+│   │   │   │   │   ├── cogvlm.cpp
+│   │   │   │   │   ├── conformer.cpp
+│   │   │   │   │   ├── deepseekocr.cpp
+│   │   │   │   │   ├── glm4v.cpp
+│   │   │   │   │   ├── internvl.cpp
+│   │   │   │   │   ├── kimik25.cpp
+│   │   │   │   │   ├── kimivl.cpp
+│   │   │   │   │   ├── llama4.cpp
+│   │   │   │   │   ├── llava.cpp
+│   │   │   │   │   ├── minicpmv.cpp
+│   │   │   │   │   ├── mobilenetv5.cpp
+│   │   │   │   │   ├── models.h
+│   │   │   │   │   ├── nemotron-v2-vl.cpp
+│   │   │   │   │   ├── paddleocr.cpp
+│   │   │   │   │   ├── pixtral.cpp
+│   │   │   │   │   ├── qwen2vl.cpp
+│   │   │   │   │   ├── qwen3vl.cpp
+│   │   │   │   │   ├── siglip.cpp
+│   │   │   │   │   ├── whisper-enc.cpp
+│   │   │   │       └── youtuvl.cpp
+│   │   │   │   ├── mtmd-audio.cpp
+│   │   │   │   ├── mtmd-audio.h
+│   │   │   │   ├── mtmd-cli.cpp
+│   │   │   │   ├── mtmd-helper.cpp
+│   │   │   │   ├── mtmd-helper.h
+│   │   │   │   ├── mtmd-image.cpp
+│   │   │   │   ├── mtmd-image.h
+│   │   │   │   ├── mtmd.cpp
+│   │   │   │   ├── mtmd.h
+│   │   │   │   ├── README.md
+│   │   │   │   ├── requirements.txt
+│   │   │   │   ├── test-1.jpeg
+│   │   │   │   ├── test-2.mp3
+│   │   │   │   ├── tests
+│   │   │   │   │   ├── test-1-extracted.md
+│   │   │   │   │   ├── test-1-extracted.txt
+│   │   │   │   │   ├── test-deepseek-ocr.py
+│   │   │   │       └── tests-requirements.txt
+│   │   │       └── tests.sh
+│   │   │   ├── parser
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── debug-template-parser.cpp
+│   │   │       └── template-analysis.cpp
+│   │   │   ├── perplexity
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── perplexity.cpp
+│   │   │       └── README.md
+│   │   │   ├── quantize
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── quantize.cpp
+│   │   │   │   ├── README.md
+│   │   │       └── tests.sh
+│   │   │   ├── results
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── README.md
+│   │   │       └── results.cpp
+│   │   │   ├── rpc
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── README.md
+│   │   │       └── rpc-server.cpp
+│   │   │   ├── server
+│   │   │   │   ├── bench
+│   │   │   │   │   ├── bench.py
+│   │   │   │   │   ├── prometheus.yml
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   ├── requirements.txt
+│   │   │   │       └── script.js
+│   │   │   │   ├── chat-llama2.sh
+│   │   │   │   ├── chat.mjs
+│   │   │   │   ├── chat.sh
+│   │   │   │   ├── CMakeLists.txt
+│   │   │   │   ├── public
+│   │   │   │   │   ├── index.html
+│   │   │   │       └── loading.html
+│   │   │   │   ├── public_legacy
+│   │   │   │   │   ├── colorthemes.css
+│   │   │   │   │   ├── completion.js
+│   │   │   │   │   ├── favicon.ico
+│   │   │   │   │   ├── index-new.html
+│   │   │   │   │   ├── index.html
+│   │   │   │   │   ├── index.js
+│   │   │   │   │   ├── json-schema-to-grammar.mjs
+│   │   │   │   │   ├── loading.html
+│   │   │   │   │   ├── prompt-formats.js
+│   │   │   │   │   ├── style.css
+│   │   │   │   │   ├── system-prompts.js
+│   │   │   │   │   ├── theme-beeninorder.css
+│   │   │   │   │   ├── theme-ketivah.css
+│   │   │   │   │   ├── theme-mangotango.css
+│   │   │   │   │   ├── theme-playground.css
+│   │   │   │   │   ├── theme-polarnight.css
+│   │   │   │       └── theme-snowstorm.css
+│   │   │   │   ├── public_simplechat
+│   │   │   │   │   ├── datautils.mjs
+│   │   │   │   │   ├── index.html
+│   │   │   │   │   ├── readme.md
+│   │   │   │   │   ├── simplechat.css
+│   │   │   │   │   ├── simplechat.js
+│   │   │   │   │   ├── simplechat_screens.webp
+│   │   │   │       └── ui.mjs
+│   │   │   │   ├── README-dev.md
+│   │   │   │   ├── README.md
+│   │   │   │   ├── server-common.cpp
+│   │   │   │   ├── server-common.h
+│   │   │   │   ├── server-context.cpp
+│   │   │   │   ├── server-context.h
+│   │   │   │   ├── server-cors-proxy.h
+│   │   │   │   ├── server-http.cpp
+│   │   │   │   ├── server-http.h
+│   │   │   │   ├── server-models.cpp
+│   │   │   │   ├── server-models.h
+│   │   │   │   ├── server-queue.cpp
+│   │   │   │   ├── server-queue.h
+│   │   │   │   ├── server-task.cpp
+│   │   │   │   ├── server-task.h
+│   │   │   │   ├── server-tools.cpp
+│   │   │   │   ├── server-tools.h
+│   │   │   │   ├── server.cpp
+│   │   │   │   ├── tests
+│   │   │   │   │   ├── .gitignore
+│   │   │   │   │   ├── conftest.py
+│   │   │   │   │   ├── pytest.ini
+│   │   │   │   │   ├── README.md
+│   │   │   │   │   ├── requirements.txt
+│   │   │   │   │   ├── tests.sh
+│   │   │   │   │   ├── unit
+│   │   │   │   │   │   ├── test_basic.py
+│   │   │   │   │   │   ├── test_chat_completion.py
+│   │   │   │   │   │   ├── test_compat_anthropic.py
+│   │   │   │   │   │   ├── test_compat_oai_responses.py
+│   │   │   │   │   │   ├── test_completion.py
+│   │   │   │   │   │   ├── test_ctx_shift.py
+│   │   │   │   │   │   ├── test_embedding.py
+│   │   │   │   │   │   ├── test_infill.py
+│   │   │   │   │   │   ├── test_lora.py
+│   │   │   │   │   │   ├── test_proxy.py
+│   │   │   │   │   │   ├── test_rerank.py
+│   │   │   │   │   │   ├── test_router.py
+│   │   │   │   │   │   ├── test_security.py
+│   │   │   │   │   │   ├── test_sleep.py
+│   │   │   │   │   │   ├── test_slot_save.py
+│   │   │   │   │   │   ├── test_speculative.py
+│   │   │   │   │   │   ├── test_template.py
+│   │   │   │   │   │   ├── test_tokenize.py
+│   │   │   │   │   │   ├── test_tool_call.py
+│   │   │   │   │       └── test_vision_api.py
+│   │   │   │       └── utils.py
+│   │   │   │   ├── themes
+│   │   │   │   │   ├── buttons-top
+│   │   │   │   │   │   ├── buttons_top.png
+│   │   │   │   │   │   ├── favicon.ico
+│   │   │   │   │   │   ├── index.html
+│   │   │   │   │       └── README.md
+│   │   │   │   │   ├── README.md
+│   │   │   │       └── wild
+│   │   │   │       │   ├── favicon.ico
+│   │   │   │       │   ├── index.html
+│   │   │   │       │   ├── llama_cpp.png
+│   │   │   │       │   ├── llamapattern.png
+│   │   │   │       │   ├── README.md
+│   │   │   │           └── wild.png
+│   │   │       └── webui
+│   │   │       │   ├── .gitignore
+│   │   │       │   ├── .npmrc
+│   │   │       │   ├── .prettierignore
+│   │   │       │   ├── .prettierrc
+│   │   │       │   ├── .storybook
+│   │   │       │   │   ├── main.ts
+│   │   │       │   │   ├── ModeWatcherDecorator.svelte
+│   │   │       │   │   ├── preview.ts
+│   │   │       │   │   ├── TooltipProviderDecorator.svelte
+│   │   │       │       └── vitest.setup.ts
+│   │   │       │   ├── components.json
+│   │   │       │   ├── eslint.config.js
+│   │   │       │   ├── package-lock.json
+│   │   │       │   ├── package.json
+│   │   │       │   ├── playwright.config.ts
+│   │   │       │   ├── README.md
+│   │   │       │   ├── scripts
+│   │   │       │   │   ├── dev.sh
+│   │   │       │   │   ├── install-git-hooks.sh
+│   │   │       │       └── post-build.sh
+│   │   │       │   ├── src
+│   │   │       │   │   ├── app.css
+│   │   │       │   │   ├── app.d.ts
+│   │   │       │       └── app.html
+│   │   │       │   ├── static
+│   │   │       │   │   ├── favicon.svg
+│   │   │       │       └── loading.html
+│   │   │       │   ├── svelte.config.js
+│   │   │       │   ├── tsconfig.json
+│   │   │       │   ├── vite.config.ts
+│   │   │           └── vitest-setup-client.ts
+│   │   │   ├── tokenize
+│   │   │   │   ├── CMakeLists.txt
+│   │   │       └── tokenize.cpp
+│   │       └── tts
+│   │       │   ├── CMakeLists.txt
+│   │       │   ├── convert_pt_to_hf.py
+│   │       │   ├── README.md
+│   │       │   ├── tts-outetts.py
+│   │           └── tts.cpp
+│   │   ├── ty.toml
+│       └── vendor
+│       │   ├── cpp-httplib
+│       │   │   ├── CMakeLists.txt
+│       │   │   ├── httplib.cpp
+│       │   │   ├── httplib.h
+│       │       └── LICENSE
+│       │   ├── miniaudio
+│       │       └── miniaudio.h
+│       │   ├── nlohmann
+│       │   │   ├── json.hpp
+│       │       └── json_fwd.hpp
+│       │   ├── sheredom
+│       │       └── subprocess.h
+│           └── stb
+│               └── stb_image.h
+│   ├── notebooks
+│   │   ├── .ipynb_checkpoints
+│   │   │   ├── driver-checkpoint.py
+│   │       └── finetune_pipeline-checkpoint.py
+│   │   ├── driver.py
+│       └── finetune_pipeline.py
+│   ├── README.txt
+    └── src
+        └── finetune
+        │   ├── .ipynb_checkpoints
+        │       └── preflight-checkpoint.py
+        │   ├── __init__.py
+        │   ├── auth
+        │   │   ├── .ipynb_checkpoints
+        │   │   │   ├── __init__-checkpoint.py
+        │   │       └── huggingface-checkpoint.py
+        │   │   ├── __init__.py
+        │       └── huggingface.py
+        │   ├── data
+        │   │   ├── .ipynb_checkpoints
+        │   │   │   ├── dataset_loader-checkpoint.py
+        │   │   │   ├── exploration-checkpoint.py
+        │   │       └── formatting-checkpoint.py
+        │   │   ├── __init__.py
+        │   │   ├── dataset_loader.py
+        │   │   ├── exploration.py
+        │       └── formatting.py
+        │   ├── evaluation
+        │   │   ├── .ipynb_checkpoints
+        │   │   │   ├── batch_eval-checkpoint.py
+        │   │   │   ├── quick_eval-checkpoint.py
+        │   │       └── scientific-checkpoint.py
+        │   │   ├── __init__.py
+        │   │   ├── batch_eval.py
+        │   │   ├── quick_eval.py
+        │       └── scientific.py
+        │   ├── export
+        │   │   ├── .ipynb_checkpoints
+        │   │   │   ├── gguf-checkpoint.py
+        │   │   │   ├── llama_cpp-checkpoint.py
+        │   │   │   ├── merge-checkpoint.py
+        │   │       └── ollama_import-checkpoint.py
+        │   │   ├── __init__.py
+        │   │   ├── gguf.py
+        │   │   ├── llama_cpp.py
+        │   │   ├── merge.py
+        │       └── ollama_import.py
+        │   ├── models
+        │   │   ├── .ipynb_checkpoints
+        │   │   │   ├── compat-checkpoint.py
+        │   │   │   ├── download-checkpoint.py
+        │   │       └── inference-checkpoint.py
+        │   │   ├── __init__.py
+        │   │   ├── compat.py
+        │   │   ├── download.py
+        │       └── inference.py
+        │   ├── preflight.py
+        │   ├── training
+        │   │   ├── .ipynb_checkpoints
+        │   │   │   ├── state-checkpoint.py
+        │   │       └── trainer-checkpoint.py
+        │   │   ├── __init__.py
+        │   │   ├── state.py
+        │       └── trainer.py
+            └── utils
+            │   ├── .ipynb_checkpoints
+            │   │   ├── checks-checkpoint.py
+            │   │   ├── environment-checkpoint.py
+            │   │   ├── gpu-checkpoint.py
+            │   │   ├── ollama_server-checkpoint.py
+            │   │   ├── reproducibility-checkpoint.py
+            │       └── settings-checkpoint.py
+            │   ├── __init__.py
+            │   ├── checks.py
+            │   ├── environment.py
+            │   ├── gpu.py
+            │   ├── ollama_server.py
+            │   ├── reproducibility.py
+                └── settings.py

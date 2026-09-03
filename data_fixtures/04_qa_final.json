@@ -1,0 +1,1160 @@
+[
+  {
+    "type": "conceptual",
+    "difficulty": "easy",
+    "question": "What is Design For Six Sigma (DFSS) and what role do statistical methods play in it?",
+    "answer": "Design For Six Sigma (DFSS) is a systematic methodology for product and process development. Statistical methods are used across its phases: in the Optimize phase for evaluating process reliability and tolerance analysis, in the Develop phase for statistical simulation, robust design, and design of experiments, and in the Verify phase for confirming manufacturability and reliability through measurement system analysis and statistical process control (SPC)."
+  },
+  {
+    "type": "factual",
+    "difficulty": "easy",
+    "question": "What are the main phases of DFSS where statistical methods are applied?",
+    "answer": "Statistical methods are applied in three main DFSS phases: (1) the Optimize phase, for process reliability evaluation and tolerance superposition, (2) the Develop phase, for statistical simulation, robust design, and statistical design of experiments, and (3) the Verify phase, for confirming predicted manufacturability and reliability using measurement capability proofs and SPC."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "Why is knowledge of statistics and probability theory important for machine learning methods?",
+    "answer": "Machine learning methods are fundamentally based on statistics and probability theory. Understanding probability distributions is necessary for modeling data, knowledge of statistical estimation is required for parameter fitting, hypothesis testing concepts underlie model evaluation, and regression analysis forms the basis of many ML algorithms. Without this statistical foundation, one cannot properly design experiments, evaluate model performance, or interpret results."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "What is an event space (Omega) in probability theory?",
+    "answer": "The event space Omega is the set of all possible outcomes of a random experiment. For example, when rolling a regular die, the event space is Omega = {1, 2, 3, 4, 5, 6}, containing all six possible outcomes. Every event of interest is a subset of this event space."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "What is the intersection of two events A and B in set theory notation?",
+    "answer": "The intersection A ∩ B refers to the event where both event A and event B occur together. In set theory, it contains all elements that belong to both sets simultaneously. For example, if A = {2,4,6} (even numbers on a die) and B = {3,6} (numbers divisible by 3), then A ∩ B = {6}."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "What does it mean for two events to be disjoint (mutually exclusive)?",
+    "answer": "Two events are disjoint or mutually exclusive if they cannot occur together. Their intersection is the empty set: A ∩ C = {}. For example, rolling an even number A = {2,4,6} and rolling a 1, C = {1}, are disjoint because 1 is not an even number."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "What is the complementary (inverse) set A' of an event A?",
+    "answer": "The complementary or inverse set A' contains all events in the event space Omega that are not elements of set A. Formally: A' = Omega \\ A. For example, if A = {2,4,6} (even numbers on a die), then A' = {1,3,5} (odd numbers)."
+  },
+  {
+    "type": "factual",
+    "difficulty": "easy",
+    "question": "State De Morgan's rules for set operations.",
+    "answer": "De Morgan's rules state: (1) (A ∪ B)' = A' ∩ B', meaning the complement of a union equals the intersection of complements, and (2) (A ∩ B)' = A' ∪ B', meaning the complement of an intersection equals the union of complements. These rules are fundamental for manipulating probability expressions."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "What is the Laplace definition of probability?",
+    "answer": "According to Laplace's classical definition, the probability P(A) of an event A is the ratio of the number of favorable outcomes g to the total number of equally possible outcomes m: P(A) = g/m. This definition requires that all elementary events are equally probable and mutually exclusive, which is the case for example with a regular die."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "medium",
+    "question": "Two regular dice are rolled. What is the probability that both show even numbers?",
+    "answer": "Step 1: The total event space has 6 × 6 = 36 equally probable outcomes.\nStep 2: The favorable outcomes where both dice show even numbers are: (2,2), (2,4), (2,6), (4,2), (4,4), (4,6), (6,2), (6,4), (6,6) — that is 9 outcomes.\nStep 3: By Laplace's definition, P(A) = g/m = 9/36 = 1/4 = 0.25.\nFinal answer: The probability is 25%."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "What is a permutation and how is the number of permutations calculated?",
+    "answer": "A permutation is an arrangement of N elements considering their order. The number M of permutations of N different elements is M = N! = N × (N-1) × (N-2) × ... × 1 (N factorial). For example, 3 elements can be arranged in 3! = 6 different ways."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "What is the difference between permutations with and without repetition?",
+    "answer": "Permutations without repetition arrange N distinct elements in all possible orders, giving N! arrangements. Permutations with repetition occur when some elements are identical: if there are N elements total with N1 identical elements of type 1, N2 of type 2, etc., the number of distinguishable permutations is N! / (N1! × N2! × ... × Nk!). The division removes arrangements that look identical because we cannot distinguish elements within the same class."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "Explain the difference between variations and combinations in combinatorics.",
+    "answer": "Variations are selections of k elements from N elements where order matters. Without repetition: V = N! / (N-k)!. With repetition: V = N^k. Combinations are selections where order does not matter. Without repetition: C = N! / (k! × (N-k)!), which is the binomial coefficient 'N choose k'. With repetition: C = (N+k-1)! / (k! × (N-1)!). The key distinction is whether the arrangement order of selected elements is relevant."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What are the three axioms of Kolmogorov's probability definition?",
+    "answer": "Kolmogorov's axiomatic probability definition states: (1) Non-negativity: P(A) >= 0 for any event A. (2) Normalization: P(Omega) = 1, meaning the probability of the entire event space is 1. (3) Additivity: For mutually exclusive events A and B, P(A ∪ B) = P(A) + P(B). Unlike Laplace's definition, Kolmogorov's axioms do not require equally probable elementary events, making it applicable to arbitrary probability distributions."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "medium",
+    "question": "Compare the Laplace and Kolmogorov definitions of probability.",
+    "answer": "The Laplace definition requires all elementary events to be equally probable and is calculated as P(A) = favorable/total outcomes. It is limited to symmetric random experiments like dice or coins. The Kolmogorov definition is axiomatic and only requires: non-negativity, normalization to 1, and additivity for disjoint events. It applies to any probability distribution, including non-uniform ones. Kolmogorov's approach is more general and forms the foundation of modern probability theory."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What is conditional probability and how is it calculated?",
+    "answer": "Conditional probability P(A|B) is the probability of event A occurring given that event B has already occurred. It is calculated as P(A|B) = P(A ∩ B) / P(B), where P(B) > 0. The conditioning reduces the event space from Omega to B, and only outcomes in both A and B are favorable. This concept is fundamental for dependent events and Bayes' theorem."
+  },
+  {
+    "type": "factual",
+    "difficulty": "medium",
+    "question": "State the addition theorem of probability according to Kolmogorov.",
+    "answer": "The addition theorem states: P(A ∪ B) = P(A) + P(B) - P(A ∩ B). For mutually exclusive (disjoint) events where A ∩ B = {}, this simplifies to P(A ∪ B) = P(A) + P(B). The subtraction of P(A ∩ B) prevents double-counting of outcomes that belong to both events."
+  },
+  {
+    "type": "factual",
+    "difficulty": "medium",
+    "question": "State the multiplication theorem of probability for independent events.",
+    "answer": "For independent events A and B, the multiplication theorem states: P(A ∩ B) = P(A) × P(B). For dependent events, it generalizes to P(A ∩ B) = P(A|B) × P(B) = P(B|A) × P(A). Two events are independent if and only if knowledge about one event does not change the probability of the other."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "hard",
+    "question": "State Bayes' theorem and explain its significance.",
+    "answer": "Bayes' theorem states: P(Ak|B) = P(B|Ak) × P(Ak) / sum_n(P(B|An) × P(An)). It allows calculating the posterior probability P(Ak|B) from the prior probability P(Ak) and the likelihood P(B|Ak). Its significance lies in reversing conditional probabilities: given how likely an observation B is under different hypotheses Ak, we can compute which hypothesis is most probable given the observation. This is fundamental in statistical inference, classification, and quality control."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "hard",
+    "question": "A manufacturer receives transistors from two suppliers. Supplier 1 delivers 60% (defect rate 0.03%), Supplier 2 delivers 40% (defect rate 0.05%). Given a defective transistor, what is the probability it came from Supplier 2?",
+    "answer": "Step 1: Define events. A1 = from Supplier 1 (P=0.6), A2 = from Supplier 2 (P=0.4). B = defective.\nStep 2: Given: P(B|A1) = 0.0003, P(B|A2) = 0.0005.\nStep 3: Total probability of defect: P(B) = P(B|A1)×P(A1) + P(B|A2)×P(A2) = 0.0003×0.6 + 0.0005×0.4 = 0.00018 + 0.00020 = 0.00038.\nStep 4: Apply Bayes' theorem: P(A2|B) = P(B|A2)×P(A2) / P(B) = 0.0005×0.4 / 0.00038 = 0.0002/0.00038 = 52.63%.\nFinal answer: There is a 52.63% probability the defective transistor came from Supplier 2, despite Supplier 2 providing fewer transistors."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "What is the difference between discrete and continuous feature types in statistics?",
+    "answer": "Discrete feature types can only take specific, countable values (e.g., number of defects: 0, 1, 2, ...). Continuous feature types can take any value within a range and are typically obtained from measurements (e.g., length, weight, temperature). This distinction is important because different statistical methods and probability distributions apply to each type."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "What are absolute and relative frequency?",
+    "answer": "Absolute frequency hA(x) counts how many times a specific value x appears in a sample. Relative frequency h(x) is the absolute frequency divided by the total sample size N: h(x) = hA(x)/N. Relative frequency represents the proportion of occurrences and always sums to 1 across all values. It provides a basis for estimating probabilities."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "How is the arithmetic mean of a sample calculated?",
+    "answer": "The arithmetic mean x_bar of a sample is the sum of all sample values divided by the number of observations: x_bar = (1/N) × sum(xn) for n=1 to N. It represents the center of gravity of the data. For example, if 10 capacitance measurements give values from 97 to 103 nF, the mean is calculated by summing all values and dividing by 10."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "Why is the arithmetic mean sensitive to outliers? Give an example.",
+    "answer": "The arithmetic mean gives equal weight to every observation, so a single extreme value can shift it significantly. For example, in the textbook's capacitance measurement, series 1 has a mean of 100 nF (all values near 100). Series 2 has one outlier of 153 nF, shifting the mean to 105.1 nF — a 5.1% deviation despite 9 of 10 values being similar to series 1. The median is a more robust alternative that resists outlier influence."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "What is the median and how is it determined?",
+    "answer": "The median x_tilde is the middle value of a sample when sorted in ascending order. For odd sample size N, it is the value at position (N+1)/2. For even N, it is the average of the values at positions N/2 and N/2+1. Unlike the mean, the median is robust against outliers because it depends only on the central position, not the actual values of extreme observations."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "What is the range (span) of a sample?",
+    "answer": "The range or span of a sample is the difference between the largest and smallest values: x_range = x_MAX - x_MIN (equation 3.30). It is the simplest measure of dispersion. However, it reacts extremely to outliers and has little significance regarding the overall dispersion of all sample values, since it only depends on two extreme observations."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "How is the sample variance calculated and why do we divide by (N-1)?",
+    "answer": "The sample variance is: s^2 = (1/(N-1)) × sum((xn - x_bar)^2) for n=1 to N. We divide by (N-1) instead of N because the mean x_bar is estimated from the same sample, consuming one degree of freedom. This correction (called Bessel's correction) makes s^2 an unbiased estimator of the population variance sigma^2. Dividing by N would systematically underestimate the true variance."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "What is the standard deviation and how does it relate to variance?",
+    "answer": "The standard deviation s is the positive square root of the variance: s = sqrt(s^2). While variance is measured in squared units of the original data, the standard deviation returns to the original unit, making it directly interpretable. For example, if capacitance variance is 4 nF^2, the standard deviation is 2 nF."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What are quartiles and how are they used in descriptive statistics?",
+    "answer": "Quartiles divide a sorted sample into four equal parts. Q1 (first quartile, 25th percentile) is the value below which 25% of data falls. Q2 is the median (50th percentile). Q3 (third quartile, 75th percentile) is the value below which 75% of data falls. The interquartile range IQR = Q3 - Q1 measures the spread of the central 50% of data and is robust against outliers."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "What is a box plot and what information does it convey?",
+    "answer": "A box plot is a graphical summary showing five key statistics: minimum, Q1 (first quartile), median, Q3 (third quartile), and maximum. The box spans from Q1 to Q3 (the interquartile range), with a line at the median. Whiskers extend to the minimum and maximum (or to 1.5×IQR from the box, with outliers shown as points). An asymmetric position of the median in the box indicates a skewed distribution."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "medium",
+    "question": "Compare the mean, median, and mode as measures of central tendency.",
+    "answer": "The mean is the arithmetic average — sensitive to outliers but uses all data. The median is the middle value when sorted — robust to outliers but ignores actual magnitudes. The mode is the most frequent value — useful for categorical data but may not be unique. For symmetric distributions, all three coincide. For skewed distributions they differ: in right-skewed data, mean > median > mode. The choice depends on data characteristics: use the median for skewed data or when outliers are present."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "What is the difference between classified and unclassified data in descriptive statistics?",
+    "answer": "Unclassified data retains every individual measurement value, while classified data groups values into classes (bins) with defined boundaries. Classification is useful for large continuous datasets where individual values are impractical to display. The variance for classified data uses class midpoints cm weighted by absolute frequencies: s^2 = (1/(N-1)) × sum(hA(cm) × (cm - x_bar)^2). Classification introduces a small loss of precision but enables clearer visualization through histograms."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "What is a random variable in probability theory?",
+    "answer": "A random variable x is a function that assigns a numerical value to each outcome of a random experiment. Discrete random variables take on countable specific values (like the number on a die), while continuous random variables can take any value within an interval (like a measured temperature). Random variables are characterized by their probability distribution."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What is the difference between a probability distribution f(x) and a distribution function F(x)?",
+    "answer": "The probability distribution (or density function) f(x) gives the probability of each outcome for discrete variables, or the probability density for continuous variables. The distribution function F(x) = P(X <= x) gives the cumulative probability that the random variable takes a value less than or equal to x. For discrete variables: F(x) = sum of f(xi) for all xi <= x. For continuous variables: F(x) = integral from -infinity to x of f(t)dt. The density f(x) is the derivative of F(x)."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What is the expected value (mean) of a probability distribution?",
+    "answer": "The expected value mu is the theoretical mean of a distribution. For discrete distributions: mu = sum(xn × f(xn)) for all n. For continuous distributions: mu = integral from -infinity to infinity of x × f(x) dx. It can also be written as mu = E(x). The expected value represents the long-run average outcome of the random experiment and is the first moment of the distribution."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What is the variance of a probability distribution?",
+    "answer": "The variance sigma^2 of a distribution measures the expected squared deviation from the mean. For discrete distributions: sigma^2 = sum((xn - mu)^2 × f(xn)). For continuous distributions: sigma^2 = integral of (x - mu)^2 × f(x) dx. It can be computed equivalently as sigma^2 = E(x^2) - mu^2. The standard deviation sigma = sqrt(sigma^2) gives the dispersion in the original units."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "What is a Bernoulli variable?",
+    "answer": "A Bernoulli variable is a binary random variable that takes only two values: x = 1 for the favorable event A with probability P(A) = p, and x = 0 for the unfavorable event A' with probability P(A') = 1 - p = q. Its mean is mu = p and its variance is sigma^2 = p × q. It forms the building block for the binomial distribution."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What is the binomial distribution and when is it used?",
+    "answer": "The binomial distribution describes the number of successes x in N independent Bernoulli trials, each with success probability p. Its probability mass function is: f(x) = C(N,x) × p^x × (1-p)^(N-x), where C(N,x) = N!/(x!(N-x)!) is the binomial coefficient. Mean: mu = N×p. Variance: sigma^2 = N×p×(1-p). It is used when counting occurrences of an event in a fixed number of independent trials, such as the number of defective items in a production batch."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "hard",
+    "question": "In a production batch of 100 items with a defect rate of 2%, what is the probability of finding exactly 3 defective items?",
+    "answer": "Step 1: This is a binomial problem with N = 100, p = 0.02, x = 3.\nStep 2: f(3) = C(100,3) × 0.02^3 × 0.98^97\nStep 3: C(100,3) = 100!/(3!×97!) = 161700\nStep 4: 0.02^3 = 8×10^-6\nStep 5: 0.98^97 ≈ 0.1380\nStep 6: f(3) = 161700 × 8×10^-6 × 0.1380 ≈ 0.1823\nFinal answer: The probability of finding exactly 3 defective items is approximately 18.23%."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What is the Poisson distribution and when does it approximate the binomial distribution?",
+    "answer": "The Poisson distribution describes the number of events in a fixed interval when events occur independently at a constant average rate lambda. Its probability mass function is: f(x) = (lambda^x × e^(-lambda)) / x!. Mean and variance are both equal to lambda. It approximates the binomial distribution when N is large, p is small, and lambda = N×p is moderate (typically N > 30 and p < 0.05). It is used for counting rare events like defects per unit area or failures per time period."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What is the hypergeometric distribution and how does it differ from the binomial?",
+    "answer": "The hypergeometric distribution describes the number of successes in N draws without replacement from a finite population of size M containing K success items. Unlike the binomial (which assumes independence via replacement or infinite population), the hypergeometric accounts for changing probabilities after each draw. Its formula involves binomial coefficients: f(x) = C(K,x)×C(M-K,N-x)/C(M,N). When M is much larger than N, it approximates the binomial distribution."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "Describe the normal (Gaussian) distribution and its key parameters.",
+    "answer": "The normal distribution is a continuous, symmetric, bell-shaped distribution defined by two parameters: the mean mu (center) and the variance sigma^2 (spread). Its probability density is: f(x) = (1/(sigma×sqrt(2×pi))) × exp(-(x-mu)^2 / (2×sigma^2)). About 68.27% of values fall within ±1 sigma of the mean, 95.45% within ±2 sigma, and 99.73% within ±3 sigma. It is the most important distribution in statistics due to the Central Limit Theorem."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What is the standard normal distribution and how is standardization performed?",
+    "answer": "The standard normal distribution is a normal distribution with mean mu = 0 and variance sigma^2 = 1. Any normal variable x with mean mu and variance sigma^2 can be standardized to z = (x - mu) / sigma. This transformation allows using a single table of standard normal probabilities for any normal distribution. The standard normal density is: f(z) = (1/sqrt(2×pi)) × exp(-z^2/2)."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "hard",
+    "question": "State the Central Limit Theorem and explain why it is important in statistics.",
+    "answer": "The Central Limit Theorem states that if x1, x2, ..., xN are independent random variables from any distribution with mean mu and variance sigma^2, then the sample mean x_bar = (1/N)×sum(xi) is approximately normally distributed with mean mu and variance sigma^2/N as N becomes large. This holds regardless of the original distribution. Its importance: (1) it justifies using normal-distribution-based methods even for non-normal data, (2) it explains why many natural phenomena are approximately normal, and (3) it is the foundation of confidence intervals and hypothesis tests based on the sample mean."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What is the chi-squared distribution and what is it used for?",
+    "answer": "The chi-squared distribution with nu degrees of freedom arises when nu independent standard normal random variables are squared and summed: chi^2 = z1^2 + z2^2 + ... + z_nu^2. Its mean is nu and variance is 2×nu. It is always non-negative and right-skewed (approaches normality as nu increases). Applications include: testing whether a sample variance matches a hypothesized value, goodness-of-fit tests, and testing independence in contingency tables."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What is the t-distribution (Student's distribution) and when is it used instead of the normal distribution?",
+    "answer": "The t-distribution arises when estimating the mean of a normally distributed population when the population variance is unknown and estimated from the sample. It is defined as t = (x_bar - mu) / (s/sqrt(N)), where s is the sample standard deviation. It has heavier tails than the normal distribution, reflecting the additional uncertainty from estimating sigma. With nu = N-1 degrees of freedom, it approaches the standard normal as N increases. It is used for confidence intervals and hypothesis tests about means with unknown variance."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What is the F-distribution and what is it used for?",
+    "answer": "The F-distribution is the ratio of two independent chi-squared random variables, each divided by their degrees of freedom: F = (chi1^2/nu1) / (chi2^2/nu2). It has two parameters: nu1 (numerator df) and nu2 (denominator df). It is always non-negative and right-skewed. Primary applications: (1) comparing two sample variances (F-test), (2) analysis of variance (ANOVA) for testing equality of multiple group means, and (3) testing significance of regression models."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What is the exponential distribution and what does MTBF mean?",
+    "answer": "The exponential distribution models the time between independent events occurring at a constant rate lambda. Its density is f(x) = lambda × exp(-lambda×x) for x >= 0, with mean = 1/lambda and variance = 1/lambda^2. MTBF (Mean Time Between Failures) = 1/lambda is the average operating time before failure. Important property: it is memoryless, meaning P(X > s+t | X > s) = P(X > t). Used in reliability engineering for modeling component lifetimes."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "hard",
+    "question": "Why does the MTBF value not mean a device will operate for that average time without failure?",
+    "answer": "The MTBF is the expected value of the exponential distribution, but the exponential distribution is right-skewed. The probability of failure before the MTBF time is actually F(MTBF) = 1 - e^(-1) ≈ 63.2%. This means there is approximately a 63% chance the device will fail before reaching its MTBF. The MTBF represents the theoretical long-run average across many units, not a guarantee for any individual device. This common misinterpretation can lead to inadequate maintenance planning."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "What is a confidence interval?",
+    "answer": "A confidence interval is a range of values that, with a specified probability (confidence level), contains the true but unknown population parameter. For example, a 95% confidence interval for the mean means that if we repeated the sampling process many times, 95% of the calculated intervals would contain the true population mean. The width of the interval reflects the precision of the estimate."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "How is the confidence interval for the mean of a normal distribution with known variance calculated?",
+    "answer": "For a normal distribution with known variance sigma^2 and sample size N, the confidence interval for the mean mu at confidence level (1-alpha) is: x_bar - c×(sigma/sqrt(N)) <= mu <= x_bar + c×(sigma/sqrt(N)), where c is the quantile from the standard normal distribution (e.g., c = 1.96 for 95% confidence). The interval width decreases with larger N (more data) and increases with larger sigma (more variability)."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "How does the confidence interval change when the population variance is unknown?",
+    "answer": "When the population variance is unknown and estimated by the sample variance s^2, the t-distribution replaces the standard normal distribution. The interval becomes: x_bar - c×(s/sqrt(N)) <= mu <= x_bar + c×(s/sqrt(N)), where c comes from the t-distribution with N-1 degrees of freedom. The t-distribution has heavier tails than the normal, producing wider intervals that account for the uncertainty in estimating sigma. As N increases, the t-distribution approaches the normal."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "What is a prediction interval and how does it differ from a confidence interval?",
+    "answer": "A prediction interval gives a range for a future individual observation, while a confidence interval gives a range for a population parameter (like the mean). A prediction interval is always wider than the corresponding confidence interval because it must account for both the uncertainty in estimating the mean AND the natural variability of individual observations. The formula includes an extra factor: x_bar ± c × s × sqrt(1 + 1/N), where the '1' accounts for individual variability."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "hard",
+    "question": "A sample of N=40 resistors has mean 986.6 Ohm and standard deviation 1.4558 Ohm. Calculate the 95% prediction interval for a future measurement.",
+    "answer": "Step 1: With N=40, use t-distribution with N-1=39 degrees of freedom.\nStep 2: For 95% confidence (alpha=0.05, two-sided), c = t(0.025, 39) = 2.0227.\nStep 3: Prediction interval formula: x_bar ± c × s × sqrt(1 + 1/N).\nStep 4: sqrt(1 + 1/40) = sqrt(1.025) = 1.0124.\nStep 5: Half-width = 2.0227 × 1.4558 × 1.0124 = 2.981.\nStep 6: Interval: 986.6 ± 2.981 = [983.6, 989.6].\nFinal answer: A future resistance value will fall between 983.6 and 989.6 Ohm with 95% probability."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "What is a hypothesis test in statistics?",
+    "answer": "A hypothesis test is a procedure for making a decision between two competing statements about a population parameter based on sample data. The null hypothesis H0 represents the status quo or no-effect assumption. The alternative hypothesis H1 represents the claim being tested. The test calculates a test statistic from the data, compares it to critical values, and either rejects or fails to reject H0."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "What are Type I and Type II errors in hypothesis testing?",
+    "answer": "A Type I error (alpha error) occurs when the null hypothesis H0 is true but we incorrectly reject it — a 'false alarm.' Its probability is the significance level alpha. A Type II error (beta error) occurs when H0 is false but we fail to reject it — a 'missed detection.' Its probability is beta. The power of a test is (1 - beta), the probability of correctly rejecting a false H0."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "hard",
+    "question": "Explain the relationship between Type I error, Type II error, sample size, and significance level in hypothesis testing.",
+    "answer": "These quantities are interconnected: (1) Decreasing alpha (stricter significance) increases beta — making the test more conservative means missing more real effects. (2) Increasing sample size N reduces both error types simultaneously — more data provides better discrimination. (3) The effect size (actual difference from H0) affects beta: larger effects are easier to detect. (4) The only way to simultaneously reduce both alpha and beta is to increase the sample size. In practice, alpha is typically fixed (0.05 or 0.01) and the required sample size is calculated to achieve acceptable power (1-beta)."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What is the p-value in hypothesis testing?",
+    "answer": "The p-value is the probability of obtaining a test statistic as extreme as or more extreme than the observed value, assuming the null hypothesis is true. A small p-value indicates that the observed data is unlikely under H0, providing evidence against it. Decision rule: reject H0 if p-value < alpha (significance level). The p-value provides more information than a simple reject/fail-to-reject decision because it indicates the strength of evidence."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "What is the difference between a one-sided and two-sided hypothesis test?",
+    "answer": "A two-sided test checks whether a parameter differs from the null value in either direction: H1: mu ≠ mu0. A one-sided test checks only one direction: H1: mu > mu0 (right-sided) or H1: mu < mu0 (left-sided). One-sided tests have more power to detect effects in the specified direction because the entire significance level alpha is allocated to one tail. Use one-sided tests only when deviations in one direction are meaningless or impossible."
+  },
+  {
+    "type": "application",
+    "difficulty": "medium",
+    "question": "What is a two-sample t-test and when is it used?",
+    "answer": "The two-sample t-test compares the means of two independent samples to determine if they come from populations with equal means. The null hypothesis is H0: mu1 = mu2 (or equivalently, mu1 - mu2 = 0). The test statistic accounts for both sample means, sample variances, and sample sizes. It is used when comparing two treatments, two processes, or two groups. Assumptions: normally distributed populations, independent samples. If variances are unequal, Welch's t-test should be used."
+  },
+  {
+    "type": "application",
+    "difficulty": "medium",
+    "question": "How is a chi-squared test used to test whether a sample variance matches a hypothesized value?",
+    "answer": "To test H0: sigma^2 = sigma0^2, compute the test statistic chi^2 = (N-1)×s^2 / sigma0^2, where s^2 is the sample variance. Under H0, this follows a chi-squared distribution with N-1 degrees of freedom. For a two-sided test at significance level alpha, reject H0 if chi^2 < chi^2(alpha/2, N-1) or chi^2 > chi^2(1-alpha/2, N-1). This test is sensitive to non-normality, so the assumption of normally distributed data is important."
+  },
+  {
+    "type": "application",
+    "difficulty": "medium",
+    "question": "How is an F-test used to compare two sample variances?",
+    "answer": "The F-test compares variances from two independent samples. H0: sigma1^2 = sigma2^2. The test statistic is F = s1^2/s2^2, where s1^2 >= s2^2 by convention. Under H0, F follows an F-distribution with (N1-1, N2-1) degrees of freedom. Reject H0 if F exceeds the critical value F(alpha, N1-1, N2-1). This test is commonly used before a two-sample t-test to check the equal-variance assumption, and it forms the basis of ANOVA."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What is a multivariate or multidimensional sample?",
+    "answer": "A multivariate sample consists of observations where multiple variables are measured simultaneously for each unit. For example, measuring both height and weight of N people gives a two-dimensional sample. Each observation is a vector (x1n, x2n, ..., xMn) where M is the number of variables. Multivariate analysis studies the relationships and dependencies between these variables."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What is the covariance between two random variables and what does it measure?",
+    "answer": "The sample covariance sxy measures the joint variability of two variables x and y: sxy = (1/(N-1)) × sum((xn - x_bar)×(yn - y_bar)) for n=1 to N. Positive covariance indicates that x and y tend to increase together. Negative covariance indicates that when one increases, the other tends to decrease. Zero covariance means no linear relationship. However, covariance is scale-dependent, making it difficult to compare across different variable pairs."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What is the covariance of two independent random variables?",
+    "answer": "If two random variables x and y are independent, their covariance is zero: sigma_xy = E((x - mu_x)×(y - mu_y)) = 0. This follows because independence means E(x×y) = E(x)×E(y), so the cross-term vanishes. Important caveat: zero covariance does not imply independence — it only means there is no linear relationship. Two variables can be dependent with zero covariance if their relationship is nonlinear."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "What are marginal and conditional distributions in multivariate statistics?",
+    "answer": "In a joint distribution of variables x and y, the marginal distribution of x is obtained by summing (or integrating) the joint distribution over all values of y: h(x) = sum over k of h(x, yk). It describes x alone, ignoring y. The conditional distribution of x given y = yk describes x when y is fixed at yk: h(x|y=yk) = h(x, yk) / h(yk). Marginal distributions lose the dependency information, while conditional distributions reveal how one variable behaves at specific levels of another."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What is Analysis of Variance (ANOVA) and when is it used?",
+    "answer": "ANOVA (Analysis of Variance) is a statistical method for comparing means across three or more groups. It tests whether the group means differ significantly or whether the observed differences could be due to random variation. ANOVA is used when the input variable is categorical (grouping variable) and the target variable is continuous. For example, comparing the dimensions of parts from different mold nests A, B, C, D. While a t-test can compare only two groups, ANOVA handles multiple groups simultaneously."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "Explain the concept of between-group and within-group variance in ANOVA.",
+    "answer": "ANOVA decomposes the total variance into two components: (1) Between-group variance (MSB) measures how much the group means differ from the overall mean — it captures the effect of the grouping factor. (2) Within-group variance (MSW) measures the variability of observations within each group — it represents random error. If the grouping factor has a real effect, between-group variance will be large relative to within-group variance."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "How does the F-test work in single-factor ANOVA?",
+    "answer": "In single-factor ANOVA, the F-statistic is the ratio F = MSB/MSW (between-group mean square divided by within-group mean square). Under H0 (all group means are equal), F follows an F-distribution with (K-1, N-K) degrees of freedom, where K is the number of groups and N is the total sample size. If F exceeds the critical value, we reject H0 and conclude that at least one group mean differs significantly. A large F indicates the between-group variation dominates the within-group variation."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "hard",
+    "question": "What assumptions must be met for ANOVA to be valid, and what happens if they are violated?",
+    "answer": "ANOVA assumes: (1) Normal distribution within each group — moderate violations are tolerable due to robustness, but severely skewed data can lead to incorrect conclusions. (2) Equal variances across groups (homoscedasticity) — unequal variances inflate the Type I error rate; use Levene's test to check, and Welch's ANOVA if violated. (3) Independence of observations — violating this (e.g., repeated measures) requires repeated-measures ANOVA. (4) The samples are random. Among these, the independence assumption is most critical, as its violation cannot be corrected by increasing sample size."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "medium",
+    "question": "What is the difference between single-factor and multi-factor ANOVA?",
+    "answer": "Single-factor ANOVA tests the effect of one grouping variable on the response. Multi-factor ANOVA tests the effects of two or more grouping factors simultaneously, including their interactions. For example, single-factor ANOVA might test the effect of machine type on output quality, while two-factor ANOVA could test both machine type AND operator skill level, plus whether these factors interact (e.g., certain operators perform differently on certain machines). Multi-factor ANOVA is more efficient than running separate single-factor analyses because it can detect interactions."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What is the correlation coefficient r and how is it calculated?",
+    "answer": "The correlation coefficient r measures the strength and direction of the linear relationship between two variables. It is calculated by normalizing the covariance: r = sxy / (sx × sy), where sxy is the sample covariance and sx, sy are the sample standard deviations. It ranges from -1 (perfect negative linear relationship) through 0 (no linear relationship) to +1 (perfect positive linear relationship). Values near ±1 indicate strong linear dependence."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "Why does correlation not imply causation?",
+    "answer": "A correlation between variables x and y can arise from several causes: (1) x causes y, (2) y causes x, (3) both x and y are caused by a third variable z (confounding), (4) the correlation is coincidental. Correlation only measures statistical association, not causal direction. For example, ice cream sales and drowning rates are correlated, but ice cream does not cause drowning — both are caused by hot weather. Establishing causation requires controlled experiments or causal inference methods."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "hard",
+    "question": "What is the coefficient of determination R^2 and how is it interpreted?",
+    "answer": "The coefficient of determination R^2 is the square of the correlation coefficient: R^2 = r^2. It represents the proportion of variance in the dependent variable that is explained by the independent variable(s). For example, R^2 = 0.85 means 85% of the variance in y is explained by x, and 15% is unexplained (residual). In regression, R^2 ranges from 0 to 1, with higher values indicating better model fit. However, a high R^2 does not guarantee a good model — it can be inflated by overfitting or irrelevant predictors."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What is linear regression and what is its purpose?",
+    "answer": "Linear regression approximates the relationship between a dependent variable y and one or more independent variables x by fitting a linear function y = b0 + b1×x (simple linear regression). The coefficients b0 (intercept) and b1 (slope) are determined by minimizing the sum of squared residuals — the method of least squares. Its purpose is to model, predict, and quantify the strength of relationships between variables."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "How are the regression coefficients b0 and b1 calculated in simple linear regression?",
+    "answer": "The slope b1 is calculated as b1 = sxy / sx^2 = sum((xn - x_bar)×(yn - y_bar)) / sum((xn - x_bar)^2), which is the ratio of the covariance of x and y to the variance of x. The intercept b0 is calculated as b0 = y_bar - b1 × x_bar, ensuring the regression line passes through the point (x_bar, y_bar). These formulas minimize the sum of squared residuals sum((yn - b0 - b1×xn)^2)."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "What is the method of least squares and why is it used?",
+    "answer": "The method of least squares determines regression coefficients by minimizing the sum of squared residuals: S = sum((yn - y_hat_n)^2) where y_hat_n = b0 + b1×xn is the predicted value. Squaring the residuals ensures positive and negative deviations don't cancel out, and it penalizes large deviations more heavily than small ones. This leads to closed-form solutions for the coefficients and produces the best linear unbiased estimator (BLUE) under the Gauss-Markov conditions."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "How is the variance of residuals estimated in regression?",
+    "answer": "The residual variance s^2 is estimated as: s^2 = (1/(N-2)) × sum((yn - b0 - b1×xn)^2). We divide by (N-2) instead of N because two degrees of freedom are lost in estimating b0 and b1. This is analogous to Bessel's correction in sample variance. The residual standard deviation s = sqrt(s^2) measures the typical size of prediction errors and is used to construct confidence intervals for the regression coefficients."
+  },
+  {
+    "type": "application",
+    "difficulty": "hard",
+    "question": "How do you construct a confidence interval for a regression coefficient?",
+    "answer": "The confidence interval for the slope b1 is: b1 - c×sb1 <= beta1 <= b1 + c×sb1, where sb1 is the standard error of b1, calculated as sb1 = s / (sqrt(N-1) × sx), and c is the quantile from the t-distribution with N-2 degrees of freedom at the desired confidence level. Similarly, for the intercept b0: b0 ± c×sb0. If the confidence interval for b1 contains zero, the linear relationship is not statistically significant. The width decreases with larger N and smaller residual variance."
+  },
+  {
+    "type": "application",
+    "difficulty": "medium",
+    "question": "What is multidimensional regression and how does the coefficient of determination help?",
+    "answer": "Multidimensional regression extends simple regression to multiple independent variables: y = b0 + b1×x1 + b2×x2 + ... + bM×xM. The coefficient of determination R^2 = 1 - (residual SS / total SS) measures overall model fit. To test whether the regression is significant, an F-test compares the variance explained by the model to the residual variance: F = (R^2/M) / ((1-R^2)/(N-M-1)). If F exceeds the critical value from the F-distribution with (M, N-M-1) degrees of freedom, the regression is statistically significant."
+  },
+  {
+    "type": "application",
+    "difficulty": "medium",
+    "question": "What is Statistical Process Control (SPC) and how is it related to the concepts in this textbook?",
+    "answer": "SPC uses statistical methods to monitor and control manufacturing processes. It relies on concepts from this textbook: normal distribution for modeling process variation, confidence intervals for setting control limits (typically at ±3 sigma from the process mean), hypothesis testing for detecting out-of-control conditions, and sampling theory for determining appropriate sample sizes. Control charts are the primary SPC tool, plotting sample statistics over time and flagging when a process deviates from its expected behavior."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "hard",
+    "question": "Compare parametric and non-parametric statistical methods.",
+    "answer": "Parametric methods assume the data follows a specific distribution (usually normal) and estimate its parameters. Examples: t-tests, ANOVA, linear regression. They are more powerful when assumptions hold but can give misleading results when violated. Non-parametric methods make fewer distributional assumptions and work with ranks or signs rather than actual values. Examples: Mann-Whitney U test (replaces two-sample t-test), Kruskal-Wallis test (replaces one-way ANOVA). Trade-off: non-parametric methods are more robust but have less statistical power when parametric assumptions are actually met."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "hard",
+    "question": "Explain the concept of degrees of freedom and why they matter in statistical tests.",
+    "answer": "Degrees of freedom (df) represent the number of independent pieces of information available for estimating a parameter. When N observations are used to estimate the mean, one constraint is imposed (values must average to x_bar), leaving N-1 degrees of freedom for variance estimation. In regression with 2 parameters, df = N-2. In ANOVA with K groups, between-group df = K-1 and within-group df = N-K. Degrees of freedom matter because they determine the shape of chi-squared, t, and F distributions used for critical values. Too few degrees of freedom lead to wider confidence intervals and less powerful tests."
+  },
+  {
+    "type": "application",
+    "difficulty": "medium",
+    "question": "How do you determine the required sample size for a given confidence interval width?",
+    "answer": "The half-width of a confidence interval for the mean is w = c × sigma / sqrt(N). Solving for N: N = (c × sigma / w)^2. For example, to achieve a 95% confidence interval of ±0.5 units when sigma = 2: N = (1.96 × 2 / 0.5)^2 = (7.84)^2 ≈ 62 observations. When sigma is unknown, use a pilot study estimate and the t-distribution (which requires iterating since the t-quantile depends on N). Larger sample sizes give narrower intervals but with diminishing returns due to the sqrt(N) relationship."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "What is the law of large numbers and how does it relate to probability estimation?",
+    "answer": "The law of large numbers states that as the number of independent trials N increases, the relative frequency of an event converges to its true probability. Formally: h(A) = hA(A)/N → P(A) as N → infinity. This means probability can be estimated empirically by repeating an experiment many times. It also explains why sample means become more accurate with larger samples. The law underlies the frequentist interpretation of probability and justifies statistical estimation from data."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "easy",
+    "question": "What is the probability of rolling a number greater than 4 with a regular die?",
+    "answer": "The event space is {1,2,3,4,5,6} with 6 equally probable outcomes. The favorable outcomes for rolling greater than 4 are {5,6}, giving g=2 favorable cases. By Laplace: P(>4) = 2/6 = 1/3 ≈ 33.3%."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "medium",
+    "question": "If P(A) = 0.4, P(B) = 0.3, and A and B are independent, what is P(A ∪ B)?",
+    "answer": "Step 1: For independent events, P(A ∩ B) = P(A) × P(B) = 0.4 × 0.3 = 0.12.\nStep 2: By the addition theorem: P(A ∪ B) = P(A) + P(B) - P(A ∩ B) = 0.4 + 0.3 - 0.12 = 0.58.\nFinal answer: P(A ∪ B) = 0.58 or 58%."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "medium",
+    "question": "How many ways can you choose 3 items from 10 items when order does not matter?",
+    "answer": "This is a combination (order irrelevant) without repetition. C(10,3) = 10! / (3! × 7!) = (10 × 9 × 8) / (3 × 2 × 1) = 720 / 6 = 120. There are 120 ways to choose 3 items from 10."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "easy",
+    "question": "How many permutations exist for 4 distinct elements?",
+    "answer": "The number of permutations of N distinct elements is N!. For N=4: M = 4! = 4 × 3 × 2 × 1 = 24. There are 24 different arrangements."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "When do you use variations versus combinations in probability calculations?",
+    "answer": "Use variations when the order of selection matters (e.g., arranging people in a queue, assigning ranked positions). Use combinations when order does not matter (e.g., selecting a committee, choosing lottery numbers). For example, selecting president and vice-president from 5 candidates is a variation (V = 5!/3! = 20), while choosing 2 committee members from 5 is a combination (C = 5!/(2!×3!) = 10)."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "hard",
+    "question": "Explain the total probability theorem and give an example of its use.",
+    "answer": "The total probability theorem states: P(B) = sum over k of P(B|Ak) × P(Ak), where A1, A2, ..., An form a complete partition of the event space (mutually exclusive and exhaustive). Example: A factory has 3 production lines producing 40%, 35%, and 25% of output, with defect rates of 2%, 3%, and 5% respectively. The total defect probability is: P(defect) = 0.02×0.40 + 0.03×0.35 + 0.05×0.25 = 0.008 + 0.0105 + 0.0125 = 0.031 or 3.1%."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "What does it mean for two events to be independent?",
+    "answer": "Two events A and B are independent if the occurrence of one does not affect the probability of the other. Mathematically: P(A|B) = P(A), or equivalently P(A ∩ B) = P(A) × P(B). For example, consecutive coin flips are independent — getting heads on the first flip does not change the probability of heads on the second flip."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "medium",
+    "question": "Given the sample {3, 7, 5, 9, 1, 5, 8}, calculate the mean and sample variance.",
+    "answer": "Step 1: Mean: x_bar = (3+7+5+9+1+5+8)/7 = 38/7 = 5.43.\nStep 2: Deviations: (3-5.43)^2=5.90, (7-5.43)^2=2.47, (5-5.43)^2=0.18, (9-5.43)^2=12.74, (1-5.43)^2=19.62, (5-5.43)^2=0.18, (8-5.43)^2=6.61.\nStep 3: Sum = 47.71.\nStep 4: s^2 = 47.71/(7-1) = 47.71/6 = 7.95.\nFinal answer: Mean = 5.43, Sample variance = 7.95, Standard deviation = sqrt(7.95) = 2.82."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "What is a histogram and how is it constructed?",
+    "answer": "A histogram groups continuous data into classes (bins) and displays the frequency of observations in each class as bars. Construction: (1) determine the range (max-min), (2) choose the number of classes (Sturges' rule: k ≈ 1 + 3.32×log10(N)), (3) calculate class width = range/k, (4) count observations in each class, (5) draw bars with heights proportional to frequency. Unlike bar charts, histogram bars are adjacent (no gaps) because the x-axis represents a continuous scale."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What is the coefficient of variation and when is it useful?",
+    "answer": "The coefficient of variation (CV) is the ratio of the standard deviation to the mean, often expressed as a percentage: CV = (s / x_bar) × 100%. It measures relative dispersion, making it useful for comparing variability between datasets with different units or magnitudes. For example, if process A has mean=100 and s=5 (CV=5%), and process B has mean=1000 and s=30 (CV=3%), process B is relatively less variable despite having a larger standard deviation."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "easy",
+    "question": "What is the difference between a population and a sample in statistics?",
+    "answer": "A population is the complete set of all items or observations of interest (e.g., all resistors ever produced by a machine). A sample is a subset selected from the population for analysis (e.g., 40 resistors tested). Population parameters (mu, sigma^2) are usually unknown constants. Sample statistics (x_bar, s^2) are calculated from data and serve as estimates of population parameters. Statistical inference bridges the gap from sample to population."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "What is the cumulative frequency distribution?",
+    "answer": "The cumulative frequency distribution H(x) gives the proportion of observations less than or equal to a value x. It is computed by summing relative frequencies up to that value: H(x) = sum of h(xi) for all xi <= x. It is a non-decreasing step function starting at 0 and ending at 1. It is useful for determining percentiles and for comparing the distribution shape against theoretical distributions (e.g., using probability plots)."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "What are skewness and kurtosis and what do they tell us about a distribution?",
+    "answer": "Skewness measures the asymmetry of a distribution. Positive skewness (right-skewed) means a long right tail with most data on the left. Negative skewness (left-skewed) means a long left tail. Zero skewness indicates symmetry. Kurtosis measures the 'tailedness' — how heavy the tails are compared to a normal distribution. High kurtosis (leptokurtic) indicates heavy tails and more outliers. Low kurtosis (platykurtic) indicates light tails. A normal distribution has zero excess kurtosis."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "medium",
+    "question": "A fair coin is flipped 10 times. What is the probability of getting exactly 6 heads?",
+    "answer": "Step 1: Binomial distribution with N=10, p=0.5, x=6.\nStep 2: f(6) = C(10,6) × 0.5^6 × 0.5^4 = C(10,6) × 0.5^10.\nStep 3: C(10,6) = 10!/(6!×4!) = 210.\nStep 4: 0.5^10 = 1/1024 = 0.000977.\nStep 5: f(6) = 210 × 0.000977 = 0.2051.\nFinal answer: The probability of exactly 6 heads in 10 flips is approximately 20.5%."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "medium",
+    "question": "A call center receives an average of 3 calls per minute. What is the probability of receiving exactly 5 calls in one minute?",
+    "answer": "Step 1: This follows a Poisson distribution with lambda = 3.\nStep 2: f(5) = (lambda^5 × e^(-lambda)) / 5! = (3^5 × e^(-3)) / 120.\nStep 3: 3^5 = 243, e^(-3) = 0.04979.\nStep 4: f(5) = 243 × 0.04979 / 120 = 12.099 / 120 = 0.1008.\nFinal answer: The probability of exactly 5 calls is approximately 10.1%."
+  },
+  {
+    "type": "application",
+    "difficulty": "medium",
+    "question": "When should you use the Poisson distribution instead of the binomial distribution?",
+    "answer": "Use the Poisson distribution when: (1) counting events in a continuous interval (time, area, volume), (2) events occur independently, (3) the average rate is constant, and (4) two events cannot occur simultaneously. It approximates the binomial when N is large and p is small (rare events), with lambda = N×p. The Poisson is preferred when the total number of trials N is unknown or very large, such as counting defects per unit area, arrivals per hour, or accidents per month."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "What are the properties of the normal distribution that make it so important?",
+    "answer": "Key properties: (1) Symmetric about the mean mu. (2) The mean, median, and mode are all equal. (3) Completely characterized by mu and sigma^2. (4) The empirical rule: 68.27% within ±1 sigma, 95.45% within ±2 sigma, 99.73% within ±3 sigma. (5) The Central Limit Theorem guarantees that sample means of any distribution approach normality. (6) Many natural processes produce approximately normal data. (7) Linear combinations of normal variables are also normal. These properties make it the foundation of most statistical methods."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "hard",
+    "question": "The lifetime of a component follows an exponential distribution with MTBF = 500 hours. What is the probability the component survives beyond 700 hours?",
+    "answer": "Step 1: MTBF = 1/lambda, so lambda = 1/500 = 0.002 per hour.\nStep 2: The survival probability is P(X > 700) = 1 - F(700) = e^(-lambda×700).\nStep 3: e^(-0.002×700) = e^(-1.4) = 0.2466.\nFinal answer: The probability of surviving beyond 700 hours is approximately 24.7%. Note that despite the MTBF being 500 hours, there is still about a 25% chance of surviving 40% beyond the MTBF."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "hard",
+    "question": "Compare the chi-squared, t, and F distributions in terms of their origin and applications.",
+    "answer": "Chi-squared distribution: Sum of squared standard normal variables, used for testing variance and goodness-of-fit. Parameters: nu (degrees of freedom). t-distribution: Ratio of a standard normal to the square root of a chi-squared/nu, used for mean testing when variance is unknown. Parameters: nu. F-distribution: Ratio of two independent chi-squared variables divided by their df, used for comparing variances and in ANOVA. Parameters: nu1, nu2. Key relationship: t^2 with nu df equals F with (1, nu) df. All three are derived from the normal distribution and converge toward it as df increases."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What is the geometric distribution?",
+    "answer": "The geometric distribution models the number of independent Bernoulli trials needed until the first success. If each trial has success probability p, then P(X = k) = (1-p)^(k-1) × p for k = 1, 2, 3, .... Its mean is 1/p and variance is (1-p)/p^2. It has the memoryless property: P(X > s+t | X > s) = P(X > t). Example: if the probability of finding a defective part is 0.1, the expected number of inspections until finding the first defect is 1/0.1 = 10."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "Explain the concept of a quantile function (inverse distribution function).",
+    "answer": "The quantile function is the inverse of the cumulative distribution function F(x). Given a probability p, the quantile x_p = F^(-1)(p) is the value below which a proportion p of the distribution falls. For example, the 95th percentile (p=0.95) of a standard normal distribution is z = 1.645. Quantiles are used to determine critical values for hypothesis tests, construct confidence intervals, and calculate percentiles. Common quantiles: median (p=0.5), quartiles (p=0.25, 0.75), and percentiles."
+  },
+  {
+    "type": "application",
+    "difficulty": "medium",
+    "question": "Describe the general procedure for conducting a hypothesis test.",
+    "answer": "Step 1: Formulate H0 (null hypothesis) and H1 (alternative hypothesis). Step 2: Choose the significance level alpha (typically 0.05 or 0.01). Step 3: Select the appropriate test statistic based on the problem type and assumptions. Step 4: Calculate the test statistic from sample data. Step 5: Determine the critical value(s) or p-value. Step 6: Compare: reject H0 if the test statistic falls in the rejection region (or if p-value < alpha). Step 7: State the conclusion in the context of the problem."
+  },
+  {
+    "type": "application",
+    "difficulty": "medium",
+    "question": "How do you test whether a sample comes from a normal distribution?",
+    "answer": "Several methods exist: (1) Visual methods: histogram inspection, Q-Q plot (quantile-quantile plot) where normal data falls on a straight line, and probability paper. (2) Formal tests: Shapiro-Wilk test (best for small samples), Anderson-Darling test, Kolmogorov-Smirnov test, and chi-squared goodness-of-fit test. The null hypothesis is that the data is normally distributed. Reject if p-value < alpha. Visual methods are recommended alongside formal tests because formal tests can be too sensitive with large samples, rejecting slight deviations from normality that are practically irrelevant."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "hard",
+    "question": "A machine should produce parts with mean diameter 50 mm. A sample of N=25 gives x_bar=50.3 mm and s=0.8 mm. Test at alpha=0.05 whether the mean differs from 50 mm.",
+    "answer": "Step 1: H0: mu = 50, H1: mu ≠ 50 (two-sided test).\nStep 2: Test statistic: t = (x_bar - mu0) / (s/sqrt(N)) = (50.3 - 50) / (0.8/sqrt(25)) = 0.3/0.16 = 1.875.\nStep 3: Degrees of freedom: df = N-1 = 24.\nStep 4: Critical value for two-sided test at alpha=0.05: t(0.025, 24) = ±2.0639.\nStep 5: Since |1.875| = 1.875 < 2.0639, the test statistic falls within the acceptance region.\nStep 6: Fail to reject H0. There is insufficient evidence at the 5% level that the mean diameter differs from 50 mm."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "What is the power of a hypothesis test?",
+    "answer": "The power of a test is the probability of correctly rejecting H0 when it is false: Power = 1 - beta, where beta is the Type II error probability. Power depends on: (1) the true parameter value (larger deviations from H0 are easier to detect), (2) the significance level alpha (higher alpha gives more power), (3) the sample size N (larger N gives more power), and (4) the population variability (lower variance gives more power). A common target is power >= 0.80 (80% chance of detecting a real effect)."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What is measurement system analysis (MSA) and why is it important?",
+    "answer": "Measurement system analysis evaluates the capability of measuring equipment by assessing repeatability (same operator, same part, same device) and reproducibility (different operators or devices). In the textbook, this is tested using hypothesis tests to compare measurement variability. MSA is critical because statistical conclusions are only valid if the measurement system is capable — if measurement error is too large relative to the process variation, process control decisions based on those measurements will be unreliable."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "medium",
+    "question": "If the correlation coefficient between x and y is r = 0.85, what is the coefficient of determination and how is it interpreted?",
+    "answer": "The coefficient of determination is R^2 = r^2 = 0.85^2 = 0.7225 or 72.25%. This means 72.25% of the variance in y is explained by the linear relationship with x. The remaining 27.75% is unexplained variance (due to other factors, measurement error, or nonlinear effects). While r = 0.85 indicates a strong positive linear relationship, R^2 provides a more intuitive interpretation in terms of explained variance."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "hard",
+    "question": "What are the assumptions of linear regression and how can violations be detected?",
+    "answer": "Assumptions: (1) Linearity — the relationship between x and y is linear (check: residual plot should show no pattern). (2) Independence — observations are independent (check: Durbin-Watson test for autocorrelation). (3) Homoscedasticity — constant variance of residuals (check: residuals vs. fitted values should show constant spread). (4) Normality — residuals are normally distributed (check: Q-Q plot of residuals). (5) No outliers with excessive influence (check: Cook's distance). Violations can lead to biased coefficients, incorrect confidence intervals, and unreliable predictions."
+  },
+  {
+    "type": "application",
+    "difficulty": "medium",
+    "question": "What is the difference between interpolation and extrapolation in regression?",
+    "answer": "Interpolation makes predictions within the range of the observed data — this is generally reliable if the model fits well. Extrapolation makes predictions outside the observed range — this is risky because the assumed relationship may not hold beyond the data. For example, if a temperature sensor is calibrated between 0°C and 100°C, predicting output at 50°C (interpolation) is reliable, but predicting at 200°C (extrapolation) may be very inaccurate because the linear relationship may break down at extreme temperatures."
+  },
+  {
+    "type": "application",
+    "difficulty": "hard",
+    "question": "How do you test whether a regression relationship is statistically significant?",
+    "answer": "Two approaches: (1) Test individual coefficients: For the slope b1, compute t = b1/sb1 where sb1 is the standard error. If |t| exceeds the critical t-value with N-2 df, the slope is significantly different from zero. (2) Overall F-test for the model: F = (R^2/M) / ((1-R^2)/(N-M-1)), where M is the number of predictors. Compare to F-distribution with (M, N-M-1) df. A significant F means the model explains a significant portion of variance. For simple regression, both tests give equivalent results."
+  },
+  {
+    "type": "definition",
+    "difficulty": "medium",
+    "question": "What is the confidence band of a regression line?",
+    "answer": "The confidence band defines the range within which the true regression line lies with a given probability. It is widest at the extremes of the data range and narrowest at the point (x_bar, y_bar). The formula involves both the residual standard error and the distance of x from x_bar: width = ±c × s × sqrt(1/N + (x - x_bar)^2 / ((N-1)×sx^2)). This band quantifies the uncertainty in the estimated regression line itself, not in individual predictions (which require the wider prediction band)."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "medium",
+    "question": "What is the difference between a confidence band and a prediction band in regression?",
+    "answer": "The confidence band gives the uncertainty range for the mean response E(y|x) — where the true regression line lies. The prediction band gives the uncertainty range for a future individual observation y at a given x. The prediction band is always wider because it includes both the uncertainty in the regression line AND the natural variability of individual observations. Mathematically, prediction interval includes an extra '1' under the square root: sqrt(1 + 1/N + ...) vs sqrt(1/N + ...) for confidence."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "hard",
+    "question": "In a single-factor ANOVA with 4 groups, each having 10 observations, you obtain SSB=120 and SSW=360. Is the group effect significant at alpha=0.05?",
+    "answer": "Step 1: Degrees of freedom: df_between = K-1 = 4-1 = 3, df_within = N-K = 40-4 = 36.\nStep 2: Mean squares: MSB = SSB/df_between = 120/3 = 40. MSW = SSW/df_within = 360/36 = 10.\nStep 3: F-statistic: F = MSB/MSW = 40/10 = 4.0.\nStep 4: Critical value: F(0.05, 3, 36) ≈ 2.87.\nStep 5: Since F = 4.0 > 2.87, reject H0.\nFinal answer: The group effect is statistically significant at the 5% level. At least one group mean differs from the others."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "What is the total sum of squares decomposition in ANOVA?",
+    "answer": "ANOVA decomposes the total sum of squares (SST) into two components: SST = SSB + SSW. SST = sum of (xnk - x_bar_total)^2 measures total variation in the data. SSB = sum of nk × (x_bar_k - x_bar_total)^2 measures variation between group means (attributed to the factor). SSW = sum of sum of (xnk - x_bar_k)^2 measures variation within groups (attributed to random error). If SSB is large relative to SSW, the factor has a significant effect."
+  },
+  {
+    "type": "application",
+    "difficulty": "medium",
+    "question": "After a significant ANOVA result, how do you determine which groups differ?",
+    "answer": "A significant overall F-test only tells you that at least one group mean differs, not which ones. Post-hoc comparison methods include: (1) Tukey's HSD (Honestly Significant Difference) — compares all pairs while controlling family-wise error rate. (2) Bonferroni correction — adjusts individual test alpha by dividing by the number of comparisons. (3) Scheffé's method — most conservative, allows arbitrary comparisons. (4) Fisher's LSD — least conservative, only use after significant F-test. The choice depends on the balance between detecting real differences and controlling false positives."
+  },
+  {
+    "type": "application",
+    "difficulty": "easy",
+    "question": "What Python libraries are commonly used for statistical analysis?",
+    "answer": "The textbook references several Python tools: (1) NumPy — for numerical computations, array operations, and basic statistics. (2) SciPy (scipy.stats) — for probability distributions, hypothesis tests, and statistical functions. (3) Matplotlib — for creating histograms, box plots, scatter plots, and other visualizations. (4) pandas — for data manipulation and descriptive statistics. These libraries provide the computational backbone for applying the statistical methods covered in the textbook."
+  },
+  {
+    "type": "application",
+    "difficulty": "medium",
+    "question": "How is the bonding process example used to illustrate descriptive statistics in practice?",
+    "answer": "The bonding process example examines adhesive beads in manufacturing. Bead widths are measured and characterized using descriptive statistics: the mean indicates the typical bead width, the standard deviation quantifies the spread of widths, and the histogram reveals the distribution shape. Box plots help identify outliers (abnormally wide or narrow beads). This real-world example demonstrates how descriptive statistics support quality control decisions — for instance, determining whether bead widths fall within specification limits."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "hard",
+    "question": "How does the Six Sigma methodology relate to the normal distribution and process capability?",
+    "answer": "Six Sigma aims for at most 3.4 defects per million opportunities, corresponding to a process where the specification limits are ±6 sigma from the process mean (with a 1.5 sigma shift allowed). If a process output follows a normal distribution with mean mu and standard deviation sigma, the probability of producing within ±6 sigma is 99.9999998%. Process capability indices Cp and Cpk quantify how well the process spread fits within specification limits. Cp = (USL-LSL)/(6×sigma) measures potential capability, while Cpk accounts for centering. A Cpk >= 2.0 indicates a Six Sigma-capable process."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "easy",
+    "question": "A sample has values {4, 8, 6, 5, 7}. Calculate the arithmetic mean.",
+    "answer": "Step 1: Sum all values: 4 + 8 + 6 + 5 + 7 = 30.\nStep 2: Divide by N = 5: x_bar = 30/5 = 6.\nFinal answer: The arithmetic mean is 6."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "easy",
+    "question": "Calculate the probability of drawing a red ball from an urn containing 3 red and 7 blue balls.",
+    "answer": "Step 1: Total balls = 3 + 7 = 10.\nStep 2: Favorable outcomes (red) = 3.\nStep 3: P(red) = 3/10 = 0.3.\nFinal answer: The probability is 30%."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "medium",
+    "question": "Given the sample {2, 4, 4, 4, 5, 5, 7, 9}, calculate the sample variance and standard deviation.",
+    "answer": "Step 1: Mean: x_bar = (2+4+4+4+5+5+7+9)/8 = 40/8 = 5.\nStep 2: Squared deviations: (2-5)^2=9, (4-5)^2=1, (4-5)^2=1, (4-5)^2=1, (5-5)^2=0, (5-5)^2=0, (7-5)^2=4, (9-5)^2=16.\nStep 3: Sum of squared deviations = 9+1+1+1+0+0+4+16 = 32.\nStep 4: s^2 = 32/(8-1) = 32/7 = 4.571.\nStep 5: s = sqrt(4.571) = 2.138.\nFinal answer: Variance = 4.571, Standard deviation = 2.138."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "medium",
+    "question": "A normal distribution has mean 100 and standard deviation 15. What percentage of values fall between 70 and 130?",
+    "answer": "Step 1: Standardize: z1 = (70-100)/15 = -2.0, z2 = (130-100)/15 = +2.0.\nStep 2: The range is mean ± 2 sigma.\nStep 3: By the empirical rule, 95.45% of values fall within ±2 sigma of the mean.\nFinal answer: Approximately 95.45% of values fall between 70 and 130."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "medium",
+    "question": "In a binomial experiment with N=20 and p=0.1, what is the expected number of successes and the standard deviation?",
+    "answer": "Step 1: Mean: mu = N × p = 20 × 0.1 = 2.\nStep 2: Variance: sigma^2 = N × p × (1-p) = 20 × 0.1 × 0.9 = 1.8.\nStep 3: Standard deviation: sigma = sqrt(1.8) = 1.342.\nFinal answer: Expected successes = 2, Standard deviation = 1.342."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "hard",
+    "question": "A sample of 16 measurements has mean 50.2 and standard deviation 2.4. Construct a 99% confidence interval for the population mean.",
+    "answer": "Step 1: N=16, x_bar=50.2, s=2.4, confidence=99% (alpha=0.01).\nStep 2: Degrees of freedom: df = N-1 = 15.\nStep 3: For 99% two-sided, find t(0.005, 15) = 2.9467.\nStep 4: Standard error: SE = s/sqrt(N) = 2.4/sqrt(16) = 2.4/4 = 0.6.\nStep 5: Margin of error: ME = t × SE = 2.9467 × 0.6 = 1.768.\nStep 6: CI: 50.2 ± 1.768 = [48.432, 51.968].\nFinal answer: The 99% confidence interval is [48.43, 51.97]."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "hard",
+    "question": "Test at alpha=0.01 whether the variance of a sample (N=20, s^2=8.5) differs from sigma^2=5.",
+    "answer": "Step 1: H0: sigma^2 = 5, H1: sigma^2 ≠ 5 (two-sided).\nStep 2: Test statistic: chi^2 = (N-1)×s^2/sigma0^2 = 19×8.5/5 = 32.3.\nStep 3: df = N-1 = 19.\nStep 4: Critical values for alpha=0.01 two-sided: chi^2(0.005, 19) = 6.844 and chi^2(0.995, 19) = 38.582.\nStep 5: Since 6.844 < 32.3 < 38.582, the test statistic falls within the acceptance region.\nStep 6: Fail to reject H0.\nFinal answer: At the 1% significance level, there is insufficient evidence that the variance differs from 5."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "medium",
+    "question": "Two samples have s1^2 = 12.4 (N1=10) and s2^2 = 4.8 (N2=15). Perform an F-test at alpha=0.05.",
+    "answer": "Step 1: H0: sigma1^2 = sigma2^2, H1: sigma1^2 ≠ sigma2^2.\nStep 2: F = s1^2/s2^2 = 12.4/4.8 = 2.583 (larger variance in numerator).\nStep 3: df1 = N1-1 = 9, df2 = N2-1 = 14.\nStep 4: Critical value: F(0.025, 9, 14) ≈ 3.21.\nStep 5: Since F = 2.583 < 3.21, fail to reject H0.\nFinal answer: At alpha=0.05, there is no significant difference between the two variances."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "medium",
+    "question": "A Poisson process averages 2 events per hour. What is the probability of no events in 30 minutes?",
+    "answer": "Step 1: For 30 minutes, lambda = 2 × 0.5 = 1 event.\nStep 2: P(X=0) = (lambda^0 × e^(-lambda)) / 0! = e^(-1) = 0.3679.\nFinal answer: The probability of no events in 30 minutes is 36.79%."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "easy",
+    "question": "What is 7! (7 factorial)?",
+    "answer": "Step 1: 7! = 7 × 6 × 5 × 4 × 3 × 2 × 1.\nStep 2: 7 × 6 = 42, 42 × 5 = 210, 210 × 4 = 840, 840 × 3 = 2520, 2520 × 2 = 5040, 5040 × 1 = 5040.\nFinal answer: 7! = 5040."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "medium",
+    "question": "How many ways can you arrange the letters in MISSISSIPPI?",
+    "answer": "Step 1: Total letters N = 11. Repeated letters: M=1, I=4, S=4, P=2.\nStep 2: Permutations with repetition: N! / (1! × 4! × 4! × 2!).\nStep 3: 11! = 39916800.\nStep 4: 4! × 4! × 2! = 24 × 24 × 2 = 1152.\nStep 5: 39916800 / 1152 = 34650.\nFinal answer: There are 34,650 distinguishable arrangements."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "hard",
+    "question": "In ANOVA with 3 groups of 8 observations each, SSB=450 and SSW=630. Calculate the F-statistic and determine significance at alpha=0.05.",
+    "answer": "Step 1: K=3 groups, N=24 total observations.\nStep 2: df_between = K-1 = 2, df_within = N-K = 21.\nStep 3: MSB = SSB/df_B = 450/2 = 225.\nStep 4: MSW = SSW/df_W = 630/21 = 30.\nStep 5: F = MSB/MSW = 225/30 = 7.5.\nStep 6: Critical value F(0.05, 2, 21) ≈ 3.47.\nStep 7: Since F=7.5 > 3.47, reject H0.\nFinal answer: F=7.5 is significant at alpha=0.05. At least one group mean differs."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "medium",
+    "question": "Given correlation coefficient r = 0.72 and N = 30, calculate R^2 and test significance at alpha=0.05.",
+    "answer": "Step 1: R^2 = r^2 = 0.72^2 = 0.5184 (51.84% variance explained).\nStep 2: Test H0: rho=0 using t = r × sqrt(N-2) / sqrt(1-r^2).\nStep 3: t = 0.72 × sqrt(28) / sqrt(1-0.5184) = 0.72 × 5.292 / 0.694 = 5.49.\nStep 4: Critical value t(0.025, 28) = 2.048.\nStep 5: Since |5.49| > 2.048, reject H0.\nFinal answer: R^2=0.518 (51.8% explained). The correlation is statistically significant at alpha=0.05."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "medium",
+    "question": "In simple linear regression with N=11 data points, the slope b1=0.0154 and its standard error sb1=0.00044. Test if the slope is significant at alpha=0.05.",
+    "answer": "Step 1: H0: beta1 = 0, H1: beta1 ≠ 0.\nStep 2: t = b1/sb1 = 0.0154/0.00044 = 35.0.\nStep 3: df = N-2 = 9.\nStep 4: Critical value t(0.025, 9) = 2.262.\nStep 5: Since |35.0| >> 2.262, strongly reject H0.\nFinal answer: The slope is highly significant (t=35.0). The linear relationship is real."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "medium",
+    "question": "Calculate the 95% confidence interval for a proportion when 42 out of 200 items are defective.",
+    "answer": "Step 1: p_hat = 42/200 = 0.21.\nStep 2: Standard error: SE = sqrt(p_hat × (1-p_hat) / N) = sqrt(0.21 × 0.79 / 200) = sqrt(0.000830) = 0.0288.\nStep 3: For 95% confidence, z = 1.96.\nStep 4: CI = p_hat ± z × SE = 0.21 ± 1.96 × 0.0288 = 0.21 ± 0.0564.\nStep 5: CI = [0.1536, 0.2664].\nFinal answer: The 95% CI for the defect rate is [15.4%, 26.6%]."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "hard",
+    "question": "A component has exponential lifetime with lambda=0.005 per hour. What is the probability it survives past 300 hours? What is the median lifetime?",
+    "answer": "Step 1: P(X > 300) = e^(-lambda × 300) = e^(-0.005 × 300) = e^(-1.5) = 0.2231.\nStep 2: Median: solve F(t) = 0.5, so 1 - e^(-lambda × t) = 0.5.\nStep 3: e^(-lambda × t) = 0.5, so t = -ln(0.5)/lambda = 0.6931/0.005 = 138.6 hours.\nStep 4: MTBF = 1/lambda = 200 hours.\nFinal answer: Survival probability past 300h = 22.3%. Median lifetime = 138.6h. Note: median (138.6h) < MTBF (200h) due to the distribution's right skew."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "easy",
+    "question": "What is the standard error of the mean for a sample of N=25 with standard deviation s=10?",
+    "answer": "Step 1: Standard error SE = s / sqrt(N) = 10 / sqrt(25) = 10/5 = 2.\nFinal answer: The standard error of the mean is 2."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "medium",
+    "question": "A die is rolled 3 times. How many possible outcomes are there? How many have all different numbers?",
+    "answer": "Step 1: Total outcomes (variation with repetition): 6^3 = 216.\nStep 2: All different (variation without repetition): 6 × 5 × 4 = 120.\nStep 3: Probability of all different = 120/216 = 55.56%.\nFinal answer: 216 total outcomes, 120 with all different numbers (55.56%)."
+  },
+  {
+    "type": "calculation",
+    "difficulty": "hard",
+    "question": "Construct a 95% confidence interval for the slope b1=2.35 with standard error sb1=0.42 and N=20 observations.",
+    "answer": "Step 1: df = N - 2 = 18.\nStep 2: t(0.025, 18) = 2.1009.\nStep 3: CI = b1 ± t × sb1 = 2.35 ± 2.1009 × 0.42.\nStep 4: Margin = 0.882.\nStep 5: CI = [2.35 - 0.882, 2.35 + 0.882] = [1.468, 3.232].\nFinal answer: The 95% CI for the slope is [1.47, 3.23]. Since 0 is not included, the slope is significant."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "medium",
+    "question": "Compare the mean, variance, and shape of the binomial and Poisson distributions.",
+    "answer": "Binomial: mean = N×p, variance = N×p×(1-p), shape ranges from skewed (small p) to symmetric (p≈0.5). Poisson: mean = lambda, variance = lambda (mean equals variance), always right-skewed but approaches symmetry as lambda increases. Key difference: binomial has a fixed number of trials N; Poisson has no upper bound. Poisson approximates binomial when N is large and p is small with lambda = N×p."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "easy",
+    "question": "What is the difference between a sample and a population?",
+    "answer": "A population is the complete set of all items of interest (e.g., all resistors produced). A sample is a subset drawn from the population for analysis. Population parameters (mu, sigma) are fixed but usually unknown. Sample statistics (x_bar, s) are calculated from data and vary between samples. Statistical inference uses sample statistics to estimate population parameters."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "medium",
+    "question": "Compare the Kolmogorov-Smirnov test and the Shapiro-Wilk test for normality.",
+    "answer": "The Kolmogorov-Smirnov (K-S) test compares the empirical distribution function with the theoretical normal CDF and measures the maximum deviation dMAX. It is general-purpose but has lower power for normality testing. The Shapiro-Wilk test is specifically designed for normality testing and has higher power, especially for small samples (N < 50). Both test H0: data is normally distributed. In practice, Shapiro-Wilk is preferred for normality, while K-S is used for testing against any specified distribution."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "medium",
+    "question": "Compare one-sided and two-sided confidence intervals.",
+    "answer": "A two-sided confidence interval has both lower and upper bounds: x_bar ± c×SE. It is used when deviations in either direction matter. A one-sided interval has only one bound: either x_bar + c×SE (upper) or x_bar - c×SE (lower). One-sided intervals are narrower because all alpha is on one side. Use one-sided when only one direction of deviation is relevant — e.g., 'the breaking strength is at least X' only needs a lower bound."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "medium",
+    "question": "Compare the t-test and the F-test in terms of purpose and application.",
+    "answer": "The t-test compares means: one-sample (mu vs mu0), two-sample (mu1 vs mu2), or paired samples. The F-test compares variances (sigma1^2 vs sigma2^2) or is used in ANOVA to compare multiple group means. Key relationship: for two groups, the F-test in ANOVA gives the same result as the two-sample t-test, since F = t^2. The F-test generalizes to K groups, while the t-test is limited to 2."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "hard",
+    "question": "Compare simple linear regression and multiple linear regression.",
+    "answer": "Simple regression: one predictor, y = b0 + b1×x. Coefficients have closed-form formulas. R^2 = r^2 (squared correlation). Multiple regression: M predictors, y = b0 + b1×x1 + ... + bM×xM. Requires matrix algebra (normal equations). Uses adjusted R^2 = 1 - (1-R^2)×(N-1)/(N-M-1) to penalize adding predictors. Individual coefficients need separate t-tests, and overall model significance uses the F-test. Multiple regression can reveal effects hidden in simple regression and detect multicollinearity."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "medium",
+    "question": "Compare descriptive and inferential statistics.",
+    "answer": "Descriptive statistics summarize a sample: mean, variance, histograms, box plots. They describe what the data looks like without generalizing beyond it. Inferential statistics draw conclusions about the population from the sample: confidence intervals, hypothesis tests, regression. Inferential methods require assumptions about the population distribution and account for sampling uncertainty. Descriptive statistics are always valid; inferential statistics are only valid when assumptions hold."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "medium",
+    "question": "What is the difference between correlation and regression?",
+    "answer": "Correlation measures the strength and direction of the linear relationship between two variables (r ranges from -1 to +1). It is symmetric — the correlation of x with y equals the correlation of y with x. Regression fits a predictive model y = b0 + b1×x, determining a specific directional relationship. The regression of y on x differs from x on y. Regression provides predictions and quantifies the effect size (how much y changes per unit change in x), while correlation only indicates association strength."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "medium",
+    "question": "Compare the sample variance formula using N-1 versus N in the denominator.",
+    "answer": "Dividing by N gives the population variance formula (when all data is available) or a biased estimator (when applied to a sample). Dividing by N-1 (Bessel's correction) gives an unbiased estimator of the population variance from a sample. The reason: the sample mean x_bar is closer to the sample values than the true mean mu, so sum((xi-x_bar)^2) systematically underestimates sum((xi-mu)^2). Dividing by N-1 corrects this bias. For large N, the difference is negligible."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "hard",
+    "question": "Compare parametric and distribution-free hypothesis tests for comparing two groups.",
+    "answer": "Parametric (two-sample t-test): assumes normal populations, compares means, more powerful when assumptions hold, uses actual measurement values. Distribution-free (Mann-Whitney U test): no normality assumption, compares rank distributions, less powerful but robust to outliers and non-normality, works with ordinal data. Choose parametric when data is approximately normal and sample sizes are adequate. Choose distribution-free when normality is questionable, data is ordinal, or sample sizes are very small."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "medium",
+    "question": "Compare the exponential and normal distributions.",
+    "answer": "Normal: symmetric, bell-shaped, defined on (-infinity, +infinity), characterized by mu and sigma^2. Exponential: right-skewed, defined on [0, +infinity), characterized by single parameter lambda. Normal has mean=mu and mode=mean. Exponential has mean=1/lambda but mode=0. The exponential is memoryless; the normal is not. Normal arises from sums of many variables (CLT). Exponential models waiting times between random events. In reliability, exponential implies constant failure rate, while normal implies increasing failure rate near end of life."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "medium",
+    "question": "Compare systematic and random errors in measurements.",
+    "answer": "Systematic errors shift all measurements in one direction (e.g., miscalibrated instrument) — they affect accuracy (closeness to true value) and cannot be reduced by averaging more measurements. Random errors scatter measurements around the true value — they affect precision (repeatability) and can be reduced by averaging (standard error decreases with sqrt(N)). Good measurements require minimizing both: calibration reduces systematic errors; repeated measurements reduce random errors."
+  },
+  {
+    "type": "comparison",
+    "difficulty": "medium",
+    "question": "Compare the chi-squared test for variance and the chi-squared goodness-of-fit test.",
+    "answer": "Both use the chi-squared distribution but for different purposes. Variance test: tests whether sample variance matches a hypothesized value, statistic = (N-1)×s^2/sigma0^2, df = N-1. Goodness-of-fit test: tests whether observed frequencies match expected frequencies from a theoretical distribution, statistic = sum((observed-expected)^2/expected), df = number of classes - estimated parameters - 1. The first tests a parameter; the second tests a distributional shape."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "medium",
+    "question": "What happens to the sample mean estimate if the sample is not random?",
+    "answer": "If the sample is not random (e.g., convenience sampling, self-selection), the sample mean becomes a biased estimate of the population mean. For example, measuring only the first 10 items from a production line might miss warm-up effects or tool wear. The confidence interval is no longer valid because it assumes random sampling. The bias cannot be quantified without additional information, and increasing sample size does not fix the problem — it only makes you more precisely wrong."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "medium",
+    "question": "What goes wrong if you apply a t-test to heavily skewed data with a small sample?",
+    "answer": "The t-test assumes the sampling distribution of the mean is approximately normal. With small samples (N < 30) from heavily skewed distributions, this assumption fails. Consequences: the actual Type I error rate differs from the nominal alpha, confidence intervals have incorrect coverage, and p-values are unreliable. Solutions: use a non-parametric test (Mann-Whitney), transform the data (log transform for right-skewed data), or increase sample size (CLT makes the mean approximately normal for large N)."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "hard",
+    "question": "What happens if you perform multiple hypothesis tests without correcting for multiple comparisons?",
+    "answer": "The probability of at least one Type I error (false positive) increases dramatically. With m independent tests at alpha=0.05, the family-wise error rate is 1 - (1-0.05)^m. For m=10 tests: 1 - 0.95^10 = 40.1% chance of at least one false positive. This is the multiple comparisons problem. Solutions: Bonferroni correction (use alpha/m for each test), Tukey's HSD (for ANOVA post-hoc), Holm-Bonferroni (less conservative step-down procedure), or false discovery rate control (Benjamini-Hochberg)."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "medium",
+    "question": "What happens to regression results if the variance of residuals is not constant (heteroscedasticity)?",
+    "answer": "If residual variance changes with x (heteroscedasticity), the regression coefficients b0 and b1 are still unbiased but no longer have minimum variance (they are inefficient). More critically, the standard errors of the coefficients are incorrect, making confidence intervals and hypothesis tests unreliable. The t-tests may be too liberal (too many false positives) or too conservative. Detection: plot residuals vs. fitted values — a fan shape indicates heteroscedasticity. Solutions: weighted least squares, log-transform the response, or use heteroscedasticity-robust standard errors."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "medium",
+    "question": "What are the consequences of using too small a sample size?",
+    "answer": "Small sample sizes lead to: (1) Wide confidence intervals — poor precision in parameter estimation. (2) Low statistical power — high probability of missing real effects (Type II error). (3) Unreliable estimates of variance and higher moments. (4) Sensitivity to outliers — a single extreme value can dominate. (5) Invalid normality assumptions — the CLT requires sufficiently large N. For hypothesis testing, underpowered studies waste resources because they are unlikely to detect the effect even if it exists."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "hard",
+    "question": "What happens if the independence assumption is violated in ANOVA?",
+    "answer": "Violating independence (e.g., repeated measurements on the same subject, time-series data) is the most serious ANOVA assumption violation. Consequences: the F-test becomes unreliable, with the actual Type I error rate potentially far from alpha (often inflated). The MSW estimate is biased because correlated observations inflate or deflate the within-group variability. Unlike violations of normality (which ANOVA is robust to), independence violations cannot be fixed by transformations or larger samples. Solution: use repeated-measures ANOVA or mixed-effects models that explicitly model the correlation structure."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "medium",
+    "question": "What is Simpson's paradox and why is it a problem in data analysis?",
+    "answer": "Simpson's paradox occurs when a trend that appears in several groups reverses when the groups are combined. Example: treatment A might be better than B within each age group, but B appears better overall because it was preferentially given to younger (healthier) patients. It arises from confounding variables. The paradox demonstrates why aggregate data can be misleading and why stratified or multivariate analysis is essential. Always look for lurking variables when analyzing grouped data."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "medium",
+    "question": "What is overfitting in regression and how can it be detected?",
+    "answer": "Overfitting occurs when a regression model captures noise rather than the true relationship. Signs: high R^2 on training data but poor prediction on new data, coefficients with implausible magnitudes, high-order polynomial terms that create oscillation between data points. Detection: compare R^2 with R^2_adj (adjusted R^2 penalizes extra predictors), use cross-validation, or examine residual patterns. Prevention: use the simplest adequate model, test coefficient significance, and validate on held-out data."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "medium",
+    "question": "What happens if you extrapolate a regression model beyond the observed data range?",
+    "answer": "Extrapolation is risky because the assumed linear (or polynomial) relationship may not hold outside the observed range. Prediction intervals widen rapidly beyond the data range, reflecting increasing uncertainty. The true relationship might be nonlinear, bounded, or subject to regime changes beyond the observed region. Example: a temperature sensor calibrated between 0-100°C might follow a linear model, but extrapolating to 500°C would be unreliable because the sensor's physical behavior changes. Always clearly distinguish interpolation (reliable) from extrapolation (risky)."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "hard",
+    "question": "What is multicollinearity in multiple regression and what problems does it cause?",
+    "answer": "Multicollinearity occurs when two or more predictor variables are highly correlated with each other. Problems: (1) Regression coefficients become unstable — small data changes cause large coefficient changes. (2) Standard errors of coefficients are inflated, making them appear non-significant even when the overall model is significant. (3) Individual coefficient interpretation becomes unreliable. Detection: variance inflation factor (VIF) > 10, or high R^2 between predictors. Solutions: remove one of the correlated predictors, combine them (e.g., PCA), or use regularization (ridge regression)."
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "medium",
+    "question": "Why is it dangerous to confuse statistical significance with practical significance?",
+    "answer": "A statistically significant result only means the effect is unlikely to be zero — it says nothing about the effect's size or importance. With large enough sample sizes, tiny, practically meaningless differences become statistically significant. For example, a process improvement that shifts the mean by 0.001 mm might be significant with N=10000 but completely irrelevant in manufacturing. Always report effect sizes and confidence intervals alongside p-values. Ask: is the detected effect large enough to matter in practice?"
+  },
+  {
+    "type": "error_analysis",
+    "difficulty": "medium",
+    "question": "What happens when the normality assumption is violated in confidence interval calculations?",
+    "answer": "For large samples (N > 30), the Central Limit Theorem makes confidence intervals for the mean robust to non-normality. For small samples from non-normal populations: the actual coverage probability differs from the nominal level (e.g., a '95%' interval might only contain the true mean 90% of the time). Strongly skewed distributions are most problematic. Solutions: use non-parametric bootstrap confidence intervals, transform the data to approximate normality, or use distribution-specific methods."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "hard",
+    "question": "How are the normal distribution, chi-squared distribution, t-distribution, and F-distribution mathematically related?",
+    "answer": "They form a family: (1) If Z ~ N(0,1), then Z^2 ~ chi^2(1). (2) Sum of k independent Z^2 variables gives chi^2(k). (3) t-distribution: if Z ~ N(0,1) and V ~ chi^2(v) independently, then Z/sqrt(V/v) ~ t(v). (4) F-distribution: if U ~ chi^2(v1) and V ~ chi^2(v2) independently, then (U/v1)/(V/v2) ~ F(v1,v2). (5) If T ~ t(v), then T^2 ~ F(1,v). All converge to the normal as degrees of freedom increase."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "hard",
+    "question": "Explain how descriptive statistics, probability distributions, and inferential statistics form a logical progression.",
+    "answer": "Descriptive statistics summarize observed data (sample). Probability distributions provide theoretical models for how data is generated (population). Inferential statistics bridge the gap: using the theoretical model as a framework, they draw conclusions about the population from the sample. Example progression: (1) Compute sample mean and variance (descriptive). (2) Assume data follows a normal distribution (probability model). (3) Construct confidence interval for the population mean (inference). Each step builds on the previous one."
+  },
+  {
+    "type": "application",
+    "difficulty": "hard",
+    "question": "Design a complete statistical study to compare the quality of parts from two suppliers.",
+    "answer": "Step 1: Define the quality characteristic (e.g., tensile strength) and the hypothesis H0: mu1 = mu2.\nStep 2: Determine sample size using power analysis — specify alpha=0.05, power=0.80, and the minimum detectable difference.\nStep 3: Collect random samples from both suppliers.\nStep 4: Apply descriptive statistics: means, standard deviations, box plots to visualize.\nStep 5: Test normality (Shapiro-Wilk) and equal variances (F-test).\nStep 6: Perform two-sample t-test (or Welch's test if variances unequal).\nStep 7: Report confidence interval for the mean difference, p-value, and practical significance.\nStep 8: If more than 2 suppliers, use ANOVA instead of multiple t-tests."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "hard",
+    "question": "How does the concept of degrees of freedom connect across variance estimation, t-tests, ANOVA, and regression?",
+    "answer": "Degrees of freedom (df) represent independent information remaining after estimating parameters. In variance estimation: df = N-1 (one parameter estimated: the mean). In a t-test: df = N-1 (one-sample) or N1+N2-2 (two-sample) because means are estimated from each sample. In ANOVA: df_between = K-1, df_within = N-K — total df = N-1 is partitioned. In regression: df = N-M-1 (M predictors plus intercept estimated). The pattern: start with N observations, subtract one df for each estimated parameter. Fewer df means heavier-tailed distributions and wider intervals."
+  },
+  {
+    "type": "application",
+    "difficulty": "hard",
+    "question": "Describe the complete statistical workflow for characterizing a manufacturing process using DFSS methods.",
+    "answer": "Step 1: Measurement system analysis (MSA) — verify measurement repeatability and reproducibility.\nStep 2: Collect representative samples from the process.\nStep 3: Descriptive statistics — compute mean, std dev, create histograms, box plots.\nStep 4: Distribution fitting — test for normality, fit appropriate distribution.\nStep 5: Process capability — compute Cp = (USL-LSL)/(6s) and Cpk = min((USL-x_bar)/(3s), (x_bar-LSL)/(3s)).\nStep 6: If Cpk < target, use DOE (design of experiments) and regression to identify significant factors.\nStep 7: Implement SPC — set up control charts with ±3 sigma limits.\nStep 8: Monitor and maintain statistical control."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "How does sample size affect the relationship between the t-distribution and the normal distribution?",
+    "answer": "As sample size N increases, the t-distribution with df=N-1 approaches the standard normal distribution. At N=30 (df=29), the t and z critical values are very similar: t(0.025,29)=2.045 vs z(0.025)=1.96. At N=120, they are nearly identical. The reason: with more data, the sample variance s^2 becomes a more precise estimate of sigma^2, reducing the extra uncertainty that makes the t-distribution's tails heavier. For practical purposes, the normal approximation is adequate when N > 30."
+  },
+  {
+    "type": "application",
+    "difficulty": "medium",
+    "question": "How do you decide which hypothesis test to use for a given problem?",
+    "answer": "Decision tree: (1) What parameter? Mean → t-tests; Variance → chi^2/F-test; Proportion → z-test; Distribution shape → K-S/Shapiro-Wilk. (2) How many groups? One → one-sample test; Two → two-sample test; Three+ → ANOVA. (3) Are samples paired? → paired t-test. (4) Known or unknown variance? Known → z-test; Unknown → t-test. (5) Normal data? Yes → parametric; No → non-parametric. (6) One-sided or two-sided? Determines critical region. Always check assumptions before selecting the test."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "What is the relationship between confidence intervals and hypothesis testing?",
+    "answer": "They are mathematically equivalent. A 95% confidence interval contains all values of the parameter that would not be rejected by a two-sided hypothesis test at alpha=0.05. If the hypothesized value mu0 falls inside the CI, the test fails to reject H0. If mu0 falls outside, the test rejects H0. The CI provides more information: not just whether to reject, but the range of plausible parameter values and the direction/magnitude of the effect. Using CIs is generally preferred because they quantify uncertainty directly."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "In simple terms, what does standard deviation tell you about data?",
+    "answer": "Standard deviation tells you how spread out the data values are around their average. A small standard deviation means most values cluster close to the mean — the data is consistent. A large standard deviation means values are widely scattered — there is high variability. For normally distributed data, about 68% of values fall within one standard deviation of the mean, and 95% within two standard deviations."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "easy",
+    "question": "Why do we need statistics in manufacturing and engineering?",
+    "answer": "No manufacturing process produces perfectly identical parts — there is always random variation. Statistics provides the tools to: quantify this variation (descriptive statistics), model it mathematically (probability distributions), make decisions despite uncertainty (hypothesis testing), predict future behavior (confidence intervals), identify which factors most affect quality (ANOVA, regression), and monitor processes over time (SPC). Without statistics, quality decisions would be based on guessing rather than evidence."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "What does the p-value actually tell us in plain language?",
+    "answer": "The p-value answers: 'If there were truly no effect (H0 is true), how likely would we be to see results this extreme or more extreme?' A small p-value (e.g., 0.003) means the observed data would be very unlikely under H0, providing strong evidence against it. A large p-value (e.g., 0.45) means the data is quite compatible with H0, providing no evidence against it. The p-value does NOT tell you the probability that H0 is true or false."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "easy",
+    "question": "Why can't we just compare two group averages and skip hypothesis testing?",
+    "answer": "Even if two populations are identical, random sampling will almost always produce different sample means. A difference of 2 units between two groups might be a real effect or just sampling noise. Hypothesis testing quantifies this uncertainty by considering: how large is the difference relative to the variability? How much data do we have? Only when the observed difference is unlikely to occur by chance alone (p < alpha) do we conclude the groups truly differ."
+  },
+  {
+    "type": "definition",
+    "difficulty": "easy",
+    "question": "Explain variance to someone who has never studied statistics.",
+    "answer": "Variance measures how much values in a dataset differ from their average. Imagine measuring the weight of 10 apples. If all weigh nearly 150g, variance is small — the apples are consistent. If weights range from 100g to 200g, variance is large — the apples are inconsistent. Technically: take each value, subtract the mean, square the result (to make all deviations positive), and average those squared deviations. The square root of variance gives the standard deviation, which is in the same units as the original data."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "easy",
+    "question": "What is the '68-95-99.7 rule' for normal distributions?",
+    "answer": "For any normal distribution, approximately 68.27% of values fall within 1 standard deviation of the mean, 95.45% within 2 standard deviations, and 99.73% within 3 standard deviations. This is also called the empirical rule or the three-sigma rule. In quality control, the 3-sigma limits (99.73%) are used for process control charts. In Six Sigma, 6-sigma limits correspond to 99.9999998% — an extremely tight standard."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "medium",
+    "question": "Why is the normal distribution called the 'bell curve'?",
+    "answer": "When plotted, the normal distribution's probability density function forms a symmetric, bell-shaped curve — high in the middle (where values cluster around the mean) and tapering off symmetrically to both sides (extreme values are rare). The peak is at the mean mu, and the curve's width is controlled by sigma. Every normal distribution has this same bell shape; changing mu shifts it left or right, and changing sigma makes it narrower (small sigma) or wider (large sigma)."
+  },
+  {
+    "type": "application",
+    "difficulty": "easy",
+    "question": "Give a real-world example where you would use a confidence interval.",
+    "answer": "A pharmaceutical company tests a new drug on 100 patients. The average blood pressure reduction is 12 mmHg with standard deviation 5 mmHg. The 95% confidence interval is 12 ± 1.96×(5/sqrt(100)) = 12 ± 0.98 = [11.02, 12.98] mmHg. This means: we are 95% confident the true average reduction for all patients lies between 11 and 13 mmHg. The drug approval board uses this interval to decide if the effect is clinically meaningful."
+  },
+  {
+    "type": "application",
+    "difficulty": "easy",
+    "question": "Give a real-world example where you would use ANOVA.",
+    "answer": "A car manufacturer tests 4 different paint formulations (A, B, C, D) for scratch resistance. They apply each paint to 20 test panels and measure scratch depth. ANOVA determines whether the mean scratch depth differs significantly across the 4 formulations. If the F-test is significant, post-hoc tests (Tukey HSD) identify which specific pairs differ. This is more efficient and statistically valid than running 6 separate t-tests for each pair."
+  },
+  {
+    "type": "factual",
+    "difficulty": "easy",
+    "question": "What are the most common significance levels used in practice?",
+    "answer": "The most common significance levels are alpha = 0.05 (5%) and alpha = 0.01 (1%). Alpha = 0.05 is the standard in most scientific and engineering applications. Alpha = 0.01 is used when the cost of a false positive is high (e.g., medical decisions). Alpha = 0.10 is occasionally used in exploratory analyses. In Six Sigma applications, alpha = 0.05 is standard. The choice of alpha should be made before collecting data, not adjusted after seeing results."
+  },
+  {
+    "type": "factual",
+    "difficulty": "medium",
+    "question": "What sample size rules of thumb are commonly used in practice?",
+    "answer": "Common guidelines: (1) For the CLT to apply: N >= 30 for moderately skewed data, N >= 50 for heavily skewed. (2) For a t-test to be robust: N >= 15 per group if data is not too skewed. (3) For ANOVA: at least 5-10 observations per group. (4) For correlation: N >= 30 for reliable r. (5) For regression: at least 10-20 observations per predictor variable. (6) For chi-squared goodness-of-fit: all expected frequencies >= 5. These are approximate; formal power analysis is preferred when feasible."
+  },
+  {
+    "type": "factual",
+    "difficulty": "medium",
+    "question": "List the key Python functions used for common statistical operations.",
+    "answer": "Key scipy.stats functions: norm.cdf()/ppf() for normal probabilities/quantiles; t.cdf()/ppf() for t-distribution; chi2.cdf()/ppf() for chi-squared; f.cdf()/ppf() for F-distribution; ttest_ind() for two-sample t-test; f_oneway() for one-way ANOVA; pearsonr() for correlation; shapiro() for normality test. NumPy: np.mean(), np.std(ddof=1), np.var(ddof=1). Matplotlib: plt.hist(), plt.boxplot(), plt.scatter(). These cover most statistical analyses from the DFSS textbook."
+  },
+  {
+    "type": "derivation",
+    "difficulty": "hard",
+    "question": "Derive the formula for the slope b1 in simple linear regression using the method of least squares.",
+    "answer": "Starting point: minimize S = sum((yn - b0 - b1×xn)^2) with respect to b0 and b1.\nStep 1: Take partial derivative with respect to b0: dS/db0 = -2×sum(yn - b0 - b1×xn) = 0.\nStep 2: This gives: sum(yn) = N×b0 + b1×sum(xn), so b0 = y_bar - b1×x_bar.\nStep 3: Take partial derivative with respect to b1: dS/db1 = -2×sum(xn×(yn - b0 - b1×xn)) = 0.\nStep 4: Substitute b0 = y_bar - b1×x_bar into step 3.\nStep 5: After simplification: b1 = sum((xn-x_bar)×(yn-y_bar)) / sum((xn-x_bar)^2) = sxy/sx^2.\nThis is the ordinary least squares (OLS) estimator for the slope."
+  },
+  {
+    "type": "derivation",
+    "difficulty": "hard",
+    "question": "Show that the expected value of the sample variance s^2 = sum((xi-x_bar)^2)/(N-1) equals the population variance sigma^2.",
+    "answer": "Step 1: Expand sum((xi-x_bar)^2) = sum(xi^2) - N×x_bar^2.\nStep 2: Take expected value: E[sum(xi^2)] = N×(sigma^2 + mu^2) and E[N×x_bar^2] = N×(sigma^2/N + mu^2) = sigma^2 + N×mu^2.\nStep 3: E[sum((xi-x_bar)^2)] = N×(sigma^2 + mu^2) - (sigma^2 + N×mu^2) = (N-1)×sigma^2.\nStep 4: Therefore E[s^2] = E[sum((xi-x_bar)^2)/(N-1)] = (N-1)×sigma^2/(N-1) = sigma^2.\nThis proves s^2 is an unbiased estimator of sigma^2, which is why we divide by N-1."
+  },
+  {
+    "type": "derivation",
+    "difficulty": "hard",
+    "question": "Derive the variance of the sample mean and explain its significance.",
+    "answer": "Step 1: x_bar = (1/N)×sum(xi), where xi are independent with variance sigma^2.\nStep 2: Var(x_bar) = Var((1/N)×sum(xi)) = (1/N^2)×sum(Var(xi)) = (1/N^2)×N×sigma^2 = sigma^2/N.\nStep 3: Standard error SE = sqrt(sigma^2/N) = sigma/sqrt(N).\nSignificance: The variance of the mean decreases as 1/N. Doubling the sample size halves the variance (but only reduces the standard error by factor sqrt(2) ≈ 1.41). This quantifies why larger samples give more precise estimates and is the foundation of confidence interval width calculations."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "hard",
+    "question": "Why does the Central Limit Theorem work regardless of the original distribution?",
+    "answer": "The CLT works because averaging smooths out individual distribution characteristics. Mathematically: when independent variables are summed, their moment-generating functions multiply, and (by Taylor expansion) the resulting shape converges to the normal MGF exp(mu×t + sigma^2×t^2/2). Intuitively: extreme values in one direction tend to be balanced by values in the other direction, and with many independent additions, the resulting shape becomes symmetric and bell-shaped. The key requirement is independence and finite variance — without these, the CLT can fail."
+  },
+  {
+    "type": "conceptual",
+    "difficulty": "hard",
+    "question": "Explain the Gauss-Markov theorem and its relevance to regression.",
+    "answer": "The Gauss-Markov theorem states that among all linear, unbiased estimators of regression coefficients, the OLS (ordinary least squares) estimator has the smallest variance — it is the Best Linear Unbiased Estimator (BLUE). Conditions: (1) the model is linear in parameters, (2) errors have zero mean, (3) errors have constant variance (homoscedasticity), (4) errors are uncorrelated. If these conditions hold, no other linear unbiased method can produce more precise coefficient estimates. If conditions are violated (e.g., heteroscedasticity), OLS is no longer optimal and methods like weighted least squares should be used."
+  },
+  {
+    "type": "application",
+    "difficulty": "hard",
+    "question": "How would you analyze whether a regression model with 5 predictors is adequate?",
+    "answer": "Comprehensive model checking: (1) Overall significance: F-test for the full model (H0: all slopes = 0). (2) Individual significance: t-test for each b_k (drop non-significant predictors). (3) R^2_adj: does adding predictors improve adjusted R^2? (4) Residual analysis: plot residuals vs. fitted values (check linearity, homoscedasticity), Q-Q plot (check normality), residuals vs. each predictor (check for missed nonlinearity). (5) Multicollinearity: check VIF for each predictor (VIF > 10 is problematic). (6) Influential observations: Cook's distance (values > 1 are concerning). (7) Prediction accuracy: cross-validation on held-out data."
+  }
+]

@@ -1,0 +1,14 @@
+[
+  {
+    "type": "conceptual",
+    "difficulty": "easy",
+    "question": "What is Design For Six Sigma (DFSS) and what role do statistical methods play in it?",
+    "answer": "Design For Six Sigma (DFSS) is a systematic methodology for product and process development. Statistical methods are used across its phases: in the Optimize phase for evaluating process reliability and tolerance analysis, in the Develop phase for statistical simulation, robust design, and design of experiments, and in the Verify phase for confirming manufacturability and reliability through measurement system analysis and statistical process control (SPC)."
+  },
+  {
+    "type": "factual",
+    "difficulty": "easy",
+    "question": "What are the main phases of DFSS where statistical methods are applied?",
+    "answer": "Statistical methods are applied in three main DFSS phases: (1) the Optimize phase, for process reliability evaluation and tolerance superposition, (2) the Develop phase, for statistical simulation, robust design, and statistical design of experiments, and (3) the Verify phase, for confirming predicted manufacturability and reliability using measurement capability proofs and SPC."
+  }
+]
